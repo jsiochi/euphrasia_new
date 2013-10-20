@@ -11,6 +11,7 @@ public class FieldFactory {
 	public FieldFactory(){
 		myFieldCatalog = new HashMap<String,String>();
 		myFieldCatalog.put("foreign_text", "ForeignTextField");
+		myFieldCatalog.put("native_text", "NativeTextField");
 	}
 
 	public Field createField(String componentID, String data){

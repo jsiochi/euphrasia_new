@@ -4,6 +4,7 @@ public class EntryDatabaseManager {
 	
 	private Field myForeignText;
 	private Field myNativeText;
+	private Field myAudioField;
 	
 	public EntryDatabaseManager(){
 		/*
@@ -25,6 +26,11 @@ public class EntryDatabaseManager {
 		 * TODO - add logic to make sure change is valid
 		 */
 		myForeignText = field;
+	}
+
+	public void setAudioField(AudioField audioField) {
+		myAudioField = audioField;
+		
 	}
 
 }
