@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package com.example.euphrasia;
+package com.jbj.euphrasia;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;
