@@ -1,4 +1,6 @@
-package com.example.euphrasia;
+package com.jbj.euphrasia;
+
+import com.jbj.euphrasia.R;
 
 import android.os.Bundle;
 import android.app.Activity;

@@ -1,10 +1,9 @@
 package com.jbj.euphrasia;
 
-import com.jbj.euphrasia.R;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import com.jbj.euphrasia.R;
 
 public class MainActivity extends Activity {
 
