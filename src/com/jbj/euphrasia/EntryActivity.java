@@ -47,7 +47,11 @@ public class EntryActivity extends Activity {
 	
 	public void handlePlay(View view){
 		myController.onPlay();
-	}	
+	}
+	
+	public void handlePause(View view){
+		myController.onPause();
+	}
 	
 
 }

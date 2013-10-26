@@ -2,14 +2,19 @@ package com.jbj.euphrasia;
 
 import java.io.FileDescriptor;
 
+import android.content.Context;
+import android.media.AudioManager;
+
 public abstract class MediaManager {
 	
 	protected FileDescriptor myFileName;
 	protected boolean myStatus;
+	protected AudioManager myAudioManager;
 	
-	public MediaManager(FileDescriptor fileName){
+	public MediaManager(FileDescriptor fileName, Context context){
 		myFileName = fileName;
 		myStatus = false;
+		myAudioManager = (AudioManager) context.getSystemService(context.AUDIO_SERVICE);
 	}
 	
 	public void execute(){
