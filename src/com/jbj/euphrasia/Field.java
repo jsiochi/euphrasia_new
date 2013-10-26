@@ -4,6 +4,8 @@ public abstract class Field {
 
 	protected String myData;
 	
+	protected Field() {};
+	
 	public Field(String data) {
 		myData = data;
 	}

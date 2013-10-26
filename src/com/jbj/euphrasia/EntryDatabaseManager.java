@@ -10,6 +10,8 @@ public class EntryDatabaseManager {
 	private Field myDateField;
 	private Field myTagField;
 	
+	//TODO add the remaining fields
+	
 	private EntryDatabaseHelper myDatabaseHelper;
 	
 	/**
@@ -23,8 +25,11 @@ public class EntryDatabaseManager {
 		 */
 		
 		myDatabaseHelper = new EntryDatabaseHelper(context);
-		
-		//TODO instantiate all the Field subclasses
+		myForeignText = new NullField();
+		myNativeText = new NullField();
+		myAudioField = new NullField();
+		myDateField = new NullField();
+		myTagField = new NullField();
 	}
 	
 	public void saveEntry() {
