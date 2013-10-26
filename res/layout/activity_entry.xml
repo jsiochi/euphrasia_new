@@ -26,18 +26,23 @@
         	android:id="@+id/edit_tags"
         	android:layout_width="0dip"
         	android:layout_height="wrap_content"
-        	android:layout_weight=".75"
+        	android:layout_weight=".5"
         	android:hint="@string/edit_entry_tags" />
      	<Button 
         	android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
         	android:text="@string/button_record_begin"  	
-        	android:onClick="" />
+        	android:onClick="handleRecording" />
+     	<Button 
+        	android:layout_width="wrap_content"
+       		android:layout_height="wrap_content"
+        	android:text="@string/button_play"  	
+        	android:onClick="handlePlay" />
 	</LinearLayout>
 	
     <LinearLayout 
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">"
+        android:layout_height="wrap_content">
   	    	<View
   				android:layout_width="0dp"
   				android:layout_height="45dp"
@@ -52,14 +57,26 @@
     	<TextView 
     	    android:layout_width="0dip"
         	android:layout_height="wrap_content"
-        	android:layout_weight=".5"
+        	android:layout_weight=".45"
         	android:text="@string/text_entry_native" />
+    	
+    	<Button 
+        	android:layout_width="wrap_content"
+       		android:layout_height="wrap_content"
+        	android:text="@string/native_submit"  	
+        	android:onClick="updateField" />
     	
     	<TextView 
     	    android:layout_width="0dip"
         	android:layout_height="wrap_content"
-        	android:layout_weight=".5"
-        	android:text="@string/text_entry_foreign" />    
+        	android:layout_weight=".45"
+        	android:text="@string/text_entry_foreign" />
+    	
+    	<Button 
+        	android:layout_width="wrap_content"
+       		android:layout_height="wrap_content"
+        	android:text="@string/foreign_submit"  	
+        	android:onClick="updateField" />
     	    
     </LinearLayout>
     
@@ -90,7 +107,7 @@
             android:layout_width="0dip"
             android:layout_height="200dp"
             android:layout_weight=".5"
-            android:hint="@string/hint_entry_foreign" />"
+            android:hint="@string/hint_entry_foreign"/>
         
     </LinearLayout>
     

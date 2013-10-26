@@ -6,15 +6,15 @@ import java.util.Map;
 
 public class FieldFactory {
 	
-	private Map<String,String> myFieldCatalog;
+	private Map<Integer,String> myFieldCatalog;
 	
 	public FieldFactory(){
-		myFieldCatalog = new HashMap<String,String>();
-		myFieldCatalog.put("foreign_text", "ForeignTextField");
-		myFieldCatalog.put("native_text", "NativeTextField");
+		myFieldCatalog = new HashMap<Integer,String>();
+		myFieldCatalog.put(R.id.foreign_text, "ForeignTextField");
+		myFieldCatalog.put(R.id.native_text, "NativeTextField");
 	}
 
-	public Field createField(String componentID, String data){
+	public Field createField(int componentID, String data){
 		/*
 		 * uses reflection and id of .xml GUI component to create the right subclass. 
 		 * EXAMPLE

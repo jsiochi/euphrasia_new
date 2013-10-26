@@ -9,8 +9,11 @@
     <string name="edit_entry_name">New Entry</string>
     <string name="edit_entry_tags">Entry Tags</string>
 	<string name="button_record_begin">Rec</string>
+	<string name="button_play">Play</string>
 	<string name="text_entry_native">Your Language</string>
+	<string name="native_submit">Submit</string>
 	<string name="text_entry_foreign">Foreign Language</string>
+	<string name="foreign_submit">Submit</string>
     <string name="hint_entry_native">Your Language goes here&#8230; </string>
     <string name="hint_entry_foreign">Foreign Language goes here&#8230; </string>
 	

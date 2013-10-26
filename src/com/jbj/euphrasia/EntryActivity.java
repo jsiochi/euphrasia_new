@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 public class EntryActivity extends Activity {
 	
 	private FieldFactory myFieldFactory;
 	private Controller myController;
-	private boolean myIsRecording;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +17,8 @@ public class EntryActivity extends Activity {
 		setContentView(R.layout.activity_entry);
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
-		myIsRecording = false;
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -31,8 +30,12 @@ public class EntryActivity extends Activity {
  * Call this method whenever an EditText component losesFocus
  */
 	public void updateField(View view){
-		Field field = myFieldFactory.createField("componentID", "data");
-		myController.updateEntryField(field);
+		if(!view.hasFocus()){
+			EditText editText = (EditText) view;
+			int id = editText.getId();
+			Field field = myFieldFactory.createField(id, editText.getText().toString());
+			myController.updateEntryField(field);
+		}
 	}
 	
 /**
