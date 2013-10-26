@@ -1,7 +1,6 @@
 package com.jbj.euphrasia;
 
 import java.io.FileDescriptor;
-
 import android.content.Context;
 import android.media.AudioManager;
 

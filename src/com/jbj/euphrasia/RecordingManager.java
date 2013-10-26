@@ -2,6 +2,7 @@ package com.jbj.euphrasia;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
+import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
@@ -28,7 +29,7 @@ public class RecordingManager extends MediaManager{
 	
 	private MediaRecorder myRecorder;
 	
-	public RecordingManager(context){
+	public RecordingManager(Context context){
 		super(new FileDescriptor(),context);
 	}
 	

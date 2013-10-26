@@ -4,6 +4,7 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
 
@@ -11,7 +12,7 @@ public class PlayManager extends MediaManager {
 	
 	private MediaPlayer myMediaPlayer;
 
-	public PlayManager() {
+	public PlayManager(Context context) {
 		//FIGURE OUT WHAT TO DO WITH FILENAMES
 		super(new FileDescriptor(), context);
 		myMediaPlayer = new MediaPlayer();
