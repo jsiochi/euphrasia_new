@@ -1,6 +1,10 @@
 package com.jbj.euphrasia;
 
+import com.jbj.euphrasia.EntryContract.EntryColumns;
+
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 
 public class EntryDatabaseManager {
 	
@@ -9,6 +13,8 @@ public class EntryDatabaseManager {
 	private Field myAudioField;
 	private Field myDateField;
 	private Field myTagField;
+	private Field myTitleField;
+	private Context myContext;
 	
 	//TODO add the remaining fields
 	
@@ -24,12 +30,15 @@ public class EntryDatabaseManager {
 		 * set 'em up)
 		 */
 		
+		myContext = context;
+		
 		myDatabaseHelper = new EntryDatabaseHelper(context);
 		myForeignText = new NullField();
 		myNativeText = new NullField();
 		myAudioField = new NullField();
 		myDateField = new NullField();
 		myTagField = new NullField();
+		myTitleField = new NullField();
 	}
 	
 	public void saveEntry() {
@@ -38,6 +47,21 @@ public class EntryDatabaseManager {
 		 */
 		
 		//TODO add a new database entry
+		
+		int id = 1; 
+		//TODO change this id!!
+		
+		ContentValues values = new ContentValues();
+		values.put(EntryColumns.COLUMN_NAME_ENTRY_ID, id);
+		values.put(EntryColumns.COLUMN_NAME_TITLE, myTitleField.toString());
+		values.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT, myNativeText.toString());
+		values.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT, myForeignText.toString());
+		values.put(EntryColumns.COLUMN_NAME_AUDIO, myAudioField.toString());
+		values.put(EntryColumns.COLUMN_NAME_TAG, myTagField.toString());
+		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
+		
+		Intent intent = new Intent(myContext, DatabaseWriteIntentService.class);
+		intent.putExtra("values", values);
 	}
 
 	public Field getNativeText() {

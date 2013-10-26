@@ -11,7 +11,8 @@ public class DatabaseWriteIntentService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		// TODO Auto-generated method stub
-		
+		// EntryDatabaseHelper myDatabaseHelper = new EntryDatabaseHelper(intent.
+		// SQLiteDatabase database = EntryDatabaseHelper
 	}
 	
 	

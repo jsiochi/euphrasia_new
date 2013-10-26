@@ -15,11 +15,13 @@ public class EntryDatabaseHelper extends SQLiteOpenHelper {
 			"CREATE TABLE " + EntryColumns.TABLE_NAME + " (" +
 			EntryColumns._ID + " INTEGER PRIMARY KEY," +
 			EntryColumns.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP + 
+			EntryColumns.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_NATIVE_TEXT + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_FOREIGN_TEXT + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_AUDIO + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP + 
-			EntryColumns.COLUMN_NAME_TAG + TEXT_TYPE +
+			EntryColumns.COLUMN_NAME_TAG + TEXT_TYPE + COMMA_SEP + 
+			EntryColumns.COLUMN_NAME_NULLABLE + TEXT_TYPE +
 			" )";
 	
 	private static final String SQL_DELETE_ENTRIES = 
