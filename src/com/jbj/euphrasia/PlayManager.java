@@ -13,7 +13,7 @@ public class PlayManager extends MediaManager {
 
 	public PlayManager() {
 		//FIGURE OUT WHAT TO DO WITH FILENAMES
-		super(new FileDescriptor());
+		super(new FileDescriptor(), context);
 		myMediaPlayer = new MediaPlayer();
 	}
 

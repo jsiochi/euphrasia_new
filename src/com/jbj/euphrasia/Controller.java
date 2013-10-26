@@ -10,8 +10,8 @@ public class Controller {
 
 	public Controller(Context context) {
 		myEntry = new EntryDatabaseManager(context);
-		myRecordingManager = new RecordingManager();
-		myPlayManager = new PlayManager();
+		myRecordingManager = new RecordingManager(context);
+		myPlayManager = new PlayManager(context);
 	}
 	
 	public void updateEntryField(Field field){

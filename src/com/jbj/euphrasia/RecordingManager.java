@@ -28,8 +28,8 @@ public class RecordingManager extends MediaManager{
 	
 	private MediaRecorder myRecorder;
 	
-	public RecordingManager(){
-		super(new FileDescriptor());
+	public RecordingManager(context){
+		super(new FileDescriptor(),context);
 	}
 	
 	protected void start(){
@@ -55,9 +55,10 @@ public class RecordingManager extends MediaManager{
 
 	@Override
 	public void pause() {
-		if(myStatus)
+		if(myStatus){
 			myRecorder.release();
 			myRecorder = null;
+		}
 	}
 
 }
