@@ -2,8 +2,10 @@ package com.jbj.euphrasia;
 
 public class AudioField extends Field {
 
-	public AudioField(String data) {
-		super(data);
+	private static final String AUDIODATA_INITIAL = "AWAITING FILE LOCATION";
+
+	public AudioField() {
+		super(AUDIODATA_INITIAL);
 	}
 
 	@Override

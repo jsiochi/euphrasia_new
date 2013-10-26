@@ -4,6 +4,8 @@ public abstract class Field {
 
 	protected String myData;
 	
+	protected Field() {};
+	
 	public Field(String data) {
 		myData = data;
 	}
@@ -13,5 +15,9 @@ public abstract class Field {
 	}
 	
 	public abstract EntryDatabaseManager updateEntryField(EntryDatabaseManager entryManager);
+
+	public void setData(String data) {
+		myData = data;
+	}
 
 }
