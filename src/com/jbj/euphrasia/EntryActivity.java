@@ -9,6 +9,7 @@ public class EntryActivity extends Activity {
 	
 	private FieldFactory myFieldFactory;
 	private Controller myController;
+	private boolean myIsRecording;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +17,7 @@ public class EntryActivity extends Activity {
 		setContentView(R.layout.activity_entry);
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
+		myIsRecording = false;
 	}
 
 	@Override
@@ -25,27 +27,27 @@ public class EntryActivity extends Activity {
 		return true;
 	}
 	
+/** get appropriate EditText object
+ * Call this method whenever an EditText component losesFocus
+ */
 	public void updateField(View view){
-		/* get appropriate EditText object
-		 * Call this method whenever an EditText component losesFocus
-		 */
 		Field field = myFieldFactory.createField("componentID", "data");
 		myController.updateEntryField(field);
 	}
 	
-	/*
-	 * To record, user holds a record button. As long as this is held, 
-	 * mic continues recording. 
-	 * When recording stops, presented option to save, playback, or record again. 
-	 */
+/**
+ * @author Bradley
+ * To record, user presses a record button. Toggles boolean value to indicate whether recording 
+ * should begin.
+ * When toggled off, presented option to save, playback, or record again. 
+ */
 	public void handleRecording(View view){
-		view.setPressed(true);
-		//create new audio field
-		//pass to controller method
-		
+		myController.onRecord();
 	}
 	
-	
+	public void handlePlay(View view){
+		myController.onPlay();
+	}	
 	
 
 }
