@@ -15,7 +15,7 @@ public class EntryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry);
 		myFieldFactory = new FieldFactory();
-		myController = new Controller();
+		myController = new Controller(this);
 	}
 
 	@Override
