@@ -31,9 +31,8 @@ public class EntryActivity extends Activity {
  */
 	public void updateField(View view){
 		if(!view.hasFocus()){
-			EditText editText = (EditText) view;
-			int id = editText.getId();
-			Field field = myFieldFactory.createField(id, editText.getText().toString());
+			EditText editText = (EditText) findViewById(R.id.foreign_text);
+			Field field = myFieldFactory.createField(R.id.foreign_text, editText.getText().toString());
 			myController.updateEntryField(field);
 		}
 	}
