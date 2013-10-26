@@ -53,5 +53,9 @@ public class EntryActivity extends Activity {
 		myController.onPause();
 	}
 	
+	public void handleSave(View view){
+		myController.onSave(new AudioField());
+	}
+	
 
 }

@@ -1,4 +1,5 @@
 package com.jbj.euphrasia;
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
@@ -52,6 +53,7 @@ public class RecordingManager extends MediaManager{
 		myRecorder.stop();
         myRecorder.release();
         myRecorder = null;
+        //File file = new File(myContext.getFilesDir(),myFileName);
 	}
 
 	@Override
@@ -60,6 +62,11 @@ public class RecordingManager extends MediaManager{
 			myRecorder.release();
 			myRecorder = null;
 		}
+	}
+
+	public String save() {
+		//return string reference to file path
+		return "";
 	}
 
 }

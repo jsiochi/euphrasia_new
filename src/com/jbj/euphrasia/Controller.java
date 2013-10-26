@@ -21,6 +21,11 @@ public class Controller {
 	public void onRecord() {
 		myRecordingManager.execute();
 	}
+	
+	public void onSave(Field audioField) {
+		audioField.setData(myRecordingManager.save());
+		audioField.updateEntryField(myEntry);
+	}
 
 	public void onPlay() {
 		myPlayManager.execute();

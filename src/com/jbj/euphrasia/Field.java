@@ -14,4 +14,8 @@ public abstract class Field {
 	
 	public abstract EntryDatabaseManager updateEntryField(EntryDatabaseManager entryManager);
 
+	public void setData(String data) {
+		myData = data;
+	}
+
 }

@@ -9,11 +9,13 @@ public abstract class MediaManager {
 	protected FileDescriptor myFileName;
 	protected boolean myStatus;
 	protected AudioManager myAudioManager;
+	protected Context myContext;
 	
 	public MediaManager(FileDescriptor fileName, Context context){
 		myFileName = fileName;
 		myStatus = false;
 		myAudioManager = (AudioManager) context.getSystemService(context.AUDIO_SERVICE);
+		myContext = context;
 	}
 	
 	public void execute(){
