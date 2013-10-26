@@ -33,6 +33,19 @@ public class EntryActivity extends Activity {
 		myController.updateEntryField(field);
 	}
 	
+	/*
+	 * To record, user holds a record button. As long as this is held, 
+	 * mic continues recording. 
+	 * When recording stops, presented option to save, playback, or record again. 
+	 */
+	public void handleRecording(View view){
+		view.setPressed(true);
+		//create new audio field
+		//pass to controller method
+		
+	}
+	
+	
 	
 
 }
