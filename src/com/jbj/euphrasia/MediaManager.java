@@ -28,5 +28,4 @@ public abstract class MediaManager {
 	
 	protected abstract void stop();
 	
-	public abstract void pause();
 }

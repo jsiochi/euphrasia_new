@@ -34,12 +34,5 @@ public class PlayManager extends MediaManager {
         myMediaPlayer = null;
 	}
 
-	@Override
-	public void pause() {
-		if(myStatus){
-			myMediaPlayer.release();
-			myMediaPlayer = null;
-		}
-	}
 
 }

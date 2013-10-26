@@ -49,10 +49,6 @@ public class EntryActivity extends Activity {
 		myController.onPlay();
 	}
 	
-	public void handlePause(View view){
-		myController.onPause();
-	}
-	
 	public void handleSave(View view){
 		myController.onSave(new AudioField());
 	}

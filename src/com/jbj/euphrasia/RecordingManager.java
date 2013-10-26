@@ -1,11 +1,8 @@
 package com.jbj.euphrasia;
 import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
+import java.util.Date;
+
 import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -33,6 +30,7 @@ When you are done with the MediaRecorder instance, call MediaRecorder.release() 
 
 public class RecordingManager extends MediaManager{
 	
+	private static final String STORAGE_LOCATION = File.pathSeparator + "Euphrasia";
 	private MediaRecorder myRecorder;
 	private File myCache;
 	private FileManager myFileManager;
@@ -67,19 +65,16 @@ public class RecordingManager extends MediaManager{
         myRecorder.release();
         myRecorder = null;
 	}
-	
 
-	@Override
-	public void pause() {
-		if(myStatus){
-			myRecorder.release();
-			myRecorder = null;
-		}
-	}
 
 	public String save() {
 		//return string reference to file path
-		File permanentFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
+		String dirLocation = Environment.getExternalStorageDirectory().getAbsolutePath() + STORAGE_LOCATION;
+		File temporaryFile = new File(dirLocation);
+		temporaryFile.mkdir();
+		Date date = new Date();
+		String pathEnding = File.pathSeparator + date.toString().hashCode();
+		File permanentFile = new File(dirLocation + pathEnding);
 		try
 		{
 		myFileManager.copyFile(myCache, permanentFile);

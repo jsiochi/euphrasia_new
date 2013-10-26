@@ -31,8 +31,4 @@ public class Controller {
 		myPlayManager.execute();
 	}
 
-	public void onPause() {
-		myPlayManager.pause();
-	}
-
 }
