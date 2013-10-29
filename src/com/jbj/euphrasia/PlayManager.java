@@ -1,9 +1,11 @@
 package com.jbj.euphrasia;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 public class PlayManager extends MediaManager {
@@ -11,7 +13,6 @@ public class PlayManager extends MediaManager {
 	private MediaPlayer myMediaPlayer;
 
 	public PlayManager(Context context) {
-		//FIGURE OUT WHAT TO DO WITH FILENAMES
 		super(context);
 		myMediaPlayer = new MediaPlayer();
 	}
@@ -20,7 +21,7 @@ public class PlayManager extends MediaManager {
 	public void start() {
 		myMediaPlayer = new MediaPlayer();
         try {
-            myMediaPlayer.setDataSource(myContext.getFilesDir().getAbsolutePath());
+        	myMediaPlayer.setDataSource(myContext.getFilesDir().getAbsolutePath());
             myMediaPlayer.prepare();
             myMediaPlayer.start();
         } catch (IOException e) {
