@@ -2,11 +2,11 @@ package test;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
-
 import com.jbj.euphrasia.AudioField;
 import com.jbj.euphrasia.Controller;
 import com.jbj.euphrasia.EntryDatabaseManager;
 import com.jbj.euphrasia.Field;
+import com.jbj.euphrasia.NativeTextField;
 
 public class TestController extends AndroidTestCase {
 
@@ -26,11 +26,16 @@ public class TestController extends AndroidTestCase {
 		super.tearDown();
 	}
 	
-	public void testGetAudioPath(){
-		myAudioField.updateEntryField(myEntryManager);
-		assertEquals("THIS IS MY FILE PATH",myController.getAudioPath());
+	public void testUpdateEntryField(){
+		NativeTextField nativeText = new NativeTextField("TEST");
+		nativeText.updateEntryField(myEntryManager);
+		assertEquals(nativeText,myEntryManager.getNativeText());
 	}
 	
+	public void testGetAudioPath(){
+		myController.updateEntryField(myAudioField);
+		assertEquals("THIS IS MY FILE PATH",myController.getAudioPath());
+	}
 	
 
 }

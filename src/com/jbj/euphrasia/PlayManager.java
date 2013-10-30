@@ -15,7 +15,7 @@ public class PlayManager extends MediaManager {
 		myMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 		    public void onCompletion(MediaPlayer mp) {
 		        stop();
-		        myStatus = ! myStatus;
+		        myStatus = !myStatus;
 		    }
 		});
 	}
