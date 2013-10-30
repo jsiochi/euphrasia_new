@@ -12,7 +12,7 @@ public abstract class MediaManager {
 	
 	public MediaManager(Context context, Controller controller){
 		myStatus = false;
-		myAudioManager = (AudioManager) context.getSystemService(context.AUDIO_SERVICE);
+		myAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 		myContext = context;
 		myController = controller;
 	}
