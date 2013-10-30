@@ -1,9 +1,11 @@
 package com.jbj.euphrasia;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 public class PlayManager extends MediaManager {

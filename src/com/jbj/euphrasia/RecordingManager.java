@@ -30,7 +30,7 @@ When you are done with the MediaRecorder instance, call MediaRecorder.release() 
 
 public class RecordingManager extends MediaManager{
 	
-	private static final String STORAGE_LOCATION = File.pathSeparator + "Euphrasia";
+	private static final String STORAGE_LOCATION = File.separator + "Euphrasia";
 	private MediaRecorder myRecorder;
 	private File myCache;
 	private FileManager myFileManager;
@@ -45,11 +45,12 @@ public class RecordingManager extends MediaManager{
         myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         myRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         try {
-			myCache = File.createTempFile("recording", "tmp",myContext.getCacheDir());
+			myCache = File.createTempFile("recording", "tmp", myContext.getCacheDir());
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
         myRecorder.setOutputFile(myCache.getAbsolutePath());
+        Log.i("MEDIA_START_CACHE", "cache location: " + myCache.getAbsolutePath());
         myRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         try {
@@ -57,6 +58,7 @@ public class RecordingManager extends MediaManager{
         } catch (IOException e) {
             Log.e("AUDIO_RECORD_TEST","prepare() failed");
         }
+        Log.d("MEDIA_RECORD_START", "recording");
         myRecorder.start();
 	}
 	
@@ -74,12 +76,12 @@ public class RecordingManager extends MediaManager{
 		File temporaryFile = new File(dirLocation);
 		temporaryFile.mkdir();
 		Date date = new Date();
-		String pathEnding = File.pathSeparator + date.toString().hashCode();
+		String pathEnding = File.separator + date.toString().hashCode();
 		File permanentFile = new File(dirLocation + pathEnding);
 		try
 		{
-		myFileManager.copyFile(myCache, permanentFile);
-		return permanentFile.getAbsolutePath();
+			myFileManager.copyFile(myCache, permanentFile);
+			return permanentFile.getAbsolutePath();
 		}
 		catch(IOException e)
 		{
