@@ -11,18 +11,19 @@ public class PlayManager extends MediaManager {
 
 	public PlayManager(Context context, Controller controller) {
 		super(context, controller);
-		myMediaPlayer = new MediaPlayer();
-		myMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-		    public void onCompletion(MediaPlayer mp) {
-		        stop();
-		        myStatus = ! myStatus;
-		    }
-		});
 	}
 
 	@Override
 	public void start() {
 		myMediaPlayer = new MediaPlayer();
+		myMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+		    public void onCompletion(MediaPlayer mp) {
+		    	Log.d("OnCompletionListener", "audio stopped playback");
+		        stop();
+		        myStatus = ! myStatus;
+		    }
+		});
+		
         try {
             myMediaPlayer.setDataSource(myController.getAudioPath());
             myMediaPlayer.prepare();
