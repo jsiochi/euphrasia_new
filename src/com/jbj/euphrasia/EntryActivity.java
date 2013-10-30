@@ -21,8 +21,8 @@ public class EntryActivity extends Activity {
 		
 		EditText nativeText = (EditText) findViewById(R.id.native_text);
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
-		nativeText.setOnFocusChangeListener(new MyOnFocusChangeListener(nativeText));
-	    foreignText.setOnFocusChangeListener(new MyOnFocusChangeListener(foreignText));
+//		nativeText.setOnFocusChangeListener(new MyOnFocusChangeListener(nativeText));
+//	    foreignText.setOnFocusChangeListener(new MyOnFocusChangeListener(foreignText));
 	}
 	
 	@Override
@@ -62,26 +62,26 @@ public class EntryActivity extends Activity {
 	}
 	
 
-	/** New Listener Class Code
-	 * @author James
-	 * Will check editText fields for values when they lose focus*/
-	
-	private class MyOnFocusChangeListener implements OnFocusChangeListener {
-	    private EditText myEditText;
-
-	    public MyOnFocusChangeListener(EditText editText) {
-	        super();
-
-	        myEditText = editText;
-	    }
-
-	    @Override
-	    public void onFocusChange(View view, boolean isFocused) {
-	        if (!isFocused) {
-	            updateField(myEditText);
-	        }
-	    }
-	}
+//	/** New Listener Class Code
+//	 * @author James
+//	 * Will check editText fields for values when they lose focus*/
+//	
+//	private class MyOnFocusChangeListener implements OnFocusChangeListener {
+//	    private EditText myEditText;
+//
+//	    public MyOnFocusChangeListener(EditText editText) {
+//	        super();
+//
+//	        myEditText = editText;
+//	    }
+//
+//	    @Override
+//	    public void onFocusChange(View view, boolean isFocused) {
+//	        if (!isFocused) {
+//	            updateField(myEditText);
+//	        }
+//	    }
+//	}
 
 }
 
