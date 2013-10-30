@@ -7,6 +7,10 @@ public class AudioField extends Field {
 	public AudioField() {
 		super(AUDIODATA_INITIAL);
 	}
+	
+	public AudioField(String data){
+		super(data);
+	}
 
 	@Override
 	public EntryDatabaseManager updateEntryField(EntryDatabaseManager entryManager) {

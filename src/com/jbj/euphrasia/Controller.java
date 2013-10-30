@@ -10,10 +10,13 @@ public class Controller {
 
 	public Controller(Context context) {
 		myEntry = new EntryDatabaseManager(context);
-		myRecordingManager = new RecordingManager(context);
-		myPlayManager = new PlayManager(context);
+		myRecordingManager = new RecordingManager(context,this);
+		myPlayManager = new PlayManager(context, this);
 	}
-	
+	public String getAudioPath(){
+		//return myEntry.getAudioPath();
+		return myEntry.getAudioField().toString();
+	}
 	public void updateEntryField(Field field){
 		field.updateEntryField(myEntry);
 	}

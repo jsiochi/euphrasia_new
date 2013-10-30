@@ -10,9 +10,8 @@ public class PlayManager extends MediaManager {
 	
 	private MediaPlayer myMediaPlayer;
 
-	public PlayManager(Context context) {
-		//FIGURE OUT WHAT TO DO WITH FILENAMES
-		super(context);
+	public PlayManager(Context context, Controller controller) {
+		super(context, controller);
 		myMediaPlayer = new MediaPlayer();
 	}
 
@@ -20,7 +19,7 @@ public class PlayManager extends MediaManager {
 	public void start() {
 		myMediaPlayer = new MediaPlayer();
         try {
-            myMediaPlayer.setDataSource(myContext.getFilesDir().getAbsolutePath());
+            myMediaPlayer.setDataSource(myController.getAudioPath());
             myMediaPlayer.prepare();
             myMediaPlayer.start();
         } catch (IOException e) {

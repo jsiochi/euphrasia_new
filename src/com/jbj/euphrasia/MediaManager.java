@@ -9,18 +9,21 @@ public abstract class MediaManager {
 	protected boolean myStatus;
 	protected AudioManager myAudioManager;
 	protected Context myContext;
+	protected Controller myController;
 	
-	public MediaManager(Context context){
+	public MediaManager(Context context, Controller controller){
 		myStatus = false;
 		myAudioManager = (AudioManager) context.getSystemService(context.AUDIO_SERVICE);
 		myContext = context;
+		myController = controller;
 	}
 	
 	public void execute(){
 		if(!myStatus)
 			this.start();
-		else
+		else{
 			this.stop();
+		}
 		myStatus = !myStatus;
 	}
 	

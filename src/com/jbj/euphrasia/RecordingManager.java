@@ -35,8 +35,8 @@ public class RecordingManager extends MediaManager{
 	private File myCache;
 	private FileManager myFileManager;
 	
-	public RecordingManager(Context context){
-		super(context);
+	public RecordingManager(Context context, Controller controller){
+		super(context,controller);
 		myFileManager = new FileManager();
 	}
 	
@@ -63,6 +63,7 @@ public class RecordingManager extends MediaManager{
 	protected void stop(){
 		myRecorder.stop();
         myRecorder.release();
+        myController.updateEntryField(new AudioField(myCache.getAbsolutePath()));
         myRecorder = null;
 	}
 

@@ -40,6 +40,7 @@ public class EntryDatabaseManager {
 		myTagField = new NullField();
 		myTitleField = new NullField();
 	}
+
 	
 	public void saveEntry() {
 		/*
@@ -74,6 +75,15 @@ public class EntryDatabaseManager {
 	
 	public Field getAudioField() {
 		return myAudioField;
+	}
+	
+	/**
+	 * Method should query database and return path to audio file. 
+	 * @return String filePath to audio file from database
+	 */
+	public String getAudioPath(){
+		//IMPLEMENT WHEN DATABASE WORKING
+		return "FILEPATH";
 	}
 
 	public void setNativeText(Field data) {
