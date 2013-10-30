@@ -2,6 +2,7 @@ package com.jbj.euphrasia;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -21,8 +22,24 @@ public class EntryActivity extends Activity {
 		
 		EditText nativeText = (EditText) findViewById(R.id.native_text);
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
-//		nativeText.setOnFocusChangeListener(new MyOnFocusChangeListener(nativeText));
-//	    foreignText.setOnFocusChangeListener(new MyOnFocusChangeListener(foreignText));
+		nativeText.setOnFocusChangeListener(new OnFocusChangeListener(){
+			@Override
+		    public void onFocusChange(View view, boolean isFocused) {
+		        if (!isFocused) {
+		        	Log.d("TAG","forein_focus_change");
+		            updateField(view);
+		        }
+		    }
+		});
+	    foreignText.setOnFocusChangeListener(new OnFocusChangeListener(){
+	    	@Override
+		    public void onFocusChange(View view, boolean isFocused) {
+		        if (!isFocused) {
+		        	Log.d("TAG","native_focus_change");
+		            updateField(view);
+		        }
+		    }
+	    });
 	}
 	
 	@Override
@@ -60,29 +77,6 @@ public class EntryActivity extends Activity {
 	public void handleSave(View view){
 		myController.onSave(new AudioField());
 	}
-	
-
-//	/** New Listener Class Code
-//	 * @author James
-//	 * Will check editText fields for values when they lose focus*/
-//	
-//	private class MyOnFocusChangeListener implements OnFocusChangeListener {
-//	    private EditText myEditText;
-//
-//	    public MyOnFocusChangeListener(EditText editText) {
-//	        super();
-//
-//	        myEditText = editText;
-//	    }
-//
-//	    @Override
-//	    public void onFocusChange(View view, boolean isFocused) {
-//	        if (!isFocused) {
-//	            updateField(myEditText);
-//	        }
-//	    }
-//	}
-
 }
 
 

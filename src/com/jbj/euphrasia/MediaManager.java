@@ -26,6 +26,10 @@ public abstract class MediaManager {
 		myStatus = !myStatus;
 	}
 	
+	public boolean isGoing(){
+		return myStatus;
+	}
+	
 	protected abstract void start();
 	
 	protected abstract void stop();

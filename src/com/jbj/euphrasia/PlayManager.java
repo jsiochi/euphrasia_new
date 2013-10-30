@@ -20,7 +20,7 @@ public class PlayManager extends MediaManager {
 		    public void onCompletion(MediaPlayer mp) {
 		    	Log.d("OnCompletionListener", "audio stopped playback");
 		        stop();
-		        myStatus = ! myStatus;
+		        myStatus = !myStatus;
 		    }
 		});
 		
