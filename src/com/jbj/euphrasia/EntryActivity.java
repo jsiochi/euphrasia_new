@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 
 public class EntryActivity extends Activity {
@@ -17,6 +18,11 @@ public class EntryActivity extends Activity {
 		setContentView(R.layout.activity_entry);
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
+		
+		EditText nativeText = (EditText) findViewById(R.id.native_text);
+		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
+		nativeText.setOnFocusChangeListener(new MyOnFocusChangeListener(nativeText));
+	    foreignText.setOnFocusChangeListener(new MyOnFocusChangeListener(foreignText));
 	}
 	
 	@Override
@@ -31,7 +37,7 @@ public class EntryActivity extends Activity {
  */
 	public void updateField(View view){
 		if(!view.hasFocus()){
-			EditText editText = (EditText) findViewById(R.id.foreign_text);
+			EditText editText = (EditText) findViewById(R.id.foreign_text); /** *****CHANGE!!!! */
 			Field field = myFieldFactory.createField(R.id.foreign_text, editText.getText().toString());
 			myController.updateEntryField(field);
 		}
@@ -56,4 +62,27 @@ public class EntryActivity extends Activity {
 	}
 	
 
+	/** New Listener Class Code
+	 * @author James
+	 * Will check editText fields for values when they lose focus*/
+	
+	private class MyOnFocusChangeListener implements OnFocusChangeListener {
+	    private EditText myEditText;
+
+	    public MyOnFocusChangeListener(EditText editText) {
+	        super();
+
+	        myEditText = editText;
+	    }
+
+	    @Override
+	    public void onFocusChange(View view, boolean isFocused) {
+	        if (!isFocused) {
+	            updateField(myEditText);
+	        }
+	    }
+	}
+
 }
+
+
