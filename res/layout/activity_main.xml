@@ -17,8 +17,14 @@
     <Button 
         android:layout_width="wrap_content"
        	android:layout_height="wrap_content"
-        android:text="@string/button_start" 
-        android:onClick=""	/>
+        android:text="@string/main_button_start" 
+        android:onClick="onStartEntry"	/>
+    
+    <Button 
+        android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+        android:text="@string/main_button_search" 
+        android:onClick="onStartSearch"	/>
         
 
 </LinearLayout>
