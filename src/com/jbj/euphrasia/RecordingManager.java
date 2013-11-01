@@ -13,6 +13,7 @@ import android.media.MediaRecorder.AudioSource;
 import android.os.Environment;
 import android.provider.MediaStore.Files;
 import android.util.Log;
+import android.widget.Toast;
 
 /*
  * Create a new instance of android.media.MediaRecorder.
@@ -60,11 +61,15 @@ public class RecordingManager extends MediaManager{
         }
         Log.d("MEDIA_RECORD_START", "recording");
         myRecorder.start();
+        Toast toast = Toast.makeText(myContext, "Now recording", Toast.LENGTH_SHORT);
+        toast.show();
 	}
 	
 	protected void stop(){
 		myRecorder.stop();
         myRecorder.release();
+        Toast toast = Toast.makeText(myContext, "Recording stopped", Toast.LENGTH_SHORT);
+        toast.show();
         myController.updateEntryField(new AudioField(myCache.getAbsolutePath()));
         myRecorder = null;
 	}

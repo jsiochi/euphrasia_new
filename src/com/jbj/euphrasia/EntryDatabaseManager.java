@@ -31,7 +31,6 @@ public class EntryDatabaseManager {
 		 */
 		
 		myContext = context;
-		
 		myDatabaseHelper = new EntryDatabaseHelper(context);
 		myForeignText = new NullField();
 		myNativeText = new NullField();
@@ -60,7 +59,6 @@ public class EntryDatabaseManager {
 		values.put(EntryColumns.COLUMN_NAME_AUDIO, myAudioField.toString());
 		values.put(EntryColumns.COLUMN_NAME_TAG, myTagField.toString());
 		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
-		
 		Intent intent = new Intent(myContext, DatabaseWriteIntentService.class);
 		intent.putExtra("values", values);
 	}
