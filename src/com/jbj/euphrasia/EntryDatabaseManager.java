@@ -5,6 +5,8 @@ import com.jbj.euphrasia.EntryContract.EntryColumns;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 
 public class EntryDatabaseManager {
 	
@@ -19,6 +21,7 @@ public class EntryDatabaseManager {
 	//TODO add the remaining fields
 	
 	private EntryDatabaseHelper myDatabaseHelper;
+	private SQLiteDatabase myDatabase;
 	
 	/**
 	 * @param context is the current context, found by calling getContext()
@@ -48,7 +51,7 @@ public class EntryDatabaseManager {
 		
 		//TODO add a new database entry
 		
-		int id = 1; 
+		int id = 1;
 		//TODO change this id!!
 		
 		ContentValues values = new ContentValues();
@@ -59,8 +62,11 @@ public class EntryDatabaseManager {
 		values.put(EntryColumns.COLUMN_NAME_AUDIO, myAudioField.toString());
 		values.put(EntryColumns.COLUMN_NAME_TAG, myTagField.toString());
 		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
+		
 		Intent intent = new Intent(myContext, DatabaseWriteIntentService.class);
 		intent.putExtra("values", values);
+		
+		myContext.startService(intent);
 	}
 
 	public Field getNativeText() {
@@ -77,6 +83,7 @@ public class EntryDatabaseManager {
 	
 	/**
 	 * Method should query database and return path to audio file. 
+	 * Huh, not really gonna work this way with the ContentProvider junk.
 	 * @return String filePath to audio file from database
 	 */
 	public String getAudioPath(){
