@@ -32,9 +32,9 @@ public class MainActivity extends ActionBarActivity {
 		startActivity(new Intent(this, EntryActivity.class));
 	}
 	
-	public void onStartSearch(View view){
+	/*public void onStartSearch(View view){
 		startActivity(new Intent(this,SearchActivity.class));
-	}
+	}*/
 	
 
 }
