@@ -10,8 +10,8 @@ public class FieldFactory {
 	
 	public FieldFactory(){
 		myFieldCatalog = new HashMap<Integer,String>();
-		myFieldCatalog.put(R.id.foreign_text, "ForeignTextField");
-		myFieldCatalog.put(R.id.native_text, "NativeTextField");
+		myFieldCatalog.put(R.id.foreign_text, "com.jbj.euphrasia.ForeignTextField");
+		myFieldCatalog.put(R.id.native_text, "com.jbj.euphrasia.NativeTextField");
 	}
 
 	public Field createField(int componentID, String data){

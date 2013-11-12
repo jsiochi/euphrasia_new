@@ -1,6 +1,7 @@
 package com.jbj.euphrasia;
 
 /**
+ * @author Jeremiah
  * Defines the schema for the database
  */
 
@@ -18,6 +19,6 @@ public final class EntryContract {
 		public static final String COLUMN_NAME_AUDIO = "audio";
 		public static final String COLUMN_NAME_DATE = "date";
 		public static final String COLUMN_NAME_TAG = "tag";
-		public static final String COLUMN_NAME_NULLABLE = "null";
+		public static final String COLUMN_NAME_NULLABLE = "nullable";
 	}
 }

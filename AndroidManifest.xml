@@ -48,6 +48,7 @@
             android:name="com.jbj.euphrasia.SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
+        <service android:name="com.jbj.euphrasia.DatabaseWriteIntentService"></service>
     </application>
 
 </manifest>

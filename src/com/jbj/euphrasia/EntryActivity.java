@@ -2,6 +2,7 @@ package com.jbj.euphrasia;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -17,6 +18,7 @@ public class EntryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry);
+		
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
 		
@@ -54,9 +56,10 @@ public class EntryActivity extends Activity {
  */
 	public void updateField(View view){
 		if(!view.hasFocus()){
-			EditText editText = (EditText) findViewById(R.id.foreign_text); /** *****CHANGE!!!! */
-			Field field = myFieldFactory.createField(R.id.foreign_text, editText.getText().toString());
+			EditText editText = (EditText) view;
+			Field field = myFieldFactory.createField(view.getId(), editText.getText().toString());
 			myController.updateEntryField(field);
+			Log.i("new field",field.toString() + field.getClass().getName());
 		}
 	}
 	
@@ -72,6 +75,7 @@ public class EntryActivity extends Activity {
 	
 	public void handlePlay(View view){
 		myController.onPlay();
+		myController.onSave(new AudioField());
 	}
 	
 	public void handleSave(View view){

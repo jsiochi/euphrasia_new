@@ -1,5 +1,13 @@
 # cache for current jar dependency. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
+<<<<<<< HEAD
 1382299065674 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f C:\Users\Bradley\Desktop\dev\Ex_Files\adt-bundle-windows-x86_64\adt-bundle-windows-x86_64\sdk\extras\android\support\v7\appcompat\libs\android-support-v4.jar
 1382298436000 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f C:\Users\Bradley\Desktop\workspace_java\Euphrasia\libs\android-support-v4.jar
+=======
+<<<<<<< HEAD
+=======
+1383277130553 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 C:\Users\James's Laptop\Desktop\Programming\adt-bundle-windows-x86_64-20130917\sdk\extras\android\support\v7\appcompat\libs\android-support-v4.jar
+1383151192968 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f C:\Users\James's Laptop\Desktop\Programming\euphrasia\libs\android-support-v4.jar
+>>>>>>> f61e78da519bf95b00a369fda44ea32ed53b1b00
+>>>>>>> 87402c5ce8ecf1f1b1cf656f4af745281ed9530c

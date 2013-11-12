@@ -10,10 +10,10 @@ public class EntryDatabaseHelper extends SQLiteOpenHelper {
 	public static final int DATABASE_VERSION = 1;
 	public static final String DATABASE_NAME = "Entry.db";
 	private static final String TEXT_TYPE = " TEXT";
-	private static final String COMMA_SEP = ",";
+	private static final String COMMA_SEP = ", ";
 	private static final String SQL_CREATE_ENTRIES = 
-			"CREATE TABLE " + EntryColumns.TABLE_NAME + " (" +
-			EntryColumns._ID + " INTEGER PRIMARY KEY," +
+			"CREATE TABLE " + EntryColumns.TABLE_NAME + "(" +
+			EntryColumns._ID + " INTEGER PRIMARY KEY, " +
 			EntryColumns.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_NATIVE_TEXT + TEXT_TYPE + COMMA_SEP + 
@@ -22,7 +22,7 @@ public class EntryDatabaseHelper extends SQLiteOpenHelper {
 			EntryColumns.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_TAG + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_NULLABLE + TEXT_TYPE +
-			" )";
+			");";
 	
 	private static final String SQL_DELETE_ENTRIES = 
 			"DROP TABLE IF IT EXISTS " + EntryColumns.TABLE_NAME;

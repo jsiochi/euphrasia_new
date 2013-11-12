@@ -16,6 +16,7 @@
     <string name="foreign_submit">Submit</string>
     <string name="hint_entry_native">Your Language goes here&#8230; </string>
     <string name="hint_entry_foreign">Foreign Language goes here&#8230; </string>
+    <string name="hint_search">Search entries</string>
     <string name="title_activity_search">SearchActivity</string>
    	<string name="main_button_search">Search</string>
    	<string name="action_search">Search</string>
