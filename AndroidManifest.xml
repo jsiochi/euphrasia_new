@@ -12,6 +12,11 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="16" />
+    
+    <provider
+       android:authorities="de.vogella.android.todos.contentprovider"
+       android:name=".contentprovider.EntryContentProvider" >
+	</provider>
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"

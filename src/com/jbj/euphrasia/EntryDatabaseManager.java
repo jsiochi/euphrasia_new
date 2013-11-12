@@ -2,11 +2,14 @@ package com.jbj.euphrasia;
 
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 
+import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 
-public class EntryDatabaseManager {
+public class EntryDatabaseManager extends ContentProvider {
 	
 	private Field myForeignText;
 	private Field myNativeText;
@@ -98,7 +101,65 @@ public class EntryDatabaseManager {
 
 	public void setAudioField(AudioField audioField) {
 		myAudioField = audioField;
-		
+	}
+
+
+	public void setTagField(TagField tagField) {
+		myTagField = tagField;
+	}
+
+
+	public void setTitleField(TitleField titleField) {
+		myTitleField = titleField;
+	}
+
+
+	public void setDateField(DateField dateField) {
+		myDateField = dateField;
+	}
+
+
+	@Override
+	public int delete(Uri uri, String selection, String[] selectionArgs) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public String getType(Uri uri) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Uri insert(Uri uri, ContentValues values) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean onCreate() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public Cursor query(Uri uri, String[] projection, String selection,
+			String[] selectionArgs, String sortOrder) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int update(Uri uri, ContentValues values, String selection,
+			String[] selectionArgs) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
