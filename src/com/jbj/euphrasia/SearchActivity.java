@@ -51,13 +51,14 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 
 	@Override
 	public android.content.Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-		Uri baseUri;
-        if (myCursorFilter != null) {
-            baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,
-                    Uri.encode(myCursorFilter));
-        } else {
-            baseUri = Contacts.CONTENT_URI;
-        }
+		return null;
+//		Uri baseUri;
+//        if (myCursorFilter != null) {
+//            baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,
+//                    Uri.encode(myCursorFilter));
+//        } else {
+//            baseUri = Contacts.CONTENT_URI;
+//        }
 	}
 
 
