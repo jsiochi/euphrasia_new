@@ -4,8 +4,10 @@ import com.jbj.euphrasia.EntryContract.EntryColumns;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 public class EntryDatabaseManager {
 	
@@ -20,21 +22,8 @@ public class EntryDatabaseManager {
 	
 	//TODO add the remaining fields
 	
-	private EntryDatabaseHelper myDatabaseHelper;
-	private SQLiteDatabase myDatabase;
-	
-	/**
-	 * @param context is the current context, found by calling getContext()
-	 */
 	public EntryDatabaseManager(Context context){
-		/*
-		 * Set up a new object
-		 * (You gotta set 'em up kid
-		 * set 'em up)
-		 */
-		
 		myContext = context;
-		myDatabaseHelper = new EntryDatabaseHelper(context);
 		myForeignText = new NullField();
 		myNativeText = new NullField();
 		myLanguageField = new NullField();
@@ -44,19 +33,18 @@ public class EntryDatabaseManager {
 		myTitleField = new NullField();
 	}
 
-	
+	/**
+	 * Write current entry to database
+	 * @return URI of the newly inserted entry
+	 */
 	public Uri saveEntry() {
-		/*
-		 * Write current entry to database
-		 */
 		
-		//TODO add a new database entry
 		
-		//long id = System.currentTimeMillis();
-		//TODO change this id!!
+		if(myTitleField.isNull()) {
+			myTitleField = new TitleField(myNativeText.toString());
+		}
 		
 		ContentValues values = new ContentValues();
-		//values.put(EntryColumns.COLUMN_NAME_ENTRY_ID, id);
 		values.put(EntryColumns.COLUMN_NAME_TITLE, myTitleField.toString());
 		values.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT, myNativeText.toString());
 		values.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT, myForeignText.toString());
@@ -66,6 +54,15 @@ public class EntryDatabaseManager {
 		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
 		
 		Uri newUri = myContext.getContentResolver().insert(EntryProvider.CONTENT_URI, values);
+		
+		String[] projection = {EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_NATIVE_TEXT, EntryColumns.COLUMN_NAME_FOREIGN_TEXT, EntryColumns.COLUMN_NAME_TAG};
+		
+		Cursor cursor = myContext.getContentResolver().query(EntryProvider.CONTENT_URI, projection, null, null, null);
+		
+		while(cursor.moveToNext()) {
+			Log.i("Database_READ", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(3) + " " + cursor.getString(3));
+		}
+		
 		return newUri;
 	}
 
@@ -79,6 +76,22 @@ public class EntryDatabaseManager {
 	
 	public Field getAudioField() {
 		return myAudioField;
+	}
+	
+	public Field getTagField() {
+		return myTagField;
+	}
+	
+	public Field getDateField() {
+		return myDateField;
+	}
+	
+	public Field getTitleField() {
+		return myTitleField;
+	}
+	
+	public Field getLanguageField() {
+		return myLanguageField;
 	}
 	
 	/**
