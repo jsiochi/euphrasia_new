@@ -1,5 +1,7 @@
 package com.jbj.euphrasia;
 
+import com.jbj.euphrasia.EntryContract.EntryColumns;
+
 import android.app.ActionBar.LayoutParams;
 import android.app.ListActivity;
 import android.database.Cursor;
@@ -19,6 +21,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 
 	private CursorAdapter myCursorAdapter;
 	private String myCursorFilter;
+	private Cursor myCursor;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
         String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TAG};
         int[] toViews = {android.R.id.text1};
         myCursorAdapter = new SimpleCursorAdapter(this, 
-                android.R.layout.simple_list_item_1, null,
+                android.R.layout.simple_list_item_1, myCursor,
                 fromColumns, toViews, 0);
         setListAdapter(myCursorAdapter);
 	}
@@ -72,6 +75,11 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		myCursorAdapter.swapCursor(null);
 	}
 	
-	
+	public void displayEverything(){
+		String[] projection = {EntryColumns.COLUMN_NAME_TAG};
+		String selection = "q";
+		
+		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, 
+	}
 
 }

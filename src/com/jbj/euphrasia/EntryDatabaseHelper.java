@@ -14,10 +14,10 @@ public class EntryDatabaseHelper extends SQLiteOpenHelper {
 	private static final String SQL_CREATE_ENTRIES = 
 			"CREATE TABLE " + EntryColumns.TABLE_NAME + "(" +
 			EntryColumns._ID + " INTEGER PRIMARY KEY, " +
-			EntryColumns.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_NATIVE_TEXT + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_FOREIGN_TEXT + TEXT_TYPE + COMMA_SEP + 
+			EntryColumns.COLUMN_NAME_LANGUAGE + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_AUDIO + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP + 
 			EntryColumns.COLUMN_NAME_TAG + TEXT_TYPE + COMMA_SEP + 

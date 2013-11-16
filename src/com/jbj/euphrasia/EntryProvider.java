@@ -23,7 +23,8 @@ public class EntryProvider extends ContentProvider {
 	private EntryDatabaseHelper myDatabaseHelper;
 	private SQLiteDatabase myDatabase;
 	
-	private static final String MY_CONTENT_URI = "content://com.jbj.euphrasia.provider";
+	private static final String MY_AUTHORITY = "com.jbj.euphrasia.provider";
+	private static final String MY_CONTENT_URI = "content://" + MY_AUTHORITY;
 	private static final UriMatcher myUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	//TODO add all needed URI patterns here
 	static { 
