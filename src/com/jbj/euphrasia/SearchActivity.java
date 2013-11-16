@@ -15,6 +15,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 public class SearchActivity extends ListActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor> {
@@ -27,6 +28,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
+		ListView listView = (ListView) findViewById(R.id.list);
 		//query database for collection of all tags
 		//display these tags + frequency onCreate
 		ProgressBar progressBar = new ProgressBar(this);
@@ -79,7 +81,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		String[] projection = {EntryColumns.COLUMN_NAME_TAG};
 		String selection = "q";
 		
-		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, 
+		//myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, 
 	}
 
 }

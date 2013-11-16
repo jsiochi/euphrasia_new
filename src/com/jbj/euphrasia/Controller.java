@@ -1,6 +1,7 @@
 package com.jbj.euphrasia;
 
 import android.content.Context;
+import android.net.Uri;
 
 public class Controller {
 
@@ -25,9 +26,10 @@ public class Controller {
 		myRecordingManager.execute();
 	}
 	
-	public void onSave(Field audioField) {
-		audioField.setData(myRecordingManager.save());
+	public void onSave() {
+		Field audioField = myRecordingManager.save();
 		audioField.updateEntryField(myEntry);
+		Uri resourceUri = myEntry.saveEntry();
 	}
 
 	public void onPlay() {

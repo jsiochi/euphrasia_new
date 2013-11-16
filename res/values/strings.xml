@@ -6,13 +6,13 @@
     <string name="welcome_greeting">Welcome to Euphrasia</string>
     <string name="title_activity_entry">Entry</string>
     <string name="main_button_start">Start</string>
-    <string name="edit_entry_name">New Entry</string>
-    <string name="edit_entry_tags">Entry Tags</string>
+    <string name="edit_entry_name">Title</string>
+    <string name="edit_entry_tags">Comma-Separated Tags Please</string>
     <string name="button_record_begin">Rec</string>
     <string name="button_play">Play</string>
-    <string name="text_entry_native">Your Language</string>
+    <string name="text_entry_native">In your language</string>
     <string name="native_submit">Submit</string>
-    <string name="text_entry_foreign">Foreign Language</string>
+    <string name="text_entry_foreign">In their language</string>
     <string name="foreign_submit">Submit</string>
     <string name="hint_entry_native">Your Language goes here&#8230; </string>
     <string name="hint_entry_foreign">Foreign Language goes here&#8230; </string>
@@ -21,4 +21,6 @@
    	<string name="main_button_search">Search</string>
    	<string name="action_search">Search</string>
 	<string name="action_compose">Compose</string>
+	<string name="tag_field">Tags</string>
+	<string name="save_button">Save</string>
 </resources>

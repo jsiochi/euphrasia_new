@@ -2,9 +2,14 @@ package com.jbj.euphrasia;
 
 public class TagField extends Field {
 	
-	public TagField(String data){
-		super(data);
+	public TagField(){
+		super("");
 	}
+	
+	public TagField(String tags){
+		//might have to call method to properly format tags
+		super(tags);
+	}	
 
 	@Override
 	public EntryDatabaseManager updateEntryField(EntryDatabaseManager entryManager) {

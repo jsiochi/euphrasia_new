@@ -54,7 +54,7 @@
         android:layout_width="fill_parent"
     	android:layout_height="wrap_content">	
     	
-    	<TextView 
+    	<TextView
     	    android:layout_width="0dip"
         	android:layout_height="wrap_content"
         	android:layout_weight=".45"
@@ -75,8 +75,7 @@
   				android:layout_width="0dp"
   				android:layout_height="30dp"
   				android:layout_weight="1">
-			</View>
-			
+			</View>		
     </LinearLayout>
     
     <LinearLayout 
@@ -97,6 +96,11 @@
             android:layout_weight=".5"
             android:hint="@string/hint_entry_foreign"/>
         
-    </LinearLayout>
-    
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="handleSave"
+            android:text="@string/save_button" />
+	</LinearLayout>    
 </LinearLayout>

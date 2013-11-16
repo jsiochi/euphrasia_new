@@ -24,25 +24,21 @@ public class EntryActivity extends Activity {
 		
 		EditText nativeText = (EditText) findViewById(R.id.native_text);
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
-		nativeText.setOnFocusChangeListener(new OnFocusChangeListener(){
-			@Override
-		    public void onFocusChange(View view, boolean isFocused) {
-		        if (!isFocused) {
-		        	Log.d("TAG","forein_focus_change");
-		            updateField(view);
-		        }
-		    }
-		});
-	    foreignText.setOnFocusChangeListener(new OnFocusChangeListener(){
-	    	@Override
-		    public void onFocusChange(View view, boolean isFocused) {
-		        if (!isFocused) {
-		        	Log.d("TAG","native_focus_change");
-		            updateField(view);
-		        }
-		    }
-	    });
+		EditText tagText = (EditText) findViewById(R.id.edit_tags);
+		EditText[] textViews = {nativeText, foreignText, tagText};
+		for(EditText t:textViews){
+			t.setOnFocusChangeListener(new OnFocusChangeListener(){
+				@Override
+			    public void onFocusChange(View view, boolean isFocused) {
+			        if (!isFocused) {
+			        	Log.d("TAG","forein_focus_change");
+			            updateField(view);
+			        }
+			    }
+			});
+		}
 	}
+		
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,11 +71,10 @@ public class EntryActivity extends Activity {
 	
 	public void handlePlay(View view){
 		myController.onPlay();
-		myController.onSave(new AudioField());
 	}
 	
 	public void handleSave(View view){
-		myController.onSave(new AudioField());
+		myController.onSave();
 	}
 }
 

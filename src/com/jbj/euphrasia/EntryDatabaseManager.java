@@ -86,8 +86,7 @@ public class EntryDatabaseManager {
 	 * @return String filePath to audio file from database
 	 */
 	public String getAudioPath(){
-		//IMPLEMENT WHEN DATABASE WORKING
-		return "FILEPATH";
+		return myAudioField.toString();
 	}
 
 	public void setNativeText(Field data) {

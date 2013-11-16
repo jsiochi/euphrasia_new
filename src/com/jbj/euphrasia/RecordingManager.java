@@ -75,7 +75,7 @@ public class RecordingManager extends MediaManager{
 	}
 
 
-	public String save() {
+	public Field save() {
 		//return string reference to file path
 		String dirLocation = Environment.getExternalStorageDirectory().getAbsolutePath() + STORAGE_LOCATION;
 		File temporaryFile = new File(dirLocation);
@@ -86,13 +86,15 @@ public class RecordingManager extends MediaManager{
 		try
 		{
 			myFileManager.copyFile(myCache, permanentFile);
-			return permanentFile.getAbsolutePath();
+			Field audioField = new AudioField();
+			audioField.setData(permanentFile.getAbsolutePath());
+			return audioField;
 		}
 		catch(IOException e)
 		{
 			e.printStackTrace();
 		}
-		return "FILE NOT CREATED";
+		return new NullField();
 	}
 
 }
