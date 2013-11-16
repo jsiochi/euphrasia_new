@@ -15,6 +15,10 @@ public abstract class Field {
 	}
 	
 	public abstract EntryDatabaseManager updateEntryField(EntryDatabaseManager entryManager);
+	
+	public boolean isNull() {
+		return false;
+	}
 
 	public void setData(String data) {
 		myData = data;

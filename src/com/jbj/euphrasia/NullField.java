@@ -12,5 +12,10 @@ public class NullField extends Field {
 	public EntryDatabaseManager updateEntryField(EntryDatabaseManager entryManager) {
 		return entryManager;
 	}
+	
+	@Override
+	public boolean isNull(){
+		return true;
+	}
 
 }
