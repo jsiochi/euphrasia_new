@@ -2,22 +2,16 @@ package com.jbj.euphrasia;
 
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 
-import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-<<<<<<< HEAD
-import android.database.Cursor;
-import android.net.Uri;
-=======
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
->>>>>>> 87402c5ce8ecf1f1b1cf656f4af745281ed9530c
+import android.net.Uri;
 
-public class EntryDatabaseManager extends ContentProvider {
+public class EntryDatabaseManager {
 	
 	private Field myForeignText;
 	private Field myNativeText;
+	private Field myLanguageField;
 	private Field myAudioField;
 	private Field myDateField;
 	private Field myTagField;
@@ -43,6 +37,7 @@ public class EntryDatabaseManager extends ContentProvider {
 		myDatabaseHelper = new EntryDatabaseHelper(context);
 		myForeignText = new NullField();
 		myNativeText = new NullField();
+		myLanguageField = new NullField();
 		myAudioField = new NullField();
 		myDateField = new NullField();
 		myTagField = new NullField();
@@ -50,29 +45,28 @@ public class EntryDatabaseManager extends ContentProvider {
 	}
 
 	
-	public void saveEntry() {
+	public Uri saveEntry() {
 		/*
 		 * Write current entry to database
 		 */
 		
 		//TODO add a new database entry
 		
-		int id = 1;
+		//long id = System.currentTimeMillis();
 		//TODO change this id!!
 		
 		ContentValues values = new ContentValues();
-		values.put(EntryColumns.COLUMN_NAME_ENTRY_ID, id);
+		//values.put(EntryColumns.COLUMN_NAME_ENTRY_ID, id);
 		values.put(EntryColumns.COLUMN_NAME_TITLE, myTitleField.toString());
 		values.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT, myNativeText.toString());
 		values.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT, myForeignText.toString());
+		values.put(EntryColumns.COLUMN_NAME_LANGUAGE, myLanguageField.toString());
 		values.put(EntryColumns.COLUMN_NAME_AUDIO, myAudioField.toString());
 		values.put(EntryColumns.COLUMN_NAME_TAG, myTagField.toString());
 		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
 		
-		Intent intent = new Intent(myContext, DatabaseWriteIntentService.class);
-		intent.putExtra("values", values);
-		
-		myContext.startService(intent);
+		Uri newUri = myContext.getContentResolver().insert(EntryProvider.CONTENT_URI, values);
+		return newUri;
 	}
 
 	public Field getNativeText() {
@@ -89,7 +83,6 @@ public class EntryDatabaseManager extends ContentProvider {
 	
 	/**
 	 * Method should query database and return path to audio file. 
-	 * Huh, not really gonna work this way with the ContentProvider junk.
 	 * @return String filePath to audio file from database
 	 */
 	public String getAudioPath(){
@@ -107,6 +100,10 @@ public class EntryDatabaseManager extends ContentProvider {
 		 * TODO - add logic to make sure change is valid
 		 */
 		myForeignText = field;
+	}
+	
+	public void setLanguageField(Field field) {
+		myLanguageField = field;
 	}
 
 	public void setAudioField(AudioField audioField) {
@@ -127,49 +124,4 @@ public class EntryDatabaseManager extends ContentProvider {
 	public void setDateField(DateField dateField) {
 		myDateField = dateField;
 	}
-
-
-	@Override
-	public int delete(Uri uri, String selection, String[] selectionArgs) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public String getType(Uri uri) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public Uri insert(Uri uri, ContentValues values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public boolean onCreate() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	@Override
-	public Cursor query(Uri uri, String[] projection, String selection,
-			String[] selectionArgs, String sortOrder) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public int update(Uri uri, ContentValues values, String selection,
-			String[] selectionArgs) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

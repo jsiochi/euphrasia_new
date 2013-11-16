@@ -10,6 +10,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+/**
+ * OBSOLOTE CLASS!!
+ * @author jeremiahsiochi
+ */
+
 public class DatabaseWriteIntentService extends IntentService {
 	
 	public DatabaseWriteIntentService() {
