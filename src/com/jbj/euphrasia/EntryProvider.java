@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 public class EntryProvider extends ContentProvider {
 	
@@ -23,7 +24,7 @@ public class EntryProvider extends ContentProvider {
 	private EntryDatabaseHelper myDatabaseHelper;
 	private SQLiteDatabase myDatabase;
 	
-	private static final String MY_AUTHORITY = "com.jbj.euphrasia.provider";
+	private static final String MY_AUTHORITY = "com.jbj.euphrasia.provider"; 
 	private static final String MY_CONTENT_URI = "content://" + MY_AUTHORITY;
 	private static final UriMatcher myUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	//TODO add all needed URI patterns here
@@ -95,6 +96,15 @@ public class EntryProvider extends ContentProvider {
 	public Uri insert(Uri uri, ContentValues values) {
 		myDatabase = myDatabaseHelper.getWritableDatabase();
 		long newRowID;
+		
+		Log.i("URIstuff", uri.toString());
+		
+		Uri.Builder ub = new Uri.Builder();
+		
+		ub.authority(MY_AUTHORITY);
+		ub.appendPath(EntryColumns.TABLE_NAME);
+		
+		Log.i("URIstuffMatcher", ub.toString());
 		
 		if(myUriMatcher.match(uri) == 1) {
 			newRowID = myDatabase.insert(EntryColumns.TABLE_NAME, EntryColumns.COLUMN_NAME_NULLABLE, values);

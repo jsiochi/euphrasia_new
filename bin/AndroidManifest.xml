@@ -25,11 +25,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <uses-library android:name="android.test.runner" />
-        
-         <provider
-	       android:authorities="de.vogella.android.todos.contentprovider"
-	       android:name=".contentprovider.EntryContentProvider" >
-		</provider>
 
         <activity
             android:theme="@style/Theme.AppCompat.Light"
@@ -48,7 +43,10 @@
             android:name="com.jbj.euphrasia.SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
-        <service android:name="com.jbj.euphrasia.DatabaseWriteIntentService"></service>
+        
+        <provider android:name="com.jbj.euphrasia.EntryProvider"
+            android:authorities="com.jbj.euphrasia.provider" >
+        </provider>
     </application>
 
 </manifest>

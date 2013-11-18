@@ -25,7 +25,7 @@ public class EntryDatabaseHelper extends SQLiteOpenHelper {
 			");";
 	
 	private static final String SQL_DELETE_ENTRIES = 
-			"DROP TABLE IF IT EXISTS " + EntryColumns.TABLE_NAME;
+			"DROP TABLE IF EXISTS " + EntryColumns.TABLE_NAME;
 	
 	public EntryDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

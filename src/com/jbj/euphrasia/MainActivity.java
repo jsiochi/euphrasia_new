@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.jbj.euphrasia.R;
@@ -32,9 +33,10 @@ public class MainActivity extends ActionBarActivity {
 		startActivity(new Intent(this, EntryActivity.class));
 	}
 	
-	/*public void onStartSearch(View view){
+	public boolean onStartSearch(MenuItem menuItem){
 		startActivity(new Intent(this,SearchActivity.class));
-	}*/
+		return true;
+	}
 	
 
 }
