@@ -31,13 +31,13 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		ListView listView = (ListView) findViewById(R.id.list);
 		//query database for collection of all tags
 		//display these tags + frequency onCreate
-		ProgressBar progressBar = new ProgressBar(this);
-        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT, Gravity.CENTER));
-        progressBar.setIndeterminate(true);
-        getListView().setEmptyView(progressBar);
-        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-        root.addView(progressBar);
+//		ProgressBar progressBar = new ProgressBar(this);
+//        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+//                LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+//        progressBar.setIndeterminate(true);
+//        getListView().setEmptyView(progressBar);
+//        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+//        root.addView(progressBar);
         getLoaderManager().initLoader(0, null, this);
         //take data from columns and put in specific views
         String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TAG};
