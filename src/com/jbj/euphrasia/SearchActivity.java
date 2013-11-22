@@ -23,6 +23,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	private CursorAdapter myCursorAdapter;
 	private String myCursorFilter;
 	private Cursor myCursor;
+	private Controller myController;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

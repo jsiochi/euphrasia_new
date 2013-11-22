@@ -94,6 +94,11 @@ public class RecordingManager extends MediaManager{
 		{
 			e.printStackTrace();
 		}
+		catch(NullPointerException e)
+		{
+			e.printStackTrace();
+		}
+		
 		return new NullField();
 	}
 
