@@ -986,15 +986,15 @@ containing a value of this type.
         public static final int action_bar_root=0x7f060018;
         public static final int action_bar_subtitle=0x7f060021;
         public static final int action_bar_title=0x7f060020;
-        public static final int action_compose=0x7f06004a;
+        public static final int action_compose=0x7f06004c;
         public static final int action_context_bar=0x7f06001b;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_bar=0x7f06002f;
         public static final int action_mode_bar_stub=0x7f06002e;
         public static final int action_mode_close_button=0x7f060022;
-        public static final int action_search=0x7f060049;
-        public static final int action_settings=0x7f060048;
+        public static final int action_search=0x7f06004b;
+        public static final int action_settings=0x7f06004a;
         public static final int activity_chooser_view_content=0x7f060023;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1016,6 +1016,8 @@ containing a value of this type.
         public static final int icon=0x7f060028;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060025;
+        public static final int item_tags=0x7f060049;
+        public static final int item_title=0x7f060048;
         public static final int left_icon=0x7f060031;
         public static final int list=0x7f060047;
         public static final int listMode=0x7f060001;
@@ -1108,7 +1110,8 @@ containing a value of this type.
         public static final int activity_entry=0x7f030018;
         public static final int activity_main=0x7f030019;
         public static final int activity_search=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int search_list_item=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int entry=0x7f0d0000;

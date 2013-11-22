@@ -4,6 +4,7 @@ import com.jbj.euphrasia.EntryContract.EntryColumns;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.ListActivity;
+import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,12 +42,13 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 //        root.addView(progressBar);
         getLoaderManager().initLoader(0, null, this);
         //take data from columns and put in specific views
-        String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TAG};
-        int[] toViews = {android.R.id.text1};
+        String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
+        int[] toViews = {R.id.item_title, R.id.item_tags};
         myCursorAdapter = new SimpleCursorAdapter(this, 
-                android.R.layout.simple_list_item_1, myCursor,
+                R.layout.search_list_item, myCursor,
                 fromColumns, toViews, 0);
         setListAdapter(myCursorAdapter);
+        this.displayEverything();
 	}
 
 	@Override
@@ -57,14 +59,16 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 
 	@Override
 	public android.content.Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-		return null;
-//		Uri baseUri;
-//        if (myCursorFilter != null) {
-//            baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,
-//                    Uri.encode(myCursorFilter));
-//        } else {
-//            baseUri = Contacts.CONTENT_URI;
-//        }
+		
+		Uri baseUri;
+        if (myCursorFilter != null) {
+            baseUri = Uri.withAppendedPath(EntryProvider.CONTENT_URI,
+                    Uri.encode(myCursorFilter));
+        } else {
+            baseUri = Contacts.CONTENT_URI;
+        }
+        String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
+        return new CursorLoader(this, baseUri,fromColumns, null, null,null);
 	}
 
 
@@ -79,10 +83,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	}
 	
 	public void displayEverything(){
-		String[] projection = {EntryColumns.COLUMN_NAME_TAG};
-		String selection = "q";
-		
-		//myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, 
+		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
+		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, null,null,null); 
 	}
 
 }
