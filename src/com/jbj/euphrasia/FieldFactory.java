@@ -12,6 +12,7 @@ public class FieldFactory {
 		myFieldCatalog = new HashMap<Integer,String>();
 		myFieldCatalog.put(R.id.foreign_text, "com.jbj.euphrasia.ForeignTextField");
 		myFieldCatalog.put(R.id.native_text, "com.jbj.euphrasia.NativeTextField");
+		myFieldCatalog.put(R.id.edit_tags, "com.jbj.euphrasia.TagField");
 	}
 
 	public Field createField(int componentID, String data){

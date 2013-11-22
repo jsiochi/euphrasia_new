@@ -29,8 +29,8 @@ public class EntryProvider extends ContentProvider {
 	private static final UriMatcher myUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	//TODO add all needed URI patterns here
 	static { 
-		myUriMatcher.addURI(MY_CONTENT_URI, EntryColumns.TABLE_NAME, 1);
-		myUriMatcher.addURI(MY_CONTENT_URI, EntryColumns.TABLE_NAME + "/#", 2);
+		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME, 1);
+		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME + "/#", 2);
 		}
 	
 	public static final Uri CONTENT_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.TABLE_NAME);
@@ -97,12 +97,13 @@ public class EntryProvider extends ContentProvider {
 		myDatabase = myDatabaseHelper.getWritableDatabase();
 		long newRowID;
 		
-		Log.i("URIstuff", uri.toString());
-		
 		Uri.Builder ub = new Uri.Builder();
 		
 		ub.authority(MY_AUTHORITY);
 		ub.appendPath(EntryColumns.TABLE_NAME);
+		
+		//uri = Uri.parse(uri.toString().substring(8));
+		Log.i("URIstuff", uri.toString());
 		
 		Log.i("URIstuffMatcher", ub.toString());
 		

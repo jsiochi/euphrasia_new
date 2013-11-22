@@ -21,6 +21,7 @@ public class EntryActivity extends Activity {
 		
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
+		//TODO add Language field
 		
 		EditText nativeText = (EditText) findViewById(R.id.native_text);
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
@@ -52,6 +53,7 @@ public class EntryActivity extends Activity {
  */
 	public void updateField(View view){
 		if(!view.hasFocus()){
+			//TODO is it too inefficient to create a new field object every time?
 			EditText editText = (EditText) view;
 			Field field = myFieldFactory.createField(view.getId(), editText.getText().toString());
 			myController.updateEntryField(field);

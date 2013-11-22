@@ -55,13 +55,17 @@ public class EntryDatabaseManager {
 		
 		Uri newUri = myContext.getContentResolver().insert(EntryProvider.CONTENT_URI, values);
 		
-		String[] projection = {EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_NATIVE_TEXT, EntryColumns.COLUMN_NAME_FOREIGN_TEXT, EntryColumns.COLUMN_NAME_TAG};
-		
+		//TEST CODE FOR DATABASE READ (confirmed working)
+		String[] projection = {EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_NATIVE_TEXT, EntryColumns.COLUMN_NAME_FOREIGN_TEXT, 
+				EntryColumns.COLUMN_NAME_TAG, EntryColumns.COLUMN_NAME_AUDIO, EntryColumns.COLUMN_NAME_LANGUAGE, EntryColumns.COLUMN_NAME_DATE};
 		Cursor cursor = myContext.getContentResolver().query(EntryProvider.CONTENT_URI, projection, null, null, null);
 		
 		while(cursor.moveToNext()) {
-			Log.i("Database_READ", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(3) + " " + cursor.getString(3));
+			Log.i("Database_READ", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3) + 
+					" " + cursor.getString(4) + " " + cursor.getString(5) + " " + cursor.getString(6));
 		}
+		
+		cursor.close();
 		
 		return newUri;
 	}
@@ -103,6 +107,7 @@ public class EntryDatabaseManager {
 	}
 
 	public void setNativeText(Field data) {
+		Log.i("DB_MANAGER","Updated native");
 		myNativeText = data;
 	}
 
@@ -111,24 +116,29 @@ public class EntryDatabaseManager {
 		 * Accessed by ForeignTextField. 
 		 * TODO - add logic to make sure change is valid
 		 */
+		Log.i("DB_MANAGER","Updated foreign");
 		myForeignText = field;
 	}
 	
 	public void setLanguageField(Field field) {
+		Log.i("DB_MANAGER","Updated language");
 		myLanguageField = field;
 	}
 
 	public void setAudioField(AudioField audioField) {
+		Log.i("DB_MANAGER","Updated audio");
 		myAudioField = audioField;
 	}
 
 
 	public void setTagField(TagField tagField) {
+		Log.i("DB_MANAGER","Updated tag");
 		myTagField = tagField;
 	}
 
 
 	public void setTitleField(TitleField titleField) {
+		Log.i("DB_MANAGER","Updated title");
 		myTitleField = titleField;
 	}
 
