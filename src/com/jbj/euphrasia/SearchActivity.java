@@ -48,7 +48,6 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
                 R.layout.search_list_item, myCursor,
                 fromColumns, toViews, 0);
         setListAdapter(myCursorAdapter);
-        Log.i("Got there","about to display");
         this.displayEverything();
 	}
 
@@ -68,8 +67,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
         } else {
             baseUri = EntryProvider.CONTENT_URI;
         }
-        String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
-        return new CursorLoader(this, baseUri,fromColumns, null, null,null);
+        String[] projection = {EntryColumns._ID, EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_TAG};
+        return new CursorLoader(this, baseUri,projection, null, null,null);
 	}
 
 
@@ -85,9 +84,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	
 	public void displayEverything(){
 		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
-		Log.i("Got to my thing","I am a pizza display");
-		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, null,null,null); 
-		Log.i("Got to my thing","I am a pizza display TWO");
+		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, null,null,null);
 	}
 
 }
