@@ -7,8 +7,7 @@ package com.jbj.euphrasia;
 
 import android.provider.BaseColumns;
 
-public final class EntryContract {
-	public EntryContract() {}
+public interface EntryContract {
 	
 	public static abstract class EntryColumns implements BaseColumns{
 		public static final String TABLE_NAME = "entries";

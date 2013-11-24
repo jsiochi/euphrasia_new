@@ -1,5 +1,11 @@
 package com.jbj.euphrasia;
 
+import com.jbj.euphrasia.fields.AudioField;
+import com.jbj.euphrasia.fields.DateField;
+import com.jbj.euphrasia.fields.Field;
+import com.jbj.euphrasia.managers.PlayManager;
+import com.jbj.euphrasia.managers.RecordingManager;
+
 import android.content.Context;
 import android.net.Uri;
 
@@ -15,7 +21,6 @@ public class Controller {
 		myPlayManager = new PlayManager(context, this);
 	}
 	public String getAudioPath(){
-		//return myEntry.getAudioPath();
 		return myEntry.getAudioField().toString();
 	}
 	public void updateEntryField(Field field){
@@ -37,6 +42,10 @@ public class Controller {
 
 	public void onPlay() {
 		myPlayManager.execute();
+	}
+	
+	public void setInitialAudio(String audioPath) {
+		this.updateEntryField(new AudioField(audioPath));
 	}
 
 }

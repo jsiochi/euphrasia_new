@@ -1,6 +1,9 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.managers;
 
 import java.io.IOException;
+
+import com.jbj.euphrasia.Controller;
+
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;

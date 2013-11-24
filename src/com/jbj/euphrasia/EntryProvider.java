@@ -54,9 +54,13 @@ public class EntryProvider extends ContentProvider {
 		
 		//URI is single row
 		case 2:
-			String extra = " AND ";
-			if (TextUtils.isEmpty(selection)) extra = "";
-			newSelection = selection + extra + "_id = " + uri.getLastPathSegment();
+			if (TextUtils.isEmpty(selection)) {
+				newSelection = " _id = " + uri.getLastPathSegment();
+			}
+			else
+			{
+				newSelection = " AND _id = " + uri.getLastPathSegment();
+			}
 			break;
 		
 		default:

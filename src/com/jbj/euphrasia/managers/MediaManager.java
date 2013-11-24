@@ -1,4 +1,6 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.managers;
+
+import com.jbj.euphrasia.Controller;
 
 import android.content.Context;
 import android.media.AudioManager;

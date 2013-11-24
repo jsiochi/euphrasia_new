@@ -2,11 +2,11 @@ package test;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
-import com.jbj.euphrasia.AudioField;
 import com.jbj.euphrasia.Controller;
 import com.jbj.euphrasia.EntryDatabaseManager;
-import com.jbj.euphrasia.Field;
-import com.jbj.euphrasia.NativeTextField;
+import com.jbj.euphrasia.fields.AudioField;
+import com.jbj.euphrasia.fields.Field;
+import com.jbj.euphrasia.fields.NativeTextField;
 
 public class TestController extends AndroidTestCase {
 
