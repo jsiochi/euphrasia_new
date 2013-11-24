@@ -1,10 +1,20 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.activities;
 
+import com.jbj.euphrasia.Controller;
+import com.jbj.euphrasia.EntryContract;
+import com.jbj.euphrasia.EntryProvider;
+import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
+import com.jbj.euphrasia.R.id;
+import com.jbj.euphrasia.R.layout;
+import com.jbj.euphrasia.R.menu;
+import com.jbj.euphrasia.interfaces.Constants;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.ListActivity;
+import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,22 +25,29 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-public class SearchActivity extends ListActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor> {
+public class SearchActivity extends ListActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor>, Constants {
 
 	private CursorAdapter myCursorAdapter;
 	private String myCursorFilter;
 	private Cursor myCursor;
 	private Controller myController;
+	private ListView myListView;
+	private ListActivity myActivity;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		myActivity = this;
 		setContentView(R.layout.activity_search);
-		ListView listView = (ListView) findViewById(android.R.id.list);
+		myListView = (ListView) findViewById(android.R.id.list);
+		myListView.setOnItemClickListener(new EntryListListener());
 		//query database for collection of all tags
 		//display these tags + frequency onCreate
 //		ProgressBar progressBar = new ProgressBar(this);
@@ -49,6 +66,38 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
                 fromColumns, toViews, 0);
         setListAdapter(myCursorAdapter);
         this.displayEverything();
+	}
+
+
+	public class EntryListListener implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			String[] projection = {EntryColumns.COLUMN_NAME_NATIVE_TEXT,EntryColumns.COLUMN_NAME_FOREIGN_TEXT,
+					EntryColumns.COLUMN_NAME_LANGUAGE,EntryColumns.COLUMN_NAME_TITLE,
+					EntryColumns.COLUMN_NAME_AUDIO,EntryColumns.COLUMN_NAME_DATE,EntryColumns.COLUMN_NAME_TAG};
+			Cursor cursor = myActivity.getContentResolver().query(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
+					String.valueOf(id)), projection, null,null,null);
+			sendToEntry(cursor);
+		}
+		
+	}
+	
+	public void sendToEntry(Cursor cursor) {
+		int columnCount = cursor.getColumnCount();
+		int i = 0;
+		ContentValues values = new ContentValues();
+		while(i<columnCount){
+			String columnValue = cursor.getString(i);
+			String columnName = cursor.getColumnName(i);
+			values.put(columnName, columnValue);
+			i++;
+		}
+		Intent toEntryIntent = new Intent(this,EntryActivity.class);
+		toEntryIntent.putExtra(ENTRY_INTENT_PARCELABLE, values);
+		toEntryIntent.setAction(ACTION_GET_ENTRY_DATA);
+		startActivity(toEntryIntent);
 	}
 
 	@Override

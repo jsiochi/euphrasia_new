@@ -1,4 +1,4 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.managers;
 
 import java.io.File;
 import java.io.FileInputStream;

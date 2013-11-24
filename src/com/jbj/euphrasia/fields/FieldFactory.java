@@ -1,8 +1,11 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.fields;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.jbj.euphrasia.R;
+import com.jbj.euphrasia.R.id;
 
 public class FieldFactory {
 	

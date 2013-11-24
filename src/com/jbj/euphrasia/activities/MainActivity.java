@@ -1,4 +1,4 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jbj.euphrasia.R;
+import com.jbj.euphrasia.R.layout;
 
 public class MainActivity extends ActionBarActivity {
 

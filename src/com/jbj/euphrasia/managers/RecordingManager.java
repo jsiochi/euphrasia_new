@@ -1,7 +1,12 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.managers;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+
+import com.jbj.euphrasia.Controller;
+import com.jbj.euphrasia.fields.AudioField;
+import com.jbj.euphrasia.fields.Field;
+import com.jbj.euphrasia.fields.NullField;
 
 import android.content.Context;
 import android.media.AudioFormat;

@@ -1,4 +1,6 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.fields;
+
+import com.jbj.euphrasia.EntryDatabaseManager;
 
 public abstract class Field {
 
