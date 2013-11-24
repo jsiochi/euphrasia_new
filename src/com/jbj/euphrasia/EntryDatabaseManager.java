@@ -56,13 +56,13 @@ public class EntryDatabaseManager {
 		Uri newUri = myContext.getContentResolver().insert(EntryProvider.CONTENT_URI, values);
 		
 		//TEST CODE FOR DATABASE READ (confirmed working)
-		String[] projection = {EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_NATIVE_TEXT, EntryColumns.COLUMN_NAME_FOREIGN_TEXT, 
+		String[] projection = {EntryColumns._ID, EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_NATIVE_TEXT, EntryColumns.COLUMN_NAME_FOREIGN_TEXT, 
 				EntryColumns.COLUMN_NAME_TAG, EntryColumns.COLUMN_NAME_AUDIO, EntryColumns.COLUMN_NAME_LANGUAGE, EntryColumns.COLUMN_NAME_DATE};
 		Cursor cursor = myContext.getContentResolver().query(EntryProvider.CONTENT_URI, projection, null, null, null);
 		
 		while(cursor.moveToNext()) {
 			Log.i("Database_READ", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3) + 
-					" " + cursor.getString(4) + " " + cursor.getString(5) + " " + cursor.getString(6));
+					" " + cursor.getString(4) + " " + cursor.getString(5) + " " + cursor.getString(6) + " " + cursor.getString(7));
 		}
 		
 		cursor.close();

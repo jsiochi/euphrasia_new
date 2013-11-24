@@ -22,20 +22,19 @@ public class MainActivity extends ActionBarActivity {
 		//actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.main, menu);
+//		return super.onCreateOptionsMenu(menu);
+//	}
 	
 	public void onStartEntry(View view){
 		startActivity(new Intent(this, EntryActivity.class));
 	}
 	
-	public boolean onStartSearch(MenuItem menuItem){
+	public void onStartSearch(View view){
 		startActivity(new Intent(this,SearchActivity.class));
-		return true;
 	}
 	
 
