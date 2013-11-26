@@ -20,11 +20,11 @@ public class DateField extends Field {
 	
 	public DateField(String date){
 		super(date);
-		try {
-			myDate = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			myDate = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(date);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	public DateField(Date date){

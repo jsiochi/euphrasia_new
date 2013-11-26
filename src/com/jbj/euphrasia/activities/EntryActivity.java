@@ -38,7 +38,9 @@ public class EntryActivity extends Activity implements Constants, EntryContract 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry);
-		myInitialData = processIntent();
+		if(Constants.ACTION_GET_ENTRY_DATA.equals(getIntent().getAction())) {
+			myInitialData = processIntent();
+		}
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
 		findTextViews();
@@ -47,12 +49,14 @@ public class EntryActivity extends Activity implements Constants, EntryContract 
 	}
 	
 	private void loadInitialData() {
-		String audioPath = myInitialData.getAsString(EntryColumns.COLUMN_NAME_AUDIO);
-		myController.updateEntryField(new AudioField(audioPath));
-		String title = myInitialData.getAsString(EntryColumns.COLUMN_NAME_TITLE);
-		myController.updateEntryField(new TitleField(title));
-		String date = myInitialData.getAsString(EntryColumns.COLUMN_NAME_DATE);
-		myController.updateEntryField(new DateField(date));
+		if(myInitialData != null) {
+			String audioPath = myInitialData.getAsString(EntryColumns.COLUMN_NAME_AUDIO);
+			myController.updateEntryField(new AudioField(audioPath));
+			String title = myInitialData.getAsString(EntryColumns.COLUMN_NAME_TITLE);
+			myController.updateEntryField(new TitleField(title));
+			String date = myInitialData.getAsString(EntryColumns.COLUMN_NAME_DATE);
+			myController.updateEntryField(new DateField(date));
+		}
 	}
 
 	/**
@@ -70,8 +74,10 @@ public class EntryActivity extends Activity implements Constants, EntryContract 
 			        }
 			    }
 			});
-			String initialValue = myInitialData.getAsString(key);
-			textView.setText(initialValue);
+			if (myInitialData != null && myInitialData.containsKey(key)) {
+				String initialValue = myInitialData.getAsString(key);
+				textView.setText(initialValue);
+			}
 		}
 	}
 

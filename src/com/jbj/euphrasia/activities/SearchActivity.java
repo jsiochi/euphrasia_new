@@ -78,8 +78,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
                 R.layout.search_list_item, myCursor,
                 fromColumns, toViews, 0);
         setListAdapter(myCursorAdapter);
-        //this.doSearch("ea");
-        this.displayEverything();
+        this.doSearch("ea");
+        //this.displayEverything();
 	}
 
 
@@ -103,7 +103,9 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		Log.i("coumn count", String.valueOf(columnCount));
 		int i = 0;
 		ContentValues values = new ContentValues();
-		while(i<columnCount-1){
+		cursor.moveToFirst();
+		while(i<columnCount){
+			Log.i("coumn pos", String.valueOf(i));
 			String columnValue = cursor.getString(i);
 			String columnName = cursor.getColumnName(i);
 			values.put(columnName, columnValue);
@@ -132,9 +134,12 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
             baseUri = EntryProvider.CONTENT_URI;
         }
         String[] projection = {EntryColumns._ID, EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_TAG};
-        String selection = arg1.getString(SELECTION_QUERY);
-        String[] selectionArgs = arg1.getStringArray(SELECTION_ARGS);
-        return new CursorLoader(this, baseUri, projection, selection, selectionArgs,null);
+        
+//        if(arg1.containsKey(SELECTION_QUERY)) {
+//        	String selection = arg1.getString(SELECTION_QUERY);
+//        	return new CursorLoader(this, baseUri, projection, selection, null,null);
+//        }
+        return new CursorLoader(this, baseUri, projection, arg1.getString(SELECTION_QUERY), null,null);
 	}
 
 
@@ -155,13 +160,13 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	
 	public void doSearch(String query) {
 		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
-		String selection = EntryColumns.COLUMN_NAME_TAG + " LIKE '%?%' OR " + EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%?%'";
-		String[] selectionArgs = {query, query};
+		String selection = EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
+		//String[] selectionArgs = {query, query};
 		Bundle args = new Bundle();
 		Log.i("Here we go", "I AM a freaking PIZZA aaa");
-		args.putStringArray(SELECTION_ARGS, selectionArgs);
+		//args.putStringArray(SELECTION_ARGS, selectionArgs);
 		args.putString(SELECTION_QUERY, selection);
-		//this.getLoaderManager().restartLoader(0, args, this);
+		this.getLoaderManager().restartLoader(0, args, this);
 		Log.i("Here we go", "I AM a freaking PIZZA bbb");
 	}
 
