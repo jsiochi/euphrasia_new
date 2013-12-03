@@ -33,6 +33,8 @@ public class PlayManager extends MediaManager {
             myMediaPlayer.start();
         } catch (IOException e) {
             Log.e("AUDIO_PLAY_TEST", "prepare() failed");
+        } catch (NullPointerException e) {
+        	Log.e("AUDIO_PLAY_TEST", "prepare() failed");
         }
 	}
 

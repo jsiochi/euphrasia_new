@@ -14,6 +14,7 @@ public class Controller {
 	private EntryDatabaseManager myEntry;
 	private RecordingManager myRecordingManager;
 	private PlayManager myPlayManager;
+	private Uri myCurrentUri;
 
 	public Controller(Context context) {
 		myEntry = new EntryDatabaseManager(context);
@@ -34,10 +35,12 @@ public class Controller {
 	public void onSave() {
 		//TODO way to disable save button or store an entry without a recording?
 		//TODO need to save everything regardless of whether that EditText lost focus
-		(new DateField()).updateEntryField(myEntry);
-		Field audioField = myRecordingManager.save();
-		audioField.updateEntryField(myEntry);
-		Uri resourceUri = myEntry.saveEntry();
+		if(myCurrentUri == null) {
+			(new DateField()).updateEntryField(myEntry);
+			Field audioField = myRecordingManager.save();
+			audioField.updateEntryField(myEntry);
+		}
+		myCurrentUri = myEntry.saveEntry();
 	}
 
 	public void onPlay() {
