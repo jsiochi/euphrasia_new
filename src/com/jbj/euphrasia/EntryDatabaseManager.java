@@ -4,6 +4,7 @@ import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.fields.AudioField;
 import com.jbj.euphrasia.fields.DateField;
 import com.jbj.euphrasia.fields.Field;
+import com.jbj.euphrasia.fields.LanguageField;
 import com.jbj.euphrasia.fields.NullField;
 import com.jbj.euphrasia.fields.TagField;
 import com.jbj.euphrasia.fields.TitleField;
