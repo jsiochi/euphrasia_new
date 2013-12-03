@@ -987,7 +987,8 @@ containing a value of this type.
         public static final int ic_media_play=0x7f020059;
         public static final int ic_menu_compass=0x7f02005a;
         public static final int ic_menu_play_clip=0x7f02005b;
-        public static final int text_back=0x7f02005c;
+        public static final int splash_screen=0x7f02005c;
+        public static final int text_back=0x7f02005d;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -997,13 +998,13 @@ containing a value of this type.
         public static final int action_bar_root=0x7f06001a;
         public static final int action_bar_subtitle=0x7f060023;
         public static final int action_bar_title=0x7f060022;
-        public static final int action_compose=0x7f060045;
+        public static final int action_compose=0x7f060047;
         public static final int action_context_bar=0x7f06001d;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_search=0x7f060044;
-        public static final int action_settings=0x7f060043;
+        public static final int action_search=0x7f060046;
+        public static final int action_settings=0x7f060045;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1013,31 +1014,33 @@ containing a value of this type.
         public static final int dialog=0x7f06000e;
         public static final int disableHome=0x7f060008;
         public static final int dropdown=0x7f06000f;
+        public static final int edit_language=0x7f06003d;
         public static final int edit_query=0x7f060030;
-        public static final int edit_tags=0x7f06003d;
+        public static final int edit_tags=0x7f06003e;
         public static final int edit_title=0x7f06003c;
         public static final int end=0x7f060013;
         public static final int expand_activities_button=0x7f060026;
         public static final int expanded_menu=0x7f06002c;
-        public static final int foreign_text=0x7f06003f;
+        public static final int foreign_text=0x7f060040;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
         public static final int icon=0x7f06002a;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060027;
-        public static final int item_tags=0x7f060042;
-        public static final int item_title=0x7f060041;
+        public static final int item_native_text=0x7f060043;
+        public static final int item_tags=0x7f060044;
+        public static final int item_title=0x7f060042;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
         public static final int middle=0x7f060012;
-        public static final int native_text=0x7f06003e;
+        public static final int native_text=0x7f06003f;
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
-        public static final int save=0x7f060040;
+        public static final int save=0x7f060041;
         public static final int search_badge=0x7f060032;
         public static final int search_bar=0x7f060031;
         public static final int search_button=0x7f060033;
@@ -1163,30 +1166,31 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0b000b;
-        public static final int action_compose=0x7f0b0020;
-        public static final int action_search=0x7f0b001f;
+        public static final int action_compose=0x7f0b0021;
+        public static final int action_search=0x7f0b0020;
         public static final int action_settings=0x7f0b000e;
         public static final int app_name=0x7f0b000d;
         public static final int button_play=0x7f0b0015;
         public static final int button_record_begin=0x7f0b0014;
+        public static final int edit_entry_language=0x7f0b0016;
         public static final int edit_entry_name=0x7f0b0012;
         public static final int edit_entry_tags=0x7f0b0013;
-        public static final int foreign_submit=0x7f0b0019;
-        public static final int hint_entry_foreign=0x7f0b001b;
-        public static final int hint_entry_native=0x7f0b001a;
-        public static final int hint_search=0x7f0b001c;
-        public static final int main_button_search=0x7f0b001e;
+        public static final int foreign_submit=0x7f0b001a;
+        public static final int hint_entry_foreign=0x7f0b001c;
+        public static final int hint_entry_native=0x7f0b001b;
+        public static final int hint_search=0x7f0b001d;
+        public static final int main_button_search=0x7f0b001f;
         public static final int main_button_start=0x7f0b0011;
-        public static final int native_submit=0x7f0b0017;
-        public static final int save_button=0x7f0b0022;
-        public static final int tag_field=0x7f0b0021;
-        public static final int text_entry_foreign=0x7f0b0018;
+        public static final int native_submit=0x7f0b0018;
+        public static final int save_button=0x7f0b0023;
+        public static final int tag_field=0x7f0b0022;
+        public static final int text_entry_foreign=0x7f0b0019;
         /**  <string name="button_record_begin">Rec</string>
     <string name="button_play">Play</string> 
          */
-        public static final int text_entry_native=0x7f0b0016;
+        public static final int text_entry_native=0x7f0b0017;
         public static final int title_activity_entry=0x7f0b0010;
-        public static final int title_activity_search=0x7f0b001d;
+        public static final int title_activity_search=0x7f0b001e;
         public static final int welcome_greeting=0x7f0b000f;
     }
     public static final class style {
@@ -1211,11 +1215,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0c0088;
+        public static final int AppBaseTheme=0x7f0c0089;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0c0089;
+        public static final int AppTheme=0x7f0c008a;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0c0063;
@@ -1309,6 +1313,7 @@ containing a value of this type.
         /**  Base platform-dependent theme providing a light-themed activity. 
          */
         public static final int Theme_Base_Light=0x7f0c007d;
+        public static final int Theme_Splash=0x7f0c0083;
         /**  Styles in here can be extended for customisation in your application. Each utilises
          one of the Base styles. If Holo themes are available on the current platform version
          they will be used instead of the compat styles. 
@@ -1403,19 +1408,19 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar=0x7f0c000a;
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0c0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0c0022;
-        public static final int appTheme=0x7f0c0083;
+        public static final int appTheme=0x7f0c0084;
         /**  ActionBar styles 
          */
-        public static final int app_actionBar=0x7f0c0084;
+        public static final int app_actionBar=0x7f0c0085;
         /**  Style buttons 
          */
-        public static final int app_button=0x7f0c0086;
+        public static final int app_button=0x7f0c0087;
         /**  Style TextViews 
          */
-        public static final int app_editTextStyle=0x7f0c0085;
+        public static final int app_editTextStyle=0x7f0c0086;
         /**  Style TextView 
          */
-        public static final int app_textViewStyle=0x7f0c0087;
+        public static final int app_textViewStyle=0x7f0c0088;
     }
     public static final class xml {
         public static final int searchable=0x7f050000;
