@@ -1,6 +1,8 @@
 package com.jbj.euphrasia.activities;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.jbj.euphrasia.Controller;
@@ -88,9 +90,11 @@ public class EntryActivity extends Activity implements Constants, EntryContract 
 		EditText nativeText = (EditText) findViewById(R.id.native_text);
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
 		EditText tagText = (EditText) findViewById(R.id.edit_tags);
+		EditText languageText = (EditText) findViewById(R.id.edit_language);
 		myTextViews.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT,nativeText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT,foreignText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_TAG,tagText);
+		myTextViews.put(EntryColumns.COLUMN_NAME_LANGUAGE, languageText);
 	}
 
 	private ContentValues processIntent() {
