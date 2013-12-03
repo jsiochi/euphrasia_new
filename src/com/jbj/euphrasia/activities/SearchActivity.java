@@ -51,11 +51,11 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		myActivity = this;
 		setContentView(R.layout.activity_search);
 		
-//		Intent intent = getIntent();
-//		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-//			String query = intent.getStringExtra(SearchManager.QUERY);
-//			this.doSearch(query);
-//		}
+		Intent intent = getIntent();
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			String query = intent.getStringExtra(SearchManager.QUERY);
+			this.doSearch(query);
+		}
 		
 		ListView listView = (ListView) findViewById(android.R.id.list);
 		myListView = (ListView) findViewById(android.R.id.list);
@@ -78,7 +78,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
                 R.layout.search_list_item, myCursor,
                 fromColumns, toViews, 0);
         setListAdapter(myCursorAdapter);
-        this.doSearch("ea");
+        //this.doSearch("ea");
         //this.displayEverything();
 	}
 
@@ -163,11 +163,9 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		String selection = EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
 		//String[] selectionArgs = {query, query};
 		Bundle args = new Bundle();
-		Log.i("Here we go", "I AM a freaking PIZZA aaa");
 		//args.putStringArray(SELECTION_ARGS, selectionArgs);
 		args.putString(SELECTION_QUERY, selection);
 		this.getLoaderManager().restartLoader(0, args, this);
-		Log.i("Here we go", "I AM a freaking PIZZA bbb");
 	}
 
 }
