@@ -87,7 +87,7 @@ public class EntryDatabaseManager {
 		values.put(EntryColumns.COLUMN_NAME_TAG, myTagField.toString());
 		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
 		
-		myContext.getContentResolver().update(uri, values, null, null);
+		myContext.getContentResolver().update(uri, values, "", null);
 	}
 
 	public Field getNativeText() {

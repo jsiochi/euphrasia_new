@@ -24,10 +24,14 @@ import com.jbj.euphrasia.fields.TitleField;
 import com.jbj.euphrasia.interfaces.Constants;
 
 import android.net.Uri;
+import dialog_fragments.ConfirmSaveDialog;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
@@ -35,7 +39,7 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 
-public class EntryActivity extends Activity implements Constants, EntryContract {
+public class EntryActivity extends FragmentActivity implements Constants, EntryContract {
 	
 	private FieldFactory myFieldFactory;
 	private Controller myController;
@@ -155,8 +159,17 @@ public class EntryActivity extends Activity implements Constants, EntryContract 
 	}
 	
 	public void handleSave(View view){
-		myController.onSave();
+		FragmentManager fm = getSupportFragmentManager();
+        ConfirmSaveDialog confirmDialog = new ConfirmSaveDialog();
+        confirmDialog.setSourceActivity(this);
+        confirmDialog.show(fm, "confirm_save");
 	}
+	
+    public void confirmSave(){
+    	myController.onSave();
+    }
+	
+	
 }
 
 
