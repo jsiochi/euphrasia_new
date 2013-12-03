@@ -10,9 +10,8 @@
     </uses-permission>
 
     <uses-sdk
-        android:minSdkVersion="6"
+        android:minSdkVersion="11"
         android:targetSdkVersion="16" />
- 
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
@@ -28,12 +27,22 @@
 
         <!-- android:theme="@style/Theme.AppCompat.Light" -->
         <activity
-            android:theme="@style/appTheme"
             android:name="com.jbj.euphrasia.activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
+         <!--<intent-filter>
+            	<action android:name="android.intent.action.MAIN" />
+            	<category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name="com.jbj.euphrasia.activities.SplashActivity"
+            android:label="@string/title_activity_splash" 
+            android:theme="@style/Splash"
+            android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
+	            <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -43,16 +52,20 @@
         <activity
             android:name="com.jbj.euphrasia.activities.SearchActivity"
             android:label="@string/title_activity_search" >
-            <intent-filter >
-            	<action android:name="android.intent.action.SEARCH" />
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            	<meta-data android:name="android.app.searchable"
-            	    	   android:resource="@xml/searchable" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
-        
-        <provider android:name="com.jbj.euphrasia.EntryProvider"
+
+        <provider
+            android:name="com.jbj.euphrasia.EntryProvider"
             android:authorities="com.jbj.euphrasia.provider" >
         </provider>
+
     </application>
 
 </manifest>

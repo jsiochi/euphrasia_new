@@ -11,9 +11,11 @@
     <string name="button_record_begin"></string>
     <string name="button_play"></string>
     <string name="edit_entry_language">Language</string>
-    <!-- <string name="button_record_begin">Rec</string>
-    <string name="button_play">Play</string> -->
-    
+    <!--
+    <string name="button_record_begin">Rec</string>
+    <string name="button_play">Play</string>
+    -->
+
     <string name="text_entry_native">In your language</string>
     <string name="native_submit">Submit</string>
     <string name="text_entry_foreign">In their language</string>
@@ -29,4 +31,7 @@
 	<string name="save_button">Save</string>
 	<string name="confirm_save_message">Are you sure you want to save?</string>
 	<string name="confirm_save_button">OK</string>
+	<string name="title_activity_splash">Splash</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>
