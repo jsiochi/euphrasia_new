@@ -3,7 +3,7 @@
     <color name="app_themeColor">#00CC00</color>
     <color name="app_darkColor">#000000</color>
 	<style name="Splash" parent="android:Theme">
-	    <item name="android:windowBackground">@color/app_themeColor</item><!-- @drawable/splash_screen-->
+	    <item name="android:windowBackground">@drawable/splash_screen</item>
 	    <item name="android:windowNoTitle">true</item>
 	</style>
 	
