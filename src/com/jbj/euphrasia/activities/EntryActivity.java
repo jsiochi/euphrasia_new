@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.jbj.euphrasia.Controller;
 import com.jbj.euphrasia.EntryContract;
+import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.R.id;
 import com.jbj.euphrasia.R.layout;
@@ -15,15 +16,21 @@ import com.jbj.euphrasia.fields.AudioField;
 import com.jbj.euphrasia.fields.DateField;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.FieldFactory;
+import com.jbj.euphrasia.fields.ForeignTextField;
+import com.jbj.euphrasia.fields.LanguageField;
+import com.jbj.euphrasia.fields.NativeTextField;
+import com.jbj.euphrasia.fields.TagField;
 import com.jbj.euphrasia.fields.TitleField;
 import com.jbj.euphrasia.interfaces.Constants;
 
+import android.net.Uri;
 import dialog_fragments.ConfirmSaveDialog;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -62,6 +69,16 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			myController.updateEntryField(new TitleField(title));
 			String date = myInitialData.getAsString(EntryColumns.COLUMN_NAME_DATE);
 			myController.updateEntryField(new DateField(date));
+			String language = myInitialData.getAsString(EntryColumns.COLUMN_NAME_LANGUAGE);
+			myController.updateEntryField(new LanguageField(language));
+			String nativeText = myInitialData.getAsString(EntryColumns.COLUMN_NAME_NATIVE_TEXT);
+			myController.updateEntryField(new NativeTextField(nativeText));
+			String foreignText = myInitialData.getAsString(EntryColumns.COLUMN_NAME_FOREIGN_TEXT);
+			myController.updateEntryField(new ForeignTextField(foreignText));
+			String tagText = myInitialData.getAsString(EntryColumns.COLUMN_NAME_TAG);
+			myController.updateEntryField(new TagField(tagText));
+			myController.setUri(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
+					String.valueOf(myInitialData.getAsLong("URI_id"))));
 			
 		}
 	}
@@ -96,10 +113,12 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
 		EditText tagText = (EditText) findViewById(R.id.edit_tags);
 		EditText languageText = (EditText) findViewById(R.id.edit_language);
+		EditText titleText = (EditText) findViewById(R.id.edit_title);
 		myTextViews.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT,nativeText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT,foreignText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_TAG,tagText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_LANGUAGE, languageText);
+		myTextViews.put(EntryColumns.COLUMN_NAME_TITLE, titleText);
 	}
 
 	private ContentValues processIntent() {
@@ -143,9 +162,9 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	}
 	
 	public void handleSave(View view){
-		FragmentManager fm = getSupportFragmentManager();
-        ConfirmSaveDialog confirmDialog = new ConfirmSaveDialog();
-        confirmDialog.show(fm, "confirm_save");
+		ConfirmSaveDialog dlg = new ConfirmSaveDialog();
+		dlg.setSourceActivity(this);
+	    dlg.show(getSupportFragmentManager(), "confirm_save");
 	}
 	
     public void confirmSave(){

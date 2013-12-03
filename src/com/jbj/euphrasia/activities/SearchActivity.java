@@ -38,7 +38,6 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	private CursorAdapter myCursorAdapter;
 	private String myCursorFilter;
 	private Cursor myCursor;
-	private Controller myController;
 	private ListView myListView;
 	private ListActivity myActivity;
 	
@@ -93,12 +92,12 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 					EntryColumns.COLUMN_NAME_AUDIO,EntryColumns.COLUMN_NAME_DATE,EntryColumns.COLUMN_NAME_TAG};
 			Cursor cursor = myActivity.getContentResolver().query(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
 					String.valueOf(id)), projection, null,null,null);
-			sendToEntry(cursor);
+			sendToEntry(cursor, id);
 		}
 		
 	}
 	
-	public void sendToEntry(Cursor cursor) {
+	public void sendToEntry(Cursor cursor, long id) {
 		int columnCount = cursor.getColumnCount();
 		Log.i("coumn count", String.valueOf(columnCount));
 		int i = 0;
@@ -111,6 +110,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			values.put(columnName, columnValue);
 			i++;
 		}
+		values.put("URI_id", id);
 		Intent toEntryIntent = new Intent(this,EntryActivity.class);
 		toEntryIntent.putExtra(ENTRY_INTENT_PARCELABLE, values);
 		toEntryIntent.setAction(ACTION_GET_ENTRY_DATA);
@@ -133,7 +133,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
         } else {
             baseUri = EntryProvider.CONTENT_URI;
         }
-        String[] projection = {EntryColumns._ID, EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_TAG};
+        String[] projection = {EntryColumns._ID, EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_TAG, EntryColumns.COLUMN_NAME_NATIVE_TEXT};
         
 //        if(arg1.containsKey(SELECTION_QUERY)) {
 //        	String selection = arg1.getString(SELECTION_QUERY);
@@ -159,7 +159,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	}
 	
 	public void doSearch(String query) {
-		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
+		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};
 		String selection = EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
 		//String[] selectionArgs = {query, query};
 		Bundle args = new Bundle();
@@ -167,5 +167,4 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		args.putString(SELECTION_QUERY, selection);
 		this.getLoaderManager().restartLoader(0, args, this);
 	}
-
 }
