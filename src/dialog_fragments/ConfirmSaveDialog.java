@@ -3,6 +3,9 @@ package dialog_fragments;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.activities.EntryActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;
@@ -26,22 +29,46 @@ public class ConfirmSaveDialog extends DialogFragment {
 		mySourceActivity = activity;
 	}
 	
+//	@Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//            Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.confirm_save, container);
+//        //myMessage = (EditText) view.findViewById(R.id.confirm_save);
+//        getDialog().setTitle("NOTICE");
+//        Button confirmButton = ((Button) view.findViewById(R.id.confirm_save_button_id));
+//        confirmButton.setOnClickListener(new OnClickListener(){
+//
+//			@Override
+//			public void onClick(View v) {
+//				mySourceActivity.confirmSave();
+//			}
+//        	
+//        });
+//        return view;
+//    }
+	
 	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.confirm_save, container);
-        //myMessage = (EditText) view.findViewById(R.id.confirm_save);
-        getDialog().setTitle("NOTICE");
-        Button confirmButton = ((Button) this.getDialog().findViewById(R.id.confirm_save_button));
-        confirmButton.setOnClickListener(new OnClickListener(){
+    public Dialog onCreateDialog(Bundle savedInstanceState)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // Get the layout inflater
+        LayoutInflater inflater = getActivity().getLayoutInflater();
 
-			@Override
-			public void onClick(View v) {
-				mySourceActivity.confirmSave();
-			}
-        	
-        });
-        return view;
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.confirm_save, null))
+        // Add action buttons
+               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                       mySourceActivity.confirmSave();
+                   }
+               })
+               .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                   }
+               });
+        return builder.create();
     }
 
 }

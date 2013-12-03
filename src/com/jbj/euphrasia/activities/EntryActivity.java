@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -143,9 +144,8 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	}
 	
 	public void handleSave(View view){
-		FragmentManager fm = getSupportFragmentManager();
-        ConfirmSaveDialog confirmDialog = new ConfirmSaveDialog();
-        confirmDialog.show(fm, "confirm_save");
+		DialogFragment dlg = new ConfirmSaveDialog();
+	    dlg.show(getSupportFragmentManager(), "confirm_save");
 	}
 	
     public void confirmSave(){
