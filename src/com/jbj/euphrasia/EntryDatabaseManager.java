@@ -76,6 +76,19 @@ public class EntryDatabaseManager {
 		
 		return newUri;
 	}
+	
+	public void updateEntry(Uri uri) {
+		ContentValues values = new ContentValues();
+		values.put(EntryColumns.COLUMN_NAME_TITLE, myTitleField.toString());
+		values.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT, myNativeText.toString());
+		values.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT, myForeignText.toString());
+		values.put(EntryColumns.COLUMN_NAME_LANGUAGE, myLanguageField.toString());
+		values.put(EntryColumns.COLUMN_NAME_AUDIO, myAudioField.toString());
+		values.put(EntryColumns.COLUMN_NAME_TAG, myTagField.toString());
+		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
+		
+		myContext.getContentResolver().update(uri, values, null, null);
+	}
 
 	public Field getNativeText() {
 		return myNativeText;
