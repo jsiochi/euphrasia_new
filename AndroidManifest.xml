@@ -10,7 +10,7 @@
     </uses-permission>
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="6"
         android:targetSdkVersion="16" />
  
 

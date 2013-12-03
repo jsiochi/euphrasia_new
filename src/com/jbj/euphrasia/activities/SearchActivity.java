@@ -72,8 +72,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		Bundle emptyBundle = new Bundle();
         getLoaderManager().initLoader(0, emptyBundle, this);
         //take data from columns and put in specific views
-        String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
-        int[] toViews = {R.id.item_title, R.id.item_tags};
+        String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};
+        int[] toViews = {R.id.item_title, R.id.item_tags, R.id.item_native_text};
         myCursorAdapter = new SimpleCursorAdapter(this, 
                 R.layout.search_list_item, myCursor,
                 fromColumns, toViews, 0);

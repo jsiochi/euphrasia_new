@@ -10,6 +10,7 @@
     <string name="edit_entry_tags">Comma-Separated Tags Please</string>
     <string name="button_record_begin"></string>
     <string name="button_play"></string>
+    <string name="edit_entry_language">Language</string>
     <!-- <string name="button_record_begin">Rec</string>
     <string name="button_play">Play</string> -->
     
