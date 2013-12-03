@@ -1,7 +1,5 @@
 package com.jbj.euphrasia.fields;
 
-import android.util.Log;
-
 import com.jbj.euphrasia.EntryDatabaseManager;
 
 public abstract class Field {
@@ -15,7 +13,6 @@ public abstract class Field {
 	}
 	
 	public String toString(){
-		Log.i("PRINTING_DATA", myData);
 		return myData;
 	}
 	

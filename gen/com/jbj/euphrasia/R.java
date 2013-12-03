@@ -1011,7 +1011,7 @@ containing a value of this type.
         public static final int checkbox=0x7f06002d;
         public static final int collapseActionView=0x7f06000d;
         public static final int confirm_save=0x7f060043;
-        public static final int confirm_save_button=0x7f060044;
+        public static final int confirm_save_button_id=0x7f060044;
         public static final int confirm_save_dialog=0x7f060042;
         public static final int default_activity_button=0x7f060028;
         public static final int dialog=0x7f06000e;

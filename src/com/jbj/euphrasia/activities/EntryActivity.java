@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -112,10 +113,12 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
 		EditText tagText = (EditText) findViewById(R.id.edit_tags);
 		EditText languageText = (EditText) findViewById(R.id.edit_language);
+		EditText titleText = (EditText) findViewById(R.id.edit_title);
 		myTextViews.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT,nativeText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT,foreignText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_TAG,tagText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_LANGUAGE, languageText);
+		myTextViews.put(EntryColumns.COLUMN_NAME_TITLE, titleText);
 	}
 
 	private ContentValues processIntent() {
@@ -159,10 +162,9 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	}
 	
 	public void handleSave(View view){
-		FragmentManager fm = getSupportFragmentManager();
-        ConfirmSaveDialog confirmDialog = new ConfirmSaveDialog();
-        confirmDialog.setSourceActivity(this);
-        confirmDialog.show(fm, "confirm_save");
+		ConfirmSaveDialog dlg = new ConfirmSaveDialog();
+		dlg.setSourceActivity(this);
+	    dlg.show(getSupportFragmentManager(), "confirm_save");
 	}
 	
     public void confirmSave(){
