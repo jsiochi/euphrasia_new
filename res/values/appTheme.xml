@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <color name="app_themeColor">#339933</color>
+    <color name="app_darkColor">#000000</color>
+	<style name="appTheme" parent="@style/Theme.AppCompat.Light">
+	    <item name="android:windowBackground">@color/app_themeColor</item>
+	    <item name="android:colorBackground">@color/app_themeColor</item>
+	    <item name="android:actionBarStyle">@style/app_actionBar</item>
+	    <item name="android:editTextStyle">@style/app_editTextStyle</item>
+	    <item name="android:buttonStyle">@style/app_button</item>
+	    <item name="android:textViewStyle">@style/app_textViewStyle</item>
+	    
+    <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/app_actionBar</item>
+	</style>
+
+    <!-- ActionBar styles -->
+	    <style name="app_actionBar"
+	           parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+	        <!-- <item name="android:background">@drawable/actionbar_background</item>
+			-->
+	        <!-- Support library compatibility -->
+	        <!-- <item name="background">@drawable/actionbar_background</item>
+	        -->
+	        <item name="android:background">@color/app_darkColor</item>
+
+        <!-- Support library compatibility -->
+	        <item name="background">@color/app_darkColor</item>
+	    </style>
+    
+    <!-- Style TextViews -->
+	    <style name="app_editTextStyle" 
+	        parent="@android:style/Widget.EditText">
+	    	<item name="android:background">@drawable/text_back</item>
+	    	<item name="android:textColorHint">#A6A6A6</item>
+	    	<item name="android:padding">10dip</item>
+	    </style>
+    
+    <!-- Style buttons -->
+		<style name="app_button">
+		    <item name="android:background">@android:drawable/btn_default</item>
+		    <item name="android:focusable">true</item>
+		    <item name="android:clickable">true</item>
+		    <item name="android:textAppearance">?android:attr/textAppearanceSmallInverse</item>
+		    <item name="android:textColor">@android:color/primary_text_light</item>
+		    <item name="android:gravity">center_vertical|center_horizontal</item>
+		</style>
+		
+	<!-- Style TextView -->
+		<style name="app_textViewStyle" parent="@android:style/Widget.TextView">
+		    <item name="android:textSize">20sp</item>
+		</style>
+</resources>

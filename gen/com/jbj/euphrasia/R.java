@@ -794,10 +794,12 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f080003;
+        public static final int abc_search_url_text_holo=0x7f080005;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
+        public static final int app_darkColor=0x7f080004;
+        public static final int app_themeColor=0x7f080003;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -980,7 +982,12 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
+        public static final int ic_btn_speak_now=0x7f020057;
+        public static final int ic_launcher=0x7f020058;
+        public static final int ic_media_play=0x7f020059;
+        public static final int ic_menu_compass=0x7f02005a;
+        public static final int ic_menu_play_clip=0x7f02005b;
+        public static final int text_back=0x7f02005c;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -1174,6 +1181,9 @@ containing a value of this type.
         public static final int save_button=0x7f0b0022;
         public static final int tag_field=0x7f0b0021;
         public static final int text_entry_foreign=0x7f0b0018;
+        /**  <string name="button_record_begin">Rec</string>
+    <string name="button_play">Play</string> 
+         */
         public static final int text_entry_native=0x7f0b0016;
         public static final int title_activity_entry=0x7f0b0010;
         public static final int title_activity_search=0x7f0b001d;
@@ -1201,11 +1211,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0c0083;
+        public static final int AppBaseTheme=0x7f0c0088;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0c0084;
+        public static final int AppTheme=0x7f0c0089;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0c0063;
@@ -1393,6 +1403,19 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar=0x7f0c000a;
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0c0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0c0022;
+        public static final int appTheme=0x7f0c0083;
+        /**  ActionBar styles 
+         */
+        public static final int app_actionBar=0x7f0c0084;
+        /**  Style buttons 
+         */
+        public static final int app_button=0x7f0c0086;
+        /**  Style TextViews 
+         */
+        public static final int app_editTextStyle=0x7f0c0085;
+        /**  Style TextView 
+         */
+        public static final int app_textViewStyle=0x7f0c0087;
     }
     public static final class xml {
         public static final int searchable=0x7f050000;
