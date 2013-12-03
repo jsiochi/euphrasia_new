@@ -8,6 +8,7 @@ import com.jbj.euphrasia.managers.RecordingManager;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 public class Controller {
 
@@ -36,15 +37,23 @@ public class Controller {
 		//TODO way to disable save button or store an entry without a recording?
 		//TODO need to save everything regardless of whether that EditText lost focus
 		if(myCurrentUri == null) {
+			Log.i("SAVING_STUFF", "new entry");
 			(new DateField()).updateEntryField(myEntry);
 			Field audioField = myRecordingManager.save();
 			audioField.updateEntryField(myEntry);
+			myCurrentUri = myEntry.saveEntry();
+		} else {
+			Log.i("SAVING_STUFF", "updating entry");
+			myEntry.updateEntry(myCurrentUri);
 		}
-		myCurrentUri = myEntry.saveEntry();
 	}
 
 	public void onPlay() {
 		myPlayManager.execute();
+	}
+	
+	public void setUri(Uri uri) {
+		myCurrentUri = uri;
 	}
 	
 	public void setInitialAudio(String audioPath) {

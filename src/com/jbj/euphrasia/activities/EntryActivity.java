@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.jbj.euphrasia.Controller;
 import com.jbj.euphrasia.EntryContract;
+import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.R.id;
 import com.jbj.euphrasia.R.layout;
@@ -15,9 +16,14 @@ import com.jbj.euphrasia.fields.AudioField;
 import com.jbj.euphrasia.fields.DateField;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.FieldFactory;
+import com.jbj.euphrasia.fields.ForeignTextField;
+import com.jbj.euphrasia.fields.LanguageField;
+import com.jbj.euphrasia.fields.NativeTextField;
+import com.jbj.euphrasia.fields.TagField;
 import com.jbj.euphrasia.fields.TitleField;
 import com.jbj.euphrasia.interfaces.Constants;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
@@ -58,6 +64,17 @@ public class EntryActivity extends Activity implements Constants, EntryContract 
 			myController.updateEntryField(new TitleField(title));
 			String date = myInitialData.getAsString(EntryColumns.COLUMN_NAME_DATE);
 			myController.updateEntryField(new DateField(date));
+			String language = myInitialData.getAsString(EntryColumns.COLUMN_NAME_LANGUAGE);
+			myController.updateEntryField(new LanguageField(language));
+			String nativeText = myInitialData.getAsString(EntryColumns.COLUMN_NAME_NATIVE_TEXT);
+			myController.updateEntryField(new NativeTextField(nativeText));
+			String foreignText = myInitialData.getAsString(EntryColumns.COLUMN_NAME_FOREIGN_TEXT);
+			myController.updateEntryField(new ForeignTextField(foreignText));
+			String tagText = myInitialData.getAsString(EntryColumns.COLUMN_NAME_TAG);
+			myController.updateEntryField(new TagField(tagText));
+			myController.setUri(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
+					String.valueOf(myInitialData.getAsLong("URI_id"))));
+			
 		}
 	}
 
