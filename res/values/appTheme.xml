@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color name="app_themeColor">#339933</color>
-    <color name="app_darkColor">#000000</color>
+    <color name="app_darkColor">#00CC00</color>
 	<style name="Theme.Splash" parent="android:Theme">
 	    <item name="android:windowBackground">@drawable/splash_screen</item>
 	    <item name="android:windowNoTitle">true</item>

@@ -144,7 +144,8 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	}
 	
 	public void handleSave(View view){
-		DialogFragment dlg = new ConfirmSaveDialog();
+		ConfirmSaveDialog dlg = new ConfirmSaveDialog();
+		dlg.setSourceActivity(this);
 	    dlg.show(getSupportFragmentManager(), "confirm_save");
 	}
 	
