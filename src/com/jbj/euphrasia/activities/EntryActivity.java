@@ -170,6 +170,13 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		}
 	}
 	
+	private void updateFieldFromText(EditText editText){
+			//TODO is it too inefficient to create a new field object every time?
+			Field field = myFieldFactory.createField(editText.getId(), editText.getText().toString());
+			myController.updateEntryField(field);
+			Log.i("new field",field.toString() + field.getClass().getName());
+	}
+	
 /**
  * @author Bradley
  * To record, user presses a record button. Toggles boolean value to indicate whether recording 
@@ -184,13 +191,20 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		myController.onPlay();
 	}
 	
+
 	public void handleSave(/*View view*/){
+		if(!myController.shouldSave()) {
+			Log.i("CHECK_SAVE","not enough to save");
+		}
 		ConfirmSaveDialog dlg = new ConfirmSaveDialog();
 		dlg.setSourceActivity(this);
 	    dlg.show(getSupportFragmentManager(), "confirm_save");
 	}
 	
     public void confirmSave(){
+    	for(String s : myTextViews.keySet()) {
+			updateFieldFromText(myTextViews.get(s));
+		}
     	myController.onSave();
     }
 	

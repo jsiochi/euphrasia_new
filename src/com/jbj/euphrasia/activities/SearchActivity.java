@@ -61,6 +61,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		ListView listView = (ListView) findViewById(android.R.id.list);
 		myListView = (ListView) findViewById(android.R.id.list);
 		myListView.setOnItemClickListener(new EntryListListener());
+		
 		//query database for collection of all tags
 		//display these tags + frequency onCreate
 //		ProgressBar progressBar = new ProgressBar(this);
@@ -73,6 +74,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	
 	// TODO Finish scrolling code commented below	
 		//((TextView) this.findViewById(R.id.item_tags)).setMovementMethod(new ScrollingMovementMethod());
+
 		Bundle emptyBundle = new Bundle();
         getLoaderManager().initLoader(0, emptyBundle, this);
         //take data from columns and put in specific views
@@ -82,8 +84,6 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
                 R.layout.search_list_item, myCursor,
                 fromColumns, toViews, 0);
         setListAdapter(myCursorAdapter);
-        //this.doSearch("ea");
-        //this.displayEverything();
 	}
 
 
@@ -165,7 +165,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	
 	public void doSearch(String query) {
 		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};
-		String selection = EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
+		String selection = EntryColumns.COLUMN_NAME_TITLE + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " 
+				+ EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
 		//String[] selectionArgs = {query, query};
 		Bundle args = new Bundle();
 		//args.putStringArray(SELECTION_ARGS, selectionArgs);

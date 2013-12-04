@@ -18,6 +18,7 @@ import android.media.MediaRecorder.AudioSource;
 import android.os.Environment;
 import android.provider.MediaStore.Files;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.Toast;
 
 /*
@@ -67,6 +68,7 @@ public class RecordingManager extends MediaManager{
         Log.d("MEDIA_RECORD_START", "recording");
         myRecorder.start();
         Toast toast = Toast.makeText(myContext, "Now recording", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
 	}
 	
@@ -74,6 +76,7 @@ public class RecordingManager extends MediaManager{
 		myRecorder.stop();
         myRecorder.release();
         Toast toast = Toast.makeText(myContext, "Recording stopped", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
         myController.updateEntryField(new AudioField(myCache.getAbsolutePath()));
         myRecorder = null;

@@ -1,4 +1,4 @@
-package com.jbj.euphrasia.managers;
+ package com.jbj.euphrasia.managers;
 
 import com.jbj.euphrasia.Controller;
 
