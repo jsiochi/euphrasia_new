@@ -130,7 +130,8 @@
         <EditText 
             android:id="@+id/native_text"
             android:layout_width="0dip"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true"
             android:layout_weight=".43"
             android:hint="@string/hint_entry_native" />
         
@@ -143,7 +144,7 @@
         <EditText 
             android:id="@+id/foreign_text"
             android:layout_width="0dip"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_weight=".43"
             android:hint="@string/hint_entry_foreign"/>
         

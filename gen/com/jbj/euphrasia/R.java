@@ -1228,12 +1228,14 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0c0089;
+        public static final int AppBaseTheme=0x7f0c008a;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0c008a;
-        public static final int Splash=0x7f0c0083;
+        public static final int AppTheme=0x7f0c008b;
+        /**  	    <item name="android:windowNoTitle">true</item> 
+         */
+        public static final int Main=0x7f0c0083;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0c0063;
@@ -1434,6 +1436,7 @@ containing a value of this type.
         /**  Style TextView 
          */
         public static final int app_textViewStyle=0x7f0c0088;
+        public static final int main_textViewStyle=0x7f0c0089;
     }
     public static final class xml {
         public static final int searchable=0x7f050000;
