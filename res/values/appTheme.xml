@@ -2,9 +2,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color name="app_themeColor">#00CC00</color>
     <color name="app_darkColor">#000000</color>
-	<style name="Splash" parent="android:Theme">
-	    <item name="android:windowBackground">@drawable/splash_screen</item>
-	    <item name="android:windowNoTitle">true</item>
+	<style name="Main" parent="@style/appTheme">
+	    <item name="android:windowBackground">@drawable/splash_screen1</item>
+	    <item name="android:textViewStyle">@style/main_textViewStyle</item>
+<!-- 	    <item name="android:windowNoTitle">true</item> -->
 	</style>
 	
 	<style name="appTheme" parent="@style/Theme.AppCompat.Light">
@@ -55,4 +56,9 @@
 		<style name="app_textViewStyle" parent="@android:style/Widget.TextView">
 		    <item name="android:textSize">20sp</item>
 		</style>
+		
+		<style name="main_textViewStyle" parent="@android:style/Widget.TextView">
+		    <item name="android:textSize">30sp</item>
+		</style>
+
 </resources>

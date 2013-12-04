@@ -23,6 +23,7 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -32,6 +33,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class SearchActivity extends ListActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor>, Constants {
 
@@ -69,7 +71,10 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 //        getListView().setEmptyView(progressBar);
 //        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
 //        root.addView(progressBar);
-		
+	
+	// TODO Finish scrolling code commented below	
+		//((TextView) this.findViewById(R.id.item_tags)).setMovementMethod(new ScrollingMovementMethod());
+
 		Bundle emptyBundle = new Bundle();
         getLoaderManager().initLoader(0, emptyBundle, this);
         //take data from columns and put in specific views
