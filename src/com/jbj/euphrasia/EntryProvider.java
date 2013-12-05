@@ -6,8 +6,11 @@ package com.jbj.euphrasia;
  * Use CONTENT_URI; it is the URI for the entries table.
  */
 
+import java.util.ArrayList;
+
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 
+import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -15,12 +18,13 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
 public class EntryProvider extends ContentProvider {
 	
-	//TODO add permission in manifest file!!
 	private EntryDatabaseHelper myDatabaseHelper;
 	private SQLiteDatabase myDatabase;
 	
@@ -34,6 +38,7 @@ public class EntryProvider extends ContentProvider {
 		}
 	
 	public static final Uri CONTENT_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.TABLE_NAME);
+	public static final String GET_PHRASEBOOKS = "get_phrasebooks";
 
 	@Override
 	public boolean onCreate() {
@@ -49,7 +54,9 @@ public class EntryProvider extends ContentProvider {
 		switch (myUriMatcher.match(uri)) {
 		//URI is entire table
 		case 1:
-			if (TextUtils.isEmpty(sortOrder)) sortOrder = "_id ASC";
+			if (TextUtils.isEmpty(sortOrder)){ 
+				sortOrder = "_id ASC";
+			}
 			break;
 		
 		//URI is single row
@@ -174,5 +181,27 @@ public class EntryProvider extends ContentProvider {
 		int numRows = myDatabase.update(EntryColumns.TABLE_NAME, values, newSelection, selectionArgs);
 		
 		return numRows;
+	}
+	
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+	public Bundle call(String method, String arg, Bundle extras) {
+		Bundle bundle = new Bundle();
+		
+		if(method == GET_PHRASEBOOKS) {
+			myDatabase = myDatabaseHelper.getReadableDatabase();
+			String[] projection = {EntryColumns.COLUMN_NAME_PHRASEBOOK};
+			Cursor cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, projection, null, null, null, null, null, null, null);
+			ArrayList<String> results = new ArrayList<String>();
+			while(cursor.moveToNext()) {
+				results.add(cursor.getString(0));
+			}
+
+			bundle.putStringArrayList(GET_PHRASEBOOKS, results);
+		} else {
+			throw new IllegalArgumentException("Invalid Method Name");
+		}
+		
+		
+		return bundle;
 	}
 }

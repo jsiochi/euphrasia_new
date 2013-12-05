@@ -1,5 +1,6 @@
 package com.jbj.euphrasia.activities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -31,9 +32,11 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
@@ -66,9 +69,8 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		myController = new Controller(this);
 		Spinner spinner = (Spinner) findViewById(R.id.entry_phrasebook_spinner);
 		spinner.setOnItemSelectedListener(this);
-		String[] test = {"Phrasebook 1", "Phrasebook 2"};
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-		        R.array.test_phrasebooks, android.R.layout.simple_spinner_item);
+		//String[] test = {"Phrasebook 1", "Phrasebook 2"};
+		ArrayAdapter<String> adapter = getPhrasebooks();
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
 		findTextViews();
@@ -239,6 +241,15 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		
 	}
 	
+	private ArrayAdapter<String> getPhrasebooks() {
+		Bundle bundle = getContentResolver().call(EntryProvider.CONTENT_URI, EntryProvider.GET_PHRASEBOOKS, null, null);
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+		        R.array.test_phrasebooks, android.R.layout.simple_spinner_item);
+		adapter.addAll(bundle.getStringArrayList(EntryProvider.GET_PHRASEBOOKS));
+		
+		return adapter;
+	}
 	
 }
 
