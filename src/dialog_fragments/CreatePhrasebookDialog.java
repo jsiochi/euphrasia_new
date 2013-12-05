@@ -8,33 +8,38 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
-public class ConfirmSaveDialog extends EntryDialogFragment {
+public class CreatePhrasebookDialog extends EntryDialogFragment {
 	
+	private EntryActivity mySourceActivity;
+	private EditText myTitleTextView;
 	
-	public ConfirmSaveDialog(){
+	public CreatePhrasebookDialog(){
 		//empty required
 	}
 
 	@Override
 	public int getFragmentID() {
-		return R.layout.confirm_save;
+		return R.layout.create_phrasebook;
 	}
 	
+	@Override
+	protected void useView(View view){
+		myTitleTextView = (EditText)view.findViewById(R.id.new_phrasebook_name);
+	}
 
 	@Override
 	public Dialog makeButtons(AlertDialog.Builder builder, LayoutInflater inflater) {
-		// Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(this.getFragmentID(), null))
         // Add action buttons
                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-                       mySourceActivity.confirmSave();
+                       // create a new phrasebook with user data
+                	   mySourceActivity.onPhrasebookCreated(myTitleTextView.getText());
+                	   dialog.dismiss();
                    }
                })
                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -44,11 +49,5 @@ public class ConfirmSaveDialog extends EntryDialogFragment {
                });
         return builder.create();
 	}
-
-	@Override
-	protected void useView(View view) {
-		// do nothing
-	}
-
 
 }

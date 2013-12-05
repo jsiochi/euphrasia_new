@@ -26,6 +26,8 @@ import com.jbj.euphrasia.interfaces.Constants;
 
 import android.net.Uri;
 import dialog_fragments.ConfirmSaveDialog;
+import dialog_fragments.CreatePhrasebookDialog;
+import dialog_fragments.EntryDialogFragment;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -35,6 +37,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
+import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,6 +57,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	private Controller myController;
 	private Map<String,EditText> myTextViews = new HashMap<String,EditText>();
 	private ContentValues myInitialData;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -205,7 +209,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	}
 	
 
-	public void handleSave(/*View view*/){
+	public void handleSave(){
 		if(!myController.shouldSave()) {
 			Log.i("CHECK_SAVE","not enough to save");
 		}
@@ -220,6 +224,11 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		}
     	myController.onSave();
     }
+    
+    public void onPhrasebookCreated(Editable phrasebookName){
+    	myController.updateEntryField(new PhrasebookField((phrasebookName.toString())));
+    	Log.i("EntryActivity.java","New Phrasebook created with name ="+phrasebookName.toString());
+    }
 
 
 	@Override
@@ -227,9 +236,19 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			long id) {
 		// create a new entry field and update EntryDatabaseManager
 		String selected = parent.getSelectedItem().toString();
-		Log.i("EntryActivity",selected);
-		
-		myController.updateEntryField(new PhrasebookField(selected));
+		if(selected.equals("Create new")){
+			Log.i("onItemSelected", "found create method");
+			// launch dialog fragment to create a phrasebook
+			// update phrasebook variable
+			EntryDialogFragment dlg = new CreatePhrasebookDialog();
+			dlg.setSourceActivity(this);
+		    dlg.show(getSupportFragmentManager(), "create_phrasebook");
+		    Log.i("onItemSelected",""+dlg.isVisible());
+		}
+		else{
+			Log.i("onItemSelected","Not creating new phrasebook!");
+			myController.updateEntryField(new PhrasebookField(selected));
+		}
 	}
 
 
@@ -238,6 +257,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 	
 }
