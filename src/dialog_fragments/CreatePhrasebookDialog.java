@@ -14,7 +14,6 @@ import android.widget.EditText;
 
 public class CreatePhrasebookDialog extends EntryDialogFragment {
 	
-	private EntryActivity mySourceActivity;
 	private EditText myTitleTextView;
 	
 	public CreatePhrasebookDialog(){
@@ -33,7 +32,9 @@ public class CreatePhrasebookDialog extends EntryDialogFragment {
 
 	@Override
 	public Dialog makeButtons(AlertDialog.Builder builder, LayoutInflater inflater) {
-        builder.setView(inflater.inflate(this.getFragmentID(), null))
+		View view = inflater.inflate(this.getFragmentID(), null);
+		this.useView(view);
+        builder.setView(view)
         // Add action buttons
                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {

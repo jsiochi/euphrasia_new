@@ -255,6 +255,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			Log.i("onItemSelected","Not creating new phrasebook!");
 			myController.updateEntryField(new PhrasebookField(selected));
 		}
+		parent.setSelection(0);
 	}
 
 
@@ -270,7 +271,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.test_phrasebooks, android.R.layout.simple_spinner_item);
-		adapter.addAll(bundle.getStringArrayList(EntryProvider.GET_PHRASEBOOKS));
+		//adapter.addAll(bundle.getStringArrayList(EntryProvider.GET_PHRASEBOOKS));
 		
 		return adapter;
 	}

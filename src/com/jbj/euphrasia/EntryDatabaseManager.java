@@ -42,6 +42,7 @@ public class EntryDatabaseManager {
 		myDateField = new NullField();
 		myTagField = new NullField();
 		myTitleField = new NullField();
+		myPhrasebookField = new NullField();
 	}
 
 	/**
@@ -63,17 +64,19 @@ public class EntryDatabaseManager {
 		values.put(EntryColumns.COLUMN_NAME_AUDIO, myAudioField.toString());
 		values.put(EntryColumns.COLUMN_NAME_TAG, myTagField.toString());
 		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
+		values.put(EntryColumns.COLUMN_NAME_PHRASEBOOK, myPhrasebookField.toString());
 		
 		Uri newUri = myContext.getContentResolver().insert(EntryProvider.CONTENT_URI, values);
 		
 		//TEST CODE FOR DATABASE READ (confirmed working)
 		String[] projection = {EntryColumns._ID, EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_NATIVE_TEXT, EntryColumns.COLUMN_NAME_FOREIGN_TEXT, 
-				EntryColumns.COLUMN_NAME_TAG, EntryColumns.COLUMN_NAME_AUDIO, EntryColumns.COLUMN_NAME_LANGUAGE, EntryColumns.COLUMN_NAME_DATE};
+				EntryColumns.COLUMN_NAME_TAG, EntryColumns.COLUMN_NAME_AUDIO, EntryColumns.COLUMN_NAME_LANGUAGE, EntryColumns.COLUMN_NAME_DATE, EntryColumns.COLUMN_NAME_PHRASEBOOK};
 		Cursor cursor = myContext.getContentResolver().query(EntryProvider.CONTENT_URI, projection, null, null, null);
 		
 		while(cursor.moveToNext()) {
 			Log.i("Database_READ", cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3) + 
-					" " + cursor.getString(4) + " " + cursor.getString(5) + " " + cursor.getString(6) + " " + cursor.getString(7));
+					" " + cursor.getString(4) + " " + cursor.getString(5) + " " + cursor.getString(6) + " " 
+					+ cursor.getString(7) + " " + cursor.getString(8));
 		}
 		
 		cursor.close();
@@ -90,6 +93,7 @@ public class EntryDatabaseManager {
 		values.put(EntryColumns.COLUMN_NAME_AUDIO, myAudioField.toString());
 		values.put(EntryColumns.COLUMN_NAME_TAG, myTagField.toString());
 		values.put(EntryColumns.COLUMN_NAME_DATE, myDateField.toString());
+		values.put(EntryColumns.COLUMN_NAME_PHRASEBOOK, myPhrasebookField.toString());
 		
 		myContext.getContentResolver().update(uri, values, "", null);
 	}
