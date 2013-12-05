@@ -167,6 +167,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
+		Log.i("onOptionsItemSelected", "James is dumb");
 	    switch (item.getItemId()) {
 	        case R.id.save:
 	        	handleSave();

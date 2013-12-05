@@ -35,5 +35,6 @@
     <string name="hello_world">Hello world!</string>
     
     <string name="create_phrasebook_button">OK</string>
+    <string name="create_phrase_edit_text">Name your phrasebook.</string>
 
 </resources>
