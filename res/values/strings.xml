@@ -33,5 +33,7 @@
 	<string name="confirm_save_button">OK</string>
 	<string name="title_activity_splash">Splash</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string name="create_phrasebook_button">OK</string>
 
 </resources>
