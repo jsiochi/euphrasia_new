@@ -1,6 +1,7 @@
 package com.jbj.euphrasia.activities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -231,6 +233,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
     public void onPhrasebookCreated(Editable phrasebookName){
     	myController.updateEntryField(new PhrasebookField((phrasebookName.toString())));
     	Log.i("EntryActivity.java","New Phrasebook created with name ="+phrasebookName.toString());
+    	
     }
 
 
@@ -254,6 +257,8 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		else if(!myController.hasValidPhrasebook()){
 			myController.updateEntryField(new PhrasebookField(selected));
 		}
+
+		parent.setSelection(parent.getCount() - 1);
 	}
 
 
@@ -267,8 +272,11 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	private ArrayAdapter<CharSequence> getPhrasebooks() {
 		Bundle bundle = getContentResolver().call(EntryProvider.CONTENT_URI, EntryProvider.GET_PHRASEBOOKS, null, null);
 		
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-		        R.array.test_phrasebooks, android.R.layout.simple_spinner_item);
+		Resources res = getResources();
+		String[] listItems = res.getStringArray(R.array.test_phrasebooks);
+		
+		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
+		        android.R.layout.simple_spinner_item, new ArrayList<CharSequence>(Arrays.asList(listItems)));
 		adapter.addAll(bundle.getStringArrayList(EntryProvider.GET_PHRASEBOOKS));
 		
 		return adapter;

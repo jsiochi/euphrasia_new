@@ -35,7 +35,6 @@ public abstract class EntryDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
-
         return this.makeButtons(builder, inflater);
     }
 }
