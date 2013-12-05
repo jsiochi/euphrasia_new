@@ -183,4 +183,8 @@ public class EntryDatabaseManager {
 	public void setPhrasebook(PhrasebookField phrasebookField) {
 		myPhrasebookField = phrasebookField;
 	}
+
+	public boolean hasValidPhrasebook() {
+		return myPhrasebookField != null;
+	}
 }

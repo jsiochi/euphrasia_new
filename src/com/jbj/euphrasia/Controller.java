@@ -63,5 +63,9 @@ public class Controller {
 	public boolean shouldSave() {
 		return myEntry.shouldSave(3);
 	}
+	public boolean hasValidPhrasebook() {
+		// TODO Auto-generated method stub
+		return myEntry.hasValidPhrasebook();
+	}
 
 }

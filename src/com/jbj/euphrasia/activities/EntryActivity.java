@@ -251,9 +251,9 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		    dlg.show(getSupportFragmentManager(), "create_phrasebook");
 		    Log.i("onItemSelected",""+dlg.isVisible());
 		}
-		else{
-			Log.i("onItemSelected","Not creating new phrasebook!");
+		else if(!myController.hasValidPhrasebook()){
 			myController.updateEntryField(new PhrasebookField(selected));
+		}
 		}
 	}
 
