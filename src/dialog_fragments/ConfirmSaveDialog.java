@@ -35,6 +35,7 @@ public class ConfirmSaveDialog extends EntryDialogFragment {
                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
                        mySourceActivity.confirmSave();
+                       dialog.dismiss();
                    }
                })
                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
