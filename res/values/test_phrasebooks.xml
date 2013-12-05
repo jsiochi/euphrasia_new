@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="test_phrasebooks">
+        <item>Choose phrasebook</item>
         <item>Create new</item>
     </string-array>
 </resources>

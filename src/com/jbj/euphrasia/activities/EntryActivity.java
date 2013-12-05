@@ -74,7 +74,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		Spinner spinner = (Spinner) findViewById(R.id.entry_phrasebook_spinner);
 		spinner.setOnItemSelectedListener(this);
 		//String[] test = {"Phrasebook 1", "Phrasebook 2"};
-		ArrayAdapter<String> adapter = getPhrasebooks();
+		ArrayAdapter<CharSequence> adapter = getPhrasebooks();
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
 		findTextViews();
@@ -238,11 +238,14 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			long id) {
 		// create a new entry field and update EntryDatabaseManager
 		String selected = parent.getSelectedItem().toString();
+		if(selected.equals("Choose phrasebook")) {
+			return;
+		}
 		if(selected.equals("Create new")){
 			Log.i("onItemSelected", "found create method");
 			// launch dialog fragment to create a phrasebook
 			// update phrasebook variable
-			EntryDialogFragment dlg = new CreatePhrasebookDialog();
+			CreatePhrasebookDialog dlg = new CreatePhrasebookDialog();
 			dlg.setSourceActivity(this);
 		    dlg.show(getSupportFragmentManager(), "create_phrasebook");
 		    Log.i("onItemSelected",""+dlg.isVisible());
@@ -261,10 +264,10 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	}
 
 	
-	private ArrayAdapter<String> getPhrasebooks() {
+	private ArrayAdapter<CharSequence> getPhrasebooks() {
 		Bundle bundle = getContentResolver().call(EntryProvider.CONTENT_URI, EntryProvider.GET_PHRASEBOOKS, null, null);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.test_phrasebooks, android.R.layout.simple_spinner_item);
 		adapter.addAll(bundle.getStringArrayList(EntryProvider.GET_PHRASEBOOKS));
 		
