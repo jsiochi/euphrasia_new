@@ -11,7 +11,7 @@ public interface EntryContract {
 	
 	public static abstract class EntryColumns implements BaseColumns{
 		public static final String TABLE_NAME = "entries";
-		public static final String COLUMN_NAME_ENTRY_ID = "entry_id"; //probably NOT necessary
+		public static final String COLUMN_NAME_ENTRY_ID = "entry_id"; //NOT necessary
 		public static final String COLUMN_NAME_NATIVE_TEXT = "native_text";
 		public static final String COLUMN_NAME_FOREIGN_TEXT = "foreign_text";
 		public static final String COLUMN_NAME_LANGUAGE = "language";
@@ -19,6 +19,7 @@ public interface EntryContract {
 		public static final String COLUMN_NAME_AUDIO = "audio";
 		public static final String COLUMN_NAME_DATE = "date";
 		public static final String COLUMN_NAME_TAG = "tag";
+		public static final String COLUMN_NAME_PHRASEBOOK = "phrasebook";
 		public static final String COLUMN_NAME_NULLABLE = "nullable";
 	}
 }
