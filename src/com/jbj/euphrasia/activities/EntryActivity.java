@@ -19,6 +19,7 @@ import com.jbj.euphrasia.fields.FieldFactory;
 import com.jbj.euphrasia.fields.ForeignTextField;
 import com.jbj.euphrasia.fields.LanguageField;
 import com.jbj.euphrasia.fields.NativeTextField;
+import com.jbj.euphrasia.fields.PhrasebookField;
 import com.jbj.euphrasia.fields.TagField;
 import com.jbj.euphrasia.fields.TitleField;
 import com.jbj.euphrasia.interfaces.Constants;
@@ -36,11 +37,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-public class EntryActivity extends FragmentActivity implements Constants, EntryContract {
+public class EntryActivity extends FragmentActivity implements Constants, EntryContract, OnItemSelectedListener {
 	
 	private FieldFactory myFieldFactory;
 	private Controller myController;
@@ -56,10 +64,18 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		}
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
+		Spinner spinner = (Spinner) findViewById(R.id.entry_phrasebook_spinner);
+		spinner.setOnItemSelectedListener(this);
+		String[] test = {"Phrasebook 1", "Phrasebook 2"};
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		        R.array.test_phrasebooks, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
 		findTextViews();
 		setUpTextViews();
 		loadInitialData();
 	}
+	
 	
 	private void loadInitialData() {
 		if(myInitialData != null) {
@@ -127,11 +143,31 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	}
 		
 	
-	@Override
+/*	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.entry, menu);
 		return true;
+	}
+*/	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.entry, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.save:
+	        	handleSave();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 /** get appropriate EditText object
@@ -145,6 +181,13 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			myController.updateEntryField(field);
 			Log.i("new field",field.toString() + field.getClass().getName());
 		}
+	}
+	
+	private void updateFieldFromText(EditText editText){
+			//TODO is it too inefficient to create a new field object every time?
+			Field field = myFieldFactory.createField(editText.getId(), editText.getText().toString());
+			myController.updateEntryField(field);
+			Log.i("new field",field.toString() + field.getClass().getName());
 	}
 	
 /**
@@ -161,15 +204,40 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		myController.onPlay();
 	}
 	
-	public void handleSave(View view){
+
+	public void handleSave(/*View view*/){
+		if(!myController.shouldSave()) {
+			Log.i("CHECK_SAVE","not enough to save");
+		}
 		ConfirmSaveDialog dlg = new ConfirmSaveDialog();
 		dlg.setSourceActivity(this);
 	    dlg.show(getSupportFragmentManager(), "confirm_save");
 	}
 	
     public void confirmSave(){
+    	for(String s : myTextViews.keySet()) {
+			updateFieldFromText(myTextViews.get(s));
+		}
     	myController.onSave();
     }
+
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		// create a new entry field and update EntryDatabaseManager
+		String selected = parent.getSelectedItem().toString();
+		Log.i("EntryActivity",selected);
+		
+		myController.updateEntryField(new PhrasebookField(selected));
+	}
+
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

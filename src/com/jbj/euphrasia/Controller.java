@@ -59,5 +59,9 @@ public class Controller {
 	public void setInitialAudio(String audioPath) {
 		this.updateEntryField(new AudioField(audioPath));
 	}
+	
+	public boolean shouldSave() {
+		return myEntry.shouldSave(3);
+	}
 
 }

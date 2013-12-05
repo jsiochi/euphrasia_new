@@ -6,6 +6,7 @@ import com.jbj.euphrasia.fields.DateField;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.LanguageField;
 import com.jbj.euphrasia.fields.NullField;
+import com.jbj.euphrasia.fields.PhrasebookField;
 import com.jbj.euphrasia.fields.TagField;
 import com.jbj.euphrasia.fields.TitleField;
 
@@ -26,10 +27,13 @@ public class EntryDatabaseManager {
 	private Field myTagField;
 	private Field myTitleField;
 	private Context myContext;
+	private int completedFields;
+	private Field myPhrasebookField;
 	
 	//TODO add the remaining fields
 	
 	public EntryDatabaseManager(Context context){
+		completedFields = 0;
 		myContext = context;
 		myForeignText = new NullField();
 		myNativeText = new NullField();
@@ -128,6 +132,7 @@ public class EntryDatabaseManager {
 
 	public void setNativeText(Field data) {
 		Log.i("DB_MANAGER","Updated native");
+		completedFields++;
 		myNativeText = data;
 	}
 
@@ -137,33 +142,45 @@ public class EntryDatabaseManager {
 		 * TODO - add logic to make sure change is valid
 		 */
 		Log.i("DB_MANAGER","Updated foreign");
+		completedFields++;
 		myForeignText = field;
 	}
 	
 	public void setLanguageField(Field field) {
 		Log.i("DB_MANAGER","Updated language");
+		completedFields++;
 		myLanguageField = field;
 	}
 
 	public void setAudioField(AudioField audioField) {
 		Log.i("DB_MANAGER","Updated audio");
+		completedFields++;
 		myAudioField = audioField;
 	}
 
 
 	public void setTagField(TagField tagField) {
 		Log.i("DB_MANAGER","Updated tag");
+		completedFields++;
 		myTagField = tagField;
 	}
 
-
 	public void setTitleField(TitleField titleField) {
 		Log.i("DB_MANAGER","Updated title");
+		completedFields++;
 		myTitleField = titleField;
 	}
 
-
 	public void setDateField(DateField dateField) {
+		completedFields++;
 		myDateField = dateField;
+	}
+	
+	public boolean shouldSave(int numRequiredFields) {
+		return numRequiredFields <= completedFields;
+	}
+
+	public void setPhrasebook(PhrasebookField phrasebookField) {
+		myPhrasebookField = phrasebookField;
 	}
 }
