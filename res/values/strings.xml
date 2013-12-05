@@ -13,7 +13,7 @@
     <string name="edit_entry_language">Language</string>
     <!--
     <string name="button_record_begin">Rec</string>
-    <string name="button_play">Play</string>
+    <string name="button_play">Play</string>
     -->
 
     <string name="text_entry_native">In your language</string>
@@ -24,17 +24,19 @@
     <string name="hint_entry_foreign">Foreign Language goes here&#8230; </string>
     <string name="hint_search">Search entries</string>
     <string name="title_activity_search">Search</string>
-   	<string name="main_button_search">Search</string>
-   	<string name="action_search">Search</string>
-	<string name="action_compose">Compose</string>
-	<string name="tag_field">Tags</string>
-	<string name="save_button">Save</string>
-	<string name="confirm_save_message">Are you sure you want to save?</string>
-	<string name="confirm_save_button">OK</string>
-	<string name="title_activity_splash">Splash</string>
+    <string name="main_button_search">Search</string>
+    <string name="action_search">Search</string>
+    <string name="action_compose">Compose</string>
+    <string name="tag_field">Tags</string>
+    <string name="save_button">Save</string>
+    <string name="confirm_save_message">Are you sure you want to save?</string>
+    <string name="confirm_save_button">OK</string>
+    <string name="title_activity_splash">Splash</string>
     <string name="hello_world">Hello world!</string>
-    
     <string name="create_phrasebook_button">OK</string>
     <string name="create_phrase_edit_text">Name your phrasebook.</string>
+    <string name="title_activity_browse">BrowseActivity</string>
+    <string name="title_activity_browse_phrasebook">BrowsePhrasebookActivity</string>
+    <string name="browse_phrasebooks_button">Browse by Phrasebook.</string>
 
 </resources>

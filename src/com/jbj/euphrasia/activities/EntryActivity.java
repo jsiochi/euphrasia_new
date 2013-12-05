@@ -254,7 +254,6 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		else if(!myController.hasValidPhrasebook()){
 			myController.updateEntryField(new PhrasebookField(selected));
 		}
-		}
 	}
 
 

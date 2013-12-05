@@ -998,53 +998,55 @@ containing a value of this type.
         public static final int action_bar_root=0x7f060018;
         public static final int action_bar_subtitle=0x7f060021;
         public static final int action_bar_title=0x7f060020;
-        public static final int action_compose=0x7f060053;
+        public static final int action_compose=0x7f060056;
         public static final int action_context_bar=0x7f06001b;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_bar=0x7f06002f;
         public static final int action_mode_bar_stub=0x7f06002e;
         public static final int action_mode_close_button=0x7f060022;
-        public static final int action_search=0x7f060052;
-        public static final int action_settings=0x7f060054;
+        public static final int action_search=0x7f060055;
+        public static final int action_settings=0x7f060053;
         public static final int activity_chooser_view_content=0x7f060023;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
+        public static final int browse_languages=0x7f060042;
+        public static final int browse_phrasebooks=0x7f060043;
         public static final int checkbox=0x7f06002b;
         public static final int collapseActionView=0x7f06000d;
-        public static final int confirm_save=0x7f060049;
-        public static final int confirm_save_button_id=0x7f06004a;
-        public static final int confirm_save_dialog=0x7f060048;
-        public static final int create_phrasebook_button_id=0x7f06004d;
-        public static final int create_phrasebook_dialog=0x7f06004b;
+        public static final int confirm_save=0x7f06004b;
+        public static final int confirm_save_button_id=0x7f06004c;
+        public static final int confirm_save_dialog=0x7f06004a;
+        public static final int create_phrasebook_button_id=0x7f06004f;
+        public static final int create_phrasebook_dialog=0x7f06004d;
         public static final int default_activity_button=0x7f060026;
         public static final int dialog=0x7f06000e;
         public static final int disableHome=0x7f060008;
         public static final int dropdown=0x7f06000f;
-        public static final int edit_language=0x7f060043;
+        public static final int edit_language=0x7f060045;
         public static final int edit_query=0x7f060036;
-        public static final int edit_tags=0x7f060045;
-        public static final int edit_title=0x7f060042;
+        public static final int edit_tags=0x7f060047;
+        public static final int edit_title=0x7f060044;
         public static final int end=0x7f060013;
-        public static final int entry_phrasebook_spinner=0x7f060044;
+        public static final int entry_phrasebook_spinner=0x7f060046;
         public static final int expand_activities_button=0x7f060024;
         public static final int expanded_menu=0x7f06002a;
-        public static final int foreign_text=0x7f060047;
+        public static final int foreign_text=0x7f060049;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
         public static final int icon=0x7f060028;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060025;
-        public static final int item_native_text=0x7f06004f;
-        public static final int item_tags=0x7f060050;
-        public static final int item_title=0x7f06004e;
+        public static final int item_native_text=0x7f060051;
+        public static final int item_tags=0x7f060052;
+        public static final int item_title=0x7f060050;
         public static final int left_icon=0x7f060031;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060027;
         public static final int middle=0x7f060012;
-        public static final int native_text=0x7f060046;
+        public static final int native_text=0x7f060048;
         public static final int never=0x7f060009;
-        public static final int new_phrasebook_name=0x7f06004c;
+        public static final int new_phrasebook_name=0x7f06004e;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
         public static final int progress_circular=0x7f060034;
@@ -1052,7 +1054,7 @@ containing a value of this type.
         public static final int radio=0x7f06002d;
         public static final int right_container=0x7f060032;
         public static final int right_icon=0x7f060033;
-        public static final int save=0x7f060051;
+        public static final int save=0x7f060054;
         public static final int search_badge=0x7f060038;
         public static final int search_bar=0x7f060037;
         public static final int search_button=0x7f060039;
@@ -1127,21 +1129,25 @@ containing a value of this type.
         public static final int abc_screen=0x7f030015;
         public static final int abc_search_dropdown_item_icons_2line=0x7f030016;
         public static final int abc_search_view=0x7f030017;
-        public static final int activity_entry=0x7f030018;
-        public static final int activity_main=0x7f030019;
-        public static final int activity_search=0x7f03001a;
-        public static final int activity_splash=0x7f03001b;
-        public static final int confirm_save=0x7f03001c;
-        public static final int create_phrasebook=0x7f03001d;
-        public static final int search_list_item=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int activity_browse=0x7f030018;
+        public static final int activity_browse_phrasebook=0x7f030019;
+        public static final int activity_entry=0x7f03001a;
+        public static final int activity_main=0x7f03001b;
+        public static final int activity_search=0x7f03001c;
+        public static final int activity_splash=0x7f03001d;
+        public static final int confirm_save=0x7f03001e;
+        public static final int create_phrasebook=0x7f03001f;
+        public static final int search_list_item=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
     }
     public static final class menu {
-        public static final int entry=0x7f0e0000;
-        public static final int main=0x7f0e0001;
-        public static final int main_activity_actions=0x7f0e0002;
-        public static final int search=0x7f0e0003;
-        public static final int splash=0x7f0e0004;
+        public static final int browse=0x7f0e0000;
+        public static final int browse_phrasebook=0x7f0e0001;
+        public static final int entry=0x7f0e0002;
+        public static final int main=0x7f0e0003;
+        public static final int main_activity_actions=0x7f0e0004;
+        public static final int search=0x7f0e0005;
+        public static final int splash=0x7f0e0006;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1188,6 +1194,7 @@ containing a value of this type.
         public static final int action_search=0x7f0b0020;
         public static final int action_settings=0x7f0b000e;
         public static final int app_name=0x7f0b000d;
+        public static final int browse_phrasebooks_button=0x7f0b002c;
         public static final int button_play=0x7f0b0015;
         public static final int button_record_begin=0x7f0b0014;
         public static final int confirm_save_button=0x7f0b0025;
@@ -1211,9 +1218,13 @@ containing a value of this type.
         /** 
     <string name="button_record_begin">Rec</string>
     <string name="button_play">Play</string>
+
+
     
          */
         public static final int text_entry_native=0x7f0b0017;
+        public static final int title_activity_browse=0x7f0b002a;
+        public static final int title_activity_browse_phrasebook=0x7f0b002b;
         public static final int title_activity_entry=0x7f0b0010;
         public static final int title_activity_search=0x7f0b001e;
         public static final int title_activity_splash=0x7f0b0026;
