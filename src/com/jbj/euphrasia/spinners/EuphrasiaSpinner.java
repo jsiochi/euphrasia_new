@@ -37,7 +37,7 @@ public abstract class EuphrasiaSpinner extends Spinner {
 
 	public EuphrasiaSpinner(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.setOnItemSelectedListener(this.getOnItemSelectedListener());
+		this.setOnItemSelectedListener(this.retrieveOnItemSelectedListener());
 		mySize = this.getCount();
 	}
 	
@@ -57,6 +57,7 @@ public abstract class EuphrasiaSpinner extends Spinner {
 	
 	public void doSelect(AdapterView<?> parent, View view, int position,
 			long id){
+		Log.i("HELLO_SELECTED", String.valueOf(id));
 		String selected = parent.getSelectedItem().toString();
 		EntryActivity entryActivity = (EntryActivity)mySourceActivity;
 		Controller controller = entryActivity.getController();
@@ -74,7 +75,7 @@ public abstract class EuphrasiaSpinner extends Spinner {
 			controller.updateEntryField(this.createField(selected));
 		}
 		mySize = parent.getCount();
-		mySpinnerParent = parent;
+		mySpinnerParent = parent;	
 	}
 	
 	public void onCreated(Editable createdName){
