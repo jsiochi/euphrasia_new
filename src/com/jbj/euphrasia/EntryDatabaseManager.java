@@ -191,4 +191,8 @@ public class EntryDatabaseManager {
 	public boolean hasValidPhrasebook() {
 		return myPhrasebookField != null;
 	}
+
+	public boolean hasValidLanguage() {
+		return myLanguageField != null;
+	}
 }

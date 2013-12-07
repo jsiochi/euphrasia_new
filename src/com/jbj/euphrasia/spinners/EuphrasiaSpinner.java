@@ -70,7 +70,7 @@ public abstract class EuphrasiaSpinner extends Spinner {
 		    dlg.show(entryActivity.getSupportFragmentManager(), this.getDialogLayout());
 		    Log.i("onItemSelected",""+dlg.isVisible());
 		}
-		else if(!controller.hasValidPhrasebook()){
+		else if(!controller.hasValid(this)){
 			controller.updateEntryField(this.createField(selected));
 		}
 		mySize = parent.getCount();
