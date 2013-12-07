@@ -81,7 +81,7 @@ public class EntryProvider extends ContentProvider {
 		case 4:
 			myDatabase = myDatabaseHelper.getWritableDatabase();
 			String[] theProjection = {uri.getLastPathSegment(), EntryColumns._ID};
-			cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, theProjection, uri.getLastPathSegment() + " IS NOT NULL", null, null, null, null, null, null);
+			cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, theProjection, uri.getLastPathSegment() + " IS NOT NULL", null, uri.getLastPathSegment(), null, null, null, null);
 			cursor.setNotificationUri(getContext().getContentResolver(), uri);
 			return cursor;
 			

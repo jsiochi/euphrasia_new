@@ -310,8 +310,13 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		MatrixCursor extras = new MatrixCursor(froms);
 		String[] extraPhrasebooks = getResources().getStringArray(R.array.test_phrasebooks);
 		for(int i = 1; i <= extraPhrasebooks.length; i++) {
-			extras.addRow(new String[] {extraPhrasebooks[i - 1], String.valueOf(-1*i)});
+			extras.addRow(new String[] {extraPhrasebooks[i - 1], String.valueOf(i)});
 		}
+		
+//		int i = extraPhrasebooks.length + 1;
+//		while() {
+//			extras.addRow(columnValues)
+//		}
 		
 		MatrixCursor newRow = new MatrixCursor(froms);
 		
