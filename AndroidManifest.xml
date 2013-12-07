@@ -72,7 +72,7 @@
         </provider>
 
         <activity
-            android:name="com.jbj.euphrasia.activities.BrowseActivity"
+            android:name="com.jbj.euphrasia.activities.IntermediateSearchActivity"
             android:label="@string/title_activity_browse" >
         </activity>
         <activity

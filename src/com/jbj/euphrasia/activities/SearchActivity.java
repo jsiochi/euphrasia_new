@@ -53,11 +53,13 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		setContentView(R.layout.activity_search);
 		
 		Intent intent = getIntent();
-		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-			String query = intent.getStringExtra(SearchManager.QUERY);
-			this.doSearch(query);
+		String query = intent.getStringExtra(SearchManager.QUERY);
+		if (ACTION_VIEW_ALL.equals(intent.getAction())) {
+			this.doEntrySearch(query);
 		}
-		
+		if(ACTION_BROWSE_PHRASEBOOKS.equals(intent.getAction())){
+			this.doPhrasebookSearch(query);
+		}
 		ListView listView = (ListView) findViewById(android.R.id.list);
 		myListView = (ListView) findViewById(android.R.id.list);
 		myListView.setOnItemClickListener(new EntryListListener());
@@ -163,14 +165,16 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, null,null,null);
 	}
 	
-	public void doSearch(String query) {
+	public void doEntrySearch(String query) {
 		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};
 		String selection = EntryColumns.COLUMN_NAME_TITLE + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " 
 				+ EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
-		//String[] selectionArgs = {query, query};
 		Bundle args = new Bundle();
-		//args.putStringArray(SELECTION_ARGS, selectionArgs);
 		args.putString(SELECTION_QUERY, selection);
 		this.getLoaderManager().restartLoader(0, args, this);
+	}
+	
+	public void doPhrasebookSearch(String query){
+		// do something cool
 	}
 }
