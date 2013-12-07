@@ -25,6 +25,8 @@ import com.jbj.euphrasia.fields.PhrasebookField;
 import com.jbj.euphrasia.fields.TagField;
 import com.jbj.euphrasia.fields.TitleField;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.spinners.LanguageSpinner;
+import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 
 import android.net.Uri;
 import dialog_fragments.ConfirmSaveDialog;
@@ -61,16 +63,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class EntryActivity extends FragmentActivity implements Constants, EntryContract, OnItemSelectedListener {
+public class EntryActivity extends FragmentActivity implements Constants, EntryContract{
 	
 	private FieldFactory myFieldFactory;
 	private Controller myController;
 	private Map<String,EditText> myTextViews = new HashMap<String,EditText>();
 	private ContentValues myInitialData;
-	private Cursor myPhrasebookCursor;
-	private SimpleCursorAdapter phrasebookAdapter;
-	private int mySpinnerSize;
-	private AdapterView mySpinnerParent;
 	
 	//TODO make an instance variable for adapter; look into making a cursor adapter from the content provider
 
@@ -84,24 +82,17 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		}
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
-		Spinner spinner = (Spinner) findViewById(R.id.entry_phrasebook_spinner);
-		spinner.setOnItemSelectedListener(this);
-		
-		myPhrasebookCursor = getPhrasebooks(null);
-		String[] froms = {EntryColumns.COLUMN_NAME_PHRASEBOOK, EntryColumns._ID};
-		int[] tos = {android.R.id.text1};
-		phrasebookAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, myPhrasebookCursor,
-                froms, tos, 0);
-		phrasebookAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(phrasebookAdapter);
-		mySpinnerSize = spinner.getCount();
-		
+		LanguageSpinner languageSpinner = (LanguageSpinner) findViewById(R.id.select_language);
+		languageSpinner.setActivitySource(this);
+		PhrasebookSpinner phrasebookSpinner = (PhrasebookSpinner) findViewById(R.id.entry_phrasebook_spinner);
+		phrasebookSpinner.setActivitySource(this);
 		findTextViews();
 		setUpTextViews();
 		loadInitialData();
 	}
-	
-	
+	public Controller getController(){
+		return myController;
+	}
 	private void loadInitialData() {
 		if(myInitialData != null) {
 			String audioPath = myInitialData.getAsString(EntryColumns.COLUMN_NAME_AUDIO);
@@ -153,12 +144,10 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		EditText nativeText = (EditText) findViewById(R.id.native_text);
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
 		EditText tagText = (EditText) findViewById(R.id.edit_tags);
-		EditText languageText = (EditText) findViewById(R.id.edit_language);
 		EditText titleText = (EditText) findViewById(R.id.edit_title);
 		myTextViews.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT,nativeText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT,foreignText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_TAG,tagText);
-		myTextViews.put(EntryColumns.COLUMN_NAME_LANGUAGE, languageText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_TITLE, titleText);
 	}
 
@@ -246,85 +235,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		}
     	myController.onSave();
     }
-    
-    public void onPhrasebookCreated(Editable phrasebookName){
-    	myController.updateEntryField(new PhrasebookField((phrasebookName.toString())));
-    	Log.i("EntryActivity.java","New Phrasebook created with name ="+phrasebookName.toString());
-    	myPhrasebookCursor = getPhrasebooks(phrasebookName.toString());
-    	phrasebookAdapter.swapCursor(myPhrasebookCursor);
-    	mySpinnerParent.setSelection(mySpinnerParent.getCount() - 1);
-    }
-
-
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position,
-			long id) {
-		// create a new entry field and update EntryDatabaseManager
-		Log.i("SELECTED_ID", String.valueOf(id));
-		String selected = parent.getSelectedItem().toString();
-		if(selected.equals("Choose phrasebook")) {
-			return;
-		}
-		if(id == -2){
-			Log.i("onItemSelected", "found create method");
-			//launch dialog fragment to create a phrasebook
-			//update phrasebook variable
-			CreatePhrasebookDialog dlg = new CreatePhrasebookDialog();
-			dlg.setSourceActivity(this);
-		    dlg.show(getSupportFragmentManager(), "create_phrasebook");
-		    Log.i("onItemSelected",""+dlg.isVisible());
-		}
-		else if(!myController.hasValidPhrasebook()){
-			myController.updateEntryField(new PhrasebookField(selected));
-		}
-		
-		mySpinnerSize = parent.getCount();
-		mySpinnerParent = parent;
-	}
-
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-//	private ArrayAdapter<CharSequence> getPhrasebooks() {
-//		Bundle bundle = getContentResolver().call(EntryProvider.CONTENT_URI, EntryProvider.GET_PHRASEBOOKS, null, null);
-//		
-//		Resources res = getResources();
-//		String[] listItems = res.getStringArray(R.array.test_phrasebooks);
-//		
-//		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
-//		        android.R.layout.simple_spinner_item, new ArrayList<CharSequence>(Arrays.asList(listItems)));
-//		adapter.addAll(bundle.getStringArrayList(EntryProvider.GET_PHRASEBOOKS));
-//		
-//		return adapter;
-//	}
-	
-	private Cursor getPhrasebooks(String newPhrasebook) {
-		Cursor cursor = getContentResolver().query(EntryProvider.CONTENT_PHRASEBOOKS_URI, null, null, null, null);
-		
-		String[] froms = {EntryColumns.COLUMN_NAME_PHRASEBOOK, EntryColumns._ID};
-		MatrixCursor extras = new MatrixCursor(froms);
-		String[] extraPhrasebooks = getResources().getStringArray(R.array.test_phrasebooks);
-		for(int i = 1; i <= extraPhrasebooks.length; i++) {
-			extras.addRow(new String[] {extraPhrasebooks[i - 1], String.valueOf(-1*i)});
-		}
-		
-		MatrixCursor newRow = new MatrixCursor(froms);
-		
-		if(!TextUtils.isEmpty(newPhrasebook)) {
-			newRow.addRow(new String[] {newPhrasebook, String.valueOf(Long.MAX_VALUE)});
-			Log.i("NEW_PHRASEBOOK_ID", String.valueOf(Long.MAX_VALUE));
-		}
-		
-		Cursor[] cursors = {extras, cursor, newRow};
-		
-		return new MergeCursor(cursors);
-	}
-	
+ 
 }
 
 

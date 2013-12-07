@@ -16,7 +16,6 @@ public class FieldFactory {
 		myFieldCatalog.put(R.id.foreign_text, "com.jbj.euphrasia.fields.ForeignTextField");
 		myFieldCatalog.put(R.id.native_text, "com.jbj.euphrasia.fields.NativeTextField");
 		myFieldCatalog.put(R.id.edit_tags, "com.jbj.euphrasia.fields.TagField");
-		myFieldCatalog.put(R.id.edit_language,"com.jbj.euphrasia.fields.LanguageField");
 		myFieldCatalog.put(R.id.edit_title,"com.jbj.euphrasia.fields.TitleField");
 	}
 

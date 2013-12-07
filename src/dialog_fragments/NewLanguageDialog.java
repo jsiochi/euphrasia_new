@@ -1,37 +1,25 @@
 package dialog_fragments;
 
 import com.jbj.euphrasia.R;
-import com.jbj.euphrasia.activities.EntryActivity;
 
-import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-public class CreatePhrasebookDialog extends EntryDialogFragment {
+public class NewLanguageDialog extends EntryDialogFragment {
 	
 	private EditText myTitleTextView;
 	
-	public CreatePhrasebookDialog(){
-		//empty required
-	}
-
 	@Override
 	public int getFragmentID() {
-		return R.layout.create_phrasebook;
-	}
-	
-	@Override
-	protected void useView(View view){
-		myTitleTextView = (EditText)view.findViewById(R.id.new_phrasebook_name);
+		return R.layout.new_language;
 	}
 
 	@Override
-	public Dialog makeButtons(AlertDialog.Builder builder, LayoutInflater inflater) {
+	public Dialog makeButtons(Builder builder, LayoutInflater inflater) {
 		View view = inflater.inflate(this.getFragmentID(), null);
 		this.useView(view);
         builder.setView(view)
@@ -49,6 +37,11 @@ public class CreatePhrasebookDialog extends EntryDialogFragment {
                    }
                });
         return builder.create();
+	}
+
+	@Override
+	protected void useView(View view) {
+		myTitleTextView = (EditText)view.findViewById(R.id.new_language_edit_text_id);
 	}
 
 }

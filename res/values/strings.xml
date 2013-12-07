@@ -39,5 +39,8 @@
     <string name="title_activity_browse_phrasebook">BrowsePhrasebookActivity</string>
     <string name="browse_phrasebooks_button">Browse by Phrasebook.</string>
     <string name="viewAll_btnText">View All Entries</string>
+    
+    <string name="language_dialog_btnMessage">Ok</string>
+    <string name="new_language_message">Add a new language.</string>
 
 </resources>
