@@ -6,7 +6,7 @@
     
     <LinearLayout 
 	    android:layout_width="match_parent"
-   		android:layout_height="match_parent"
+   		android:layout_height="wrap_content"
 	    android:orientation="vertical"
 	    android:paddingBottom="@dimen/activity_vertical_margin"
 	    android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -29,17 +29,23 @@
 	  				android:layout_height="10dp"
 	  				android:layout_weight=".15">
 				</View>
-	    	<EditText
-	   	    	android:id="@+id/edit_language"
-	    	    android:layout_width="0dip"
-	        	android:layout_height="wrap_content"
-	        	android:layout_weight=".60"
-	        	android:hint="@string/edit_entry_language" />
 	    	
-	    	<Spinner
-			    android:id="@+id/entry_phrasebook_spinner"
-			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content" />
+	    	<LinearLayout
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:orientation="vertical" >
+	    	    
+	    	    <com.jbj.euphrasia.spinners.LanguageSpinner
+	   	    	android:id="@+id/select_language"
+	    	    android:layout_width="fill_parent"
+	        	android:layout_height="wrap_content"/>
+	    	
+		    	<com.jbj.euphrasia.spinners.PhrasebookSpinner
+				    android:id="@+id/entry_phrasebook_spinner"
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content" />
+	    	</LinearLayout>
+	    
 	    </LinearLayout>
 	    
 	    <LinearLayout 
