@@ -235,7 +235,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		}
     	myController.onSave();
     }
- 
+
 }
 
 
