@@ -34,6 +34,7 @@ public abstract class EuphrasiaSpinner extends Spinner {
 	protected SimpleCursorAdapter myAdapter;
 	private AdapterView mySpinnerParent;
 	protected int mySize;
+	protected boolean canCreateItems = false;
 
 	public EuphrasiaSpinner(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -43,6 +44,9 @@ public abstract class EuphrasiaSpinner extends Spinner {
 	
 	public void setActivitySource(Activity source){
 		mySourceActivity = source;
+		if(source instanceof EntryActivity){
+			canCreateItems = true;
+		}
 		this.initialize();
 	}
 	
@@ -61,10 +65,7 @@ public abstract class EuphrasiaSpinner extends Spinner {
 		String selected = parent.getSelectedItem().toString();
 		EntryActivity entryActivity = (EntryActivity)mySourceActivity;
 		Controller controller = entryActivity.getController();
-		if(selected.equals(this.getDefaultSpinnerMessage())) {
-			return;
-		}
-		if(id == -2){
+		if(id == -2 && canCreateItems){
 			Log.i("onItemSelected", "found create method");
 			EntryDialogFragment dlg = getDialogFragment();
 			dlg.setSourceSpinner(this);
