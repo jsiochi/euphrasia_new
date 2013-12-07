@@ -233,7 +233,6 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
     public void onPhrasebookCreated(Editable phrasebookName){
     	myController.updateEntryField(new PhrasebookField((phrasebookName.toString())));
     	Log.i("EntryActivity.java","New Phrasebook created with name ="+phrasebookName.toString());
-    	
     }
 
 
