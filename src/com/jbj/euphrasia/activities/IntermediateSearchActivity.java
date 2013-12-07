@@ -4,6 +4,7 @@ import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.spinners.LanguageSpinner;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -23,18 +24,8 @@ public class IntermediateSearchActivity extends Activity implements Constants, O
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_browse);
-		Spinner languageChoices = (Spinner) findViewById(R.id.browse_languages);
-		languageChoices.setOnItemSelectedListener(this);
-		if(ACTION_SHOW_LANGUAGES.equals(this.getIntent().getAction())){
-			// get all of the languages out of the database
-		}
-		SpinnerAdapter languageAdapter = getLanguageAdapter();
-		//languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		languageChoices.setAdapter(languageAdapter);
-	}
-
-	private SpinnerAdapter getLanguageAdapter() {
-		return null;
+		LanguageSpinner languageChoices = (LanguageSpinner) findViewById(R.id.browse_languages);
+		languageChoices.setActivitySource(this);
 	}
 
 	@Override
