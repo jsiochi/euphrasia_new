@@ -60,6 +60,9 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		if(ACTION_BROWSE_PHRASEBOOKS.equals(intent.getAction())){
 			this.doPhrasebookSearch(query);
 		}
+		if(ACTION_ONLY_LANGUAGES.equals(intent.getAction())){
+			String languageExtra = intent.getStringExtra(EXTRA_LANGUAGE_KEY);
+		}
 		ListView listView = (ListView) findViewById(android.R.id.list);
 		myListView = (ListView) findViewById(android.R.id.list);
 		myListView.setOnItemClickListener(new EntryListListener());

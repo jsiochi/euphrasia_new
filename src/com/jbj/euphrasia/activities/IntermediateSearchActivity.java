@@ -25,7 +25,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
-public class IntermediateSearchActivity extends Activity implements Constants, OnItemSelectedListener{
+public class IntermediateSearchActivity extends Activity implements Constants{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,18 +86,12 @@ public class IntermediateSearchActivity extends Activity implements Constants, O
 		viewAllIntent.setAction(ACTION_VIEW_ALL);
 		startActivity(new Intent(this,SearchActivity.class));
 	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position,
-			long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
+	
+	public void onViewLanguage(String language){
+		Intent onlyLanguages = new Intent(this,SearchActivity.class);
+		onlyLanguages.setAction(ACTION_ONLY_LANGUAGES);
+		onlyLanguages.putExtra(EXTRA_LANGUAGE_KEY, language);
+		startActivity(onlyLanguages);
 	}
 
 }

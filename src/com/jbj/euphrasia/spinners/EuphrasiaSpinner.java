@@ -5,6 +5,7 @@ import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.activities.EntryActivity;
+import com.jbj.euphrasia.activities.IntermediateSearchActivity;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.PhrasebookField;
 
@@ -62,20 +63,27 @@ public abstract class EuphrasiaSpinner extends Spinner {
 	public void doSelect(AdapterView<?> parent, View view, int position,
 			long id){
 		String selected = parent.getSelectedItem().toString();
-		EntryActivity entryActivity = (EntryActivity)mySourceActivity;
-		Controller controller = entryActivity.getController();
-		if(id == -2 && canCreateItems){
-			Log.i("onItemSelected", "found create method");
-			EntryDialogFragment dlg = getDialogFragment();
-			dlg.setSourceSpinner(this);
-		    dlg.show(entryActivity.getSupportFragmentManager(), this.getDialogLayout());
-		    Log.i("onItemSelected",""+dlg.isVisible());
+		if(mySourceActivity instanceof EntryActivity){
+			EntryActivity entryActivity = (EntryActivity)mySourceActivity;
+			Controller controller = entryActivity.getController();
+			if(id == -2 && canCreateItems){
+				Log.i("onItemSelected", "found create method");
+				EntryDialogFragment dlg = getDialogFragment();
+				dlg.setSourceSpinner(this);
+			    dlg.show(entryActivity.getSupportFragmentManager(), this.getDialogLayout());
+			    Log.i("onItemSelected",""+dlg.isVisible());
+			}
+			else if(!controller.hasValid(this)){
+				controller.updateEntryField(this.createField(selected));
+			}
+			mySize = parent.getCount();
+			mySpinnerParent = parent;
 		}
-		else if(!controller.hasValid(this)){
-			controller.updateEntryField(this.createField(selected));
+		else{
+			IntermediateSearchActivity search = (IntermediateSearchActivity)mySourceActivity;
+			String selectedLanguage = parent.getSelectedItem().toString();
+			search.onViewLanguage(selectedLanguage);
 		}
-		mySize = parent.getCount();
-		mySpinnerParent = parent;
 	}
 	
 	public void onCreated(Editable createdName){
