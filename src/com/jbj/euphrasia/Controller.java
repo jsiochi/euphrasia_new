@@ -5,6 +5,9 @@ import com.jbj.euphrasia.fields.DateField;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.managers.PlayManager;
 import com.jbj.euphrasia.managers.RecordingManager;
+import com.jbj.euphrasia.spinners.EuphrasiaSpinner;
+import com.jbj.euphrasia.spinners.LanguageSpinner;
+import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 
 import android.content.Context;
 import android.net.Uri;
@@ -63,9 +66,17 @@ public class Controller {
 	public boolean shouldSave() {
 		return myEntry.shouldSave(3);
 	}
-	public boolean hasValidPhrasebook() {
-		// TODO Auto-generated method stub
-		return myEntry.hasValidPhrasebook();
+
+	public boolean hasValid(EuphrasiaSpinner spinner) {
+		if(spinner instanceof LanguageSpinner){
+			return myEntry.hasValidLanguage();
+		}
+		if(spinner instanceof PhrasebookSpinner){
+			return myEntry.hasValidPhrasebook();
+		}
+		else{
+			return false;
+		}
 	}
 
 }
