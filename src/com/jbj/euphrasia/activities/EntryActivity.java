@@ -37,12 +37,17 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.MergeCursor;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.CursorAdapter;
+import android.support.v4.widget.ResourceCursorAdapter;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,6 +67,12 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	private Controller myController;
 	private Map<String,EditText> myTextViews = new HashMap<String,EditText>();
 	private ContentValues myInitialData;
+	private Cursor myPhrasebookCursor;
+	private SimpleCursorAdapter phrasebookAdapter;
+	private int mySpinnerSize;
+	private AdapterView mySpinnerParent;
+	
+	//TODO make an instance variable for adapter; look into making a cursor adapter from the content provider
 
 
 	@Override
@@ -75,10 +86,16 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		myController = new Controller(this);
 		Spinner spinner = (Spinner) findViewById(R.id.entry_phrasebook_spinner);
 		spinner.setOnItemSelectedListener(this);
-		//String[] test = {"Phrasebook 1", "Phrasebook 2"};
-		ArrayAdapter<CharSequence> adapter = getPhrasebooks();
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
+		
+		myPhrasebookCursor = getPhrasebooks(null);
+		String[] froms = {EntryColumns.COLUMN_NAME_PHRASEBOOK, EntryColumns._ID};
+		int[] tos = {android.R.id.text1};
+		phrasebookAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, myPhrasebookCursor,
+                froms, tos, 0);
+		phrasebookAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(phrasebookAdapter);
+		mySpinnerSize = spinner.getCount();
+		
 		findTextViews();
 		setUpTextViews();
 		loadInitialData();
@@ -233,7 +250,9 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
     public void onPhrasebookCreated(Editable phrasebookName){
     	myController.updateEntryField(new PhrasebookField((phrasebookName.toString())));
     	Log.i("EntryActivity.java","New Phrasebook created with name ="+phrasebookName.toString());
-    	
+    	myPhrasebookCursor = getPhrasebooks(phrasebookName.toString());
+    	phrasebookAdapter.swapCursor(myPhrasebookCursor);
+    	mySpinnerParent.setSelection(mySpinnerParent.getCount() - 1);
     }
 
 
@@ -241,14 +260,15 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
 		// create a new entry field and update EntryDatabaseManager
+		Log.i("SELECTED_ID", String.valueOf(id));
 		String selected = parent.getSelectedItem().toString();
 		if(selected.equals("Choose phrasebook")) {
 			return;
 		}
-		if(selected.equals("Create new")){
+		if(id == -2){
 			Log.i("onItemSelected", "found create method");
-			// launch dialog fragment to create a phrasebook
-			// update phrasebook variable
+			//launch dialog fragment to create a phrasebook
+			//update phrasebook variable
 			CreatePhrasebookDialog dlg = new CreatePhrasebookDialog();
 			dlg.setSourceActivity(this);
 		    dlg.show(getSupportFragmentManager(), "create_phrasebook");
@@ -257,8 +277,9 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		else if(!myController.hasValidPhrasebook()){
 			myController.updateEntryField(new PhrasebookField(selected));
 		}
-
-		parent.setSelection(parent.getCount() - 1);
+		
+		mySpinnerSize = parent.getCount();
+		mySpinnerParent = parent;
 	}
 
 
@@ -269,17 +290,39 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	}
 
 	
-	private ArrayAdapter<CharSequence> getPhrasebooks() {
-		Bundle bundle = getContentResolver().call(EntryProvider.CONTENT_URI, EntryProvider.GET_PHRASEBOOKS, null, null);
+//	private ArrayAdapter<CharSequence> getPhrasebooks() {
+//		Bundle bundle = getContentResolver().call(EntryProvider.CONTENT_URI, EntryProvider.GET_PHRASEBOOKS, null, null);
+//		
+//		Resources res = getResources();
+//		String[] listItems = res.getStringArray(R.array.test_phrasebooks);
+//		
+//		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
+//		        android.R.layout.simple_spinner_item, new ArrayList<CharSequence>(Arrays.asList(listItems)));
+//		adapter.addAll(bundle.getStringArrayList(EntryProvider.GET_PHRASEBOOKS));
+//		
+//		return adapter;
+//	}
+	
+	private Cursor getPhrasebooks(String newPhrasebook) {
+		Cursor cursor = getContentResolver().query(EntryProvider.CONTENT_PHRASEBOOKS_URI, null, null, null, null);
 		
-		Resources res = getResources();
-		String[] listItems = res.getStringArray(R.array.test_phrasebooks);
+		String[] froms = {EntryColumns.COLUMN_NAME_PHRASEBOOK, EntryColumns._ID};
+		MatrixCursor extras = new MatrixCursor(froms);
+		String[] extraPhrasebooks = getResources().getStringArray(R.array.test_phrasebooks);
+		for(int i = 1; i <= extraPhrasebooks.length; i++) {
+			extras.addRow(new String[] {extraPhrasebooks[i - 1], String.valueOf(-1*i)});
+		}
 		
-		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
-		        android.R.layout.simple_spinner_item, new ArrayList<CharSequence>(Arrays.asList(listItems)));
-		adapter.addAll(bundle.getStringArrayList(EntryProvider.GET_PHRASEBOOKS));
+		MatrixCursor newRow = new MatrixCursor(froms);
 		
-		return adapter;
+		if(!TextUtils.isEmpty(newPhrasebook)) {
+			newRow.addRow(new String[] {newPhrasebook, String.valueOf(Long.MAX_VALUE)});
+			Log.i("NEW_PHRASEBOOK_ID", String.valueOf(Long.MAX_VALUE));
+		}
+		
+		Cursor[] cursors = {extras, cursor, newRow};
+		
+		return new MergeCursor(cursors);
 	}
 	
 }

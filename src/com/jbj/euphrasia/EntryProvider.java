@@ -35,10 +35,15 @@ public class EntryProvider extends ContentProvider {
 	static { 
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME, 1);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME + "/#", 2);
+		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.COLUMN_NAME_PHRASEBOOK, 3);
+		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.COLUMN_NAME_LANGUAGE, 4);
 		}
 	
 	public static final Uri CONTENT_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.TABLE_NAME);
-	public static final String GET_PHRASEBOOKS = "get_phrasebooks";
+	public static final Uri CONTENT_PHRASEBOOKS_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_PHRASEBOOK);
+	public static final Uri CONTENT_LANGUAGES_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_LANGUAGE);
+	
+	//public static final String GET_PHRASEBOOKS = "get_phrasebooks";
 
 	@Override
 	public boolean onCreate() {
@@ -46,10 +51,12 @@ public class EntryProvider extends ContentProvider {
 		return true;
 	}
 
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 		String newSelection = selection;
+		Cursor cursor;
 		
 		switch (myUriMatcher.match(uri)) {
 		//URI is entire table
@@ -69,13 +76,21 @@ public class EntryProvider extends ContentProvider {
 				newSelection = " AND _id = " + uri.getLastPathSegment();
 			}
 			break;
-		
+		//URI is all the phrasebooks (3) or languages (4)
+		case 3:
+		case 4:
+			myDatabase = myDatabaseHelper.getWritableDatabase();
+			String[] theProjection = {uri.getLastPathSegment(), EntryColumns._ID};
+			cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, theProjection, uri.getLastPathSegment() + " IS NOT NULL", null, null, null, null, null, null);
+			cursor.setNotificationUri(getContext().getContentResolver(), uri);
+			return cursor;
+			
 		default:
 			throw new IllegalArgumentException("Invalid URI");
 		}
 		
 		myDatabase = myDatabaseHelper.getWritableDatabase();
-		Cursor cursor = myDatabase.query(EntryColumns.TABLE_NAME, projection, newSelection, selectionArgs, null, null, sortOrder);
+		cursor = myDatabase.query(EntryColumns.TABLE_NAME, projection, newSelection, selectionArgs, null, null, sortOrder);
 		cursor.setNotificationUri(getContext().getContentResolver(), uri);
 		
 		return cursor;
@@ -183,25 +198,25 @@ public class EntryProvider extends ContentProvider {
 		return numRows;
 	}
 	
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	public Bundle call(String method, String arg, Bundle extras) {
-		Bundle bundle = new Bundle();
-		
-		if(method == GET_PHRASEBOOKS) {
-			myDatabase = myDatabaseHelper.getReadableDatabase();
-			String[] projection = {EntryColumns.COLUMN_NAME_PHRASEBOOK};
-			Cursor cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, projection, null, null, null, null, null, null, null);
-			ArrayList<String> results = new ArrayList<String>();
-			while(cursor.moveToNext()) {
-				results.add(cursor.getString(0));
-			}
-
-			bundle.putStringArrayList(GET_PHRASEBOOKS, results);
-		} else {
-			throw new IllegalArgumentException("Invalid Method Name");
-		}
-		
-		
-		return bundle;
-	}
+//	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+//	public Bundle call(String method, String arg, Bundle extras) {
+//		Bundle bundle = new Bundle();
+//		
+//		if(method == GET_PHRASEBOOKS) {
+//			myDatabase = myDatabaseHelper.getReadableDatabase();
+//			String[] projection = {EntryColumns.COLUMN_NAME_PHRASEBOOK};
+//			Cursor cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, projection, null, null, null, null, null, null, null);
+//			ArrayList<String> results = new ArrayList<String>();
+//			while(cursor.moveToNext()) {
+//				results.add(cursor.getString(0));
+//			}
+//
+//			bundle.putStringArrayList(GET_PHRASEBOOKS, results);
+//		} else {
+//			throw new IllegalArgumentException("Invalid Method Name");
+//		}
+//		
+//		
+//		return bundle;
+//	}
 }
