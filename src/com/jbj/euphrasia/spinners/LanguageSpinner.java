@@ -4,6 +4,7 @@ import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.LanguageField;
 import com.jbj.euphrasia.fields.PhrasebookField;
+import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
 
@@ -86,6 +87,16 @@ public class LanguageSpinner extends EuphrasiaSpinner {
 			
 		}
 		
+	}
+
+	@Override
+	public String getAction() {
+		return ACTION_ONLY_LANGUAGES;
+	}
+
+	@Override
+	public String getColumnKey() {
+		return EXTRA_LANGUAGE_KEY;
 	}
 
 }

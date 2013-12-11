@@ -32,7 +32,8 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_browse);
 		LanguageSpinner languageChoices = (LanguageSpinner) findViewById(R.id.browse_languages);
-		languageChoices.setActivitySource(this);		
+		languageChoices.setActivitySource(this);	
+		//PhrasebookSpinner phrasebooksChoices = ()
 	}
 
 //	private SimpleCursorAdapter getLanguageAdapter() {
@@ -71,27 +72,21 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 	/**
 	 * launches listview of every phrasebook in the database. 
 	 */
-	public void onPhrasebookBrowse(View view){
+	public void onFilter(String selected, String action, String columnKey){
 		// retrieve all phrasebooks from the database and pass extra to next activity. 
-		Intent toBrowsePhrasebookIntent = new Intent(this,BrowsePhrasebookActivity.class);
-		toBrowsePhrasebookIntent.setAction(ACTION_BROWSE_PHRASEBOOKS);
-		startActivity(toBrowsePhrasebookIntent);
+		Intent intent = new Intent(this,SearchActivity.class);
+		intent.setAction(action);
+		intent.putExtra(columnKey, selected);
+		startActivity(intent);
 	}
 	
 	/**
 	 * Launches listview of every entry in the database. 
 	 */
-	public void onViewAll(View view){
+	public void onNoFilter(View view){
 		Intent viewAllIntent = new Intent(this,SearchActivity.class);
 		viewAllIntent.setAction(ACTION_VIEW_ALL);
 		startActivity(new Intent(this,SearchActivity.class));
-	}
-	
-	public void onViewLanguage(String language){
-		Intent onlyLanguages = new Intent(this,SearchActivity.class);
-		onlyLanguages.setAction(ACTION_ONLY_LANGUAGES);
-		onlyLanguages.putExtra(EXTRA_LANGUAGE_KEY, language);
-		startActivity(onlyLanguages);
 	}
 
 }

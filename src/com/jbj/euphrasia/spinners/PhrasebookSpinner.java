@@ -94,4 +94,14 @@ public class PhrasebookSpinner extends EuphrasiaSpinner {
 		
 	}
 
+	@Override
+	public String getAction() {
+		return ACTION_BROWSE_PHRASEBOOKS;
+	}
+
+	@Override
+	public String getColumnKey() {
+		return EXTRA_PHRASEBOOK_KEY;
+	}
+
 }

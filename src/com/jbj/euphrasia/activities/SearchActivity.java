@@ -55,30 +55,25 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		Intent intent = getIntent();
 		String query = intent.getStringExtra(SearchManager.QUERY);
 		if (ACTION_VIEW_ALL.equals(intent.getAction())) {
-			this.doEntrySearch(query);
+			String selection = EntryColumns.COLUMN_NAME_TITLE + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " 
+					+ EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
+			this.doEntrySearch(selection);
 		}
 		if(ACTION_BROWSE_PHRASEBOOKS.equals(intent.getAction())){
-			this.doPhrasebookSearch(query);
+			//show only entries from this phrasebook. 
+			String phrasebookExtra = intent.getStringExtra(EXTRA_PHRASEBOOK_KEY);
+			String selection = EntryColumns.COLUMN_NAME_PHRASEBOOK + " LIKE '%" + query + "%";
+			this.doEntrySearch(selection);
 		}
 		if(ACTION_ONLY_LANGUAGES.equals(intent.getAction())){
+			//show only entries from this language.
 			String languageExtra = intent.getStringExtra(EXTRA_LANGUAGE_KEY);
+			String selection = EntryColumns.COLUMN_NAME_LANGUAGE + " LIKE '%" + query + "%";
+			this.doEntrySearch(selection);
 		}
 		ListView listView = (ListView) findViewById(android.R.id.list);
 		myListView = (ListView) findViewById(android.R.id.list);
 		myListView.setOnItemClickListener(new EntryListListener());
-		
-		//query database for collection of all tags
-		//display these tags + frequency onCreate
-//		ProgressBar progressBar = new ProgressBar(this);
-//        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-//                LayoutParams.WRAP_CONTENT, Gravity.CENTER));
-//        progressBar.setIndeterminate(true);
-//        getListView().setEmptyView(progressBar);
-//        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-//        root.addView(progressBar);
-	
-	// TODO Finish scrolling code commented below	
-		//((TextView) this.findViewById(R.id.item_tags)).setMovementMethod(new ScrollingMovementMethod());
 
 		Bundle emptyBundle = new Bundle();
         getLoaderManager().initLoader(0, emptyBundle, this);
@@ -168,10 +163,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, null,null,null);
 	}
 	
-	public void doEntrySearch(String query) {
+	public void doEntrySearch(String selection) {
 		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};
-		String selection = EntryColumns.COLUMN_NAME_TITLE + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " 
-				+ EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
 		Bundle args = new Bundle();
 		args.putString(SELECTION_QUERY, selection);
 		this.getLoaderManager().restartLoader(0, args, this);

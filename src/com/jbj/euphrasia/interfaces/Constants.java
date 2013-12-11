@@ -11,4 +11,5 @@ public interface Constants {
 	final String ACTION_SHOW_LANGUAGES = "View all languages in the database";
 	final String ENTRY_INTENT_PARCELABLE = "com.jbj.euphrasia.entryFromSearch";
 	final String EXTRA_LANGUAGE_KEY = "language key";
+	final String EXTRA_PHRASEBOOK_KEY = "phrasebook key";
 }

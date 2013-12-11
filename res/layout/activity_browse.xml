@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.IntermediateSearchActivity" >
     
-	    <Spinner
+	    <com.jbj.euphrasia.spinners.LanguageSpinner
 		    android:id="@+id/browse_languages"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content" />

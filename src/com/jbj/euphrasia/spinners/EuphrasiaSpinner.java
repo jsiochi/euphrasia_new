@@ -8,6 +8,7 @@ import com.jbj.euphrasia.activities.EntryActivity;
 import com.jbj.euphrasia.activities.IntermediateSearchActivity;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.PhrasebookField;
+import com.jbj.euphrasia.interfaces.Constants;
 
 import dialog_fragments.CreatePhrasebookDialog;
 import dialog_fragments.EntryDialogFragment;
@@ -29,7 +30,7 @@ import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 
-public abstract class EuphrasiaSpinner extends Spinner {
+public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	
 	protected Activity mySourceActivity;
 	protected SimpleCursorAdapter myAdapter;
@@ -80,14 +81,18 @@ public abstract class EuphrasiaSpinner extends Spinner {
 			mySize = parent.getCount();
 			mySpinnerParent = parent;
 		}
-		else{
-			IntermediateSearchActivity search = (IntermediateSearchActivity)mySourceActivity;
-			String selectedLanguage = parent.getSelectedItem().toString();
-			search.onViewLanguage(selectedLanguage);
+		if(mySourceActivity instanceof IntermediateSearchActivity){
+			IntermediateSearchActivity searchActivity = (IntermediateSearchActivity)mySourceActivity;
+			String selectedItem = parent.getSelectedItem().toString();
+			searchActivity.onFilter(selectedItem, this.getAction(), this.getColumnKey());
 		}
 		mySize = parent.getCount();
 		mySpinnerParent = parent;	
 	}
+	
+	public abstract String getAction();
+	
+	public abstract String getColumnKey();
 	
 	public void onCreated(Editable createdName){
 		EntryActivity entryActivity = (EntryActivity)mySourceActivity;
@@ -125,6 +130,7 @@ public abstract class EuphrasiaSpinner extends Spinner {
 	
 	public Cursor getCursor(String newItem){
 		ContentResolver resolver = mySourceActivity.getContentResolver();
+		Log.i("EuphrasiaSpinner",this.getColumnUri().toString());
 		Cursor cursor = resolver.query(this.getColumnUri(), null, null, null, null);
 		
 		String[] froms = {this.getColumnName(), EntryColumns._ID};
