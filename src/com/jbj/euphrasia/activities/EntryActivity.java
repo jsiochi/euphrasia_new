@@ -62,6 +62,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class EntryActivity extends FragmentActivity implements Constants, EntryContract{
 	
@@ -89,10 +92,13 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		findTextViews();
 		setUpTextViews();
 		loadInitialData();
+		
 	}
+
 	public Controller getController(){
 		return myController;
 	}
+
 	private void loadInitialData() {
 		if(myInitialData != null) {
 			String audioPath = myInitialData.getAsString(EntryColumns.COLUMN_NAME_AUDIO);
@@ -155,15 +161,8 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		Intent intent = this.getIntent();
 		return (ContentValues)intent.getParcelableExtra(ENTRY_INTENT_PARCELABLE);
 	}
-		
 	
-/*	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.entry, menu);
-		return true;
-	}
-*/	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
@@ -184,6 +183,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+	
 	
 /** get appropriate EditText object
  * Call this method whenever an EditText component losesFocus

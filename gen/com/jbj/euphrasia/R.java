@@ -800,12 +800,14 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f080005;
+        public static final int abc_search_url_text_holo=0x7f080007;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
         public static final int app_darkColor=0x7f080004;
         public static final int app_themeColor=0x7f080003;
+        public static final int button_highlightColor=0x7f080006;
+        public static final int button_recordColor=0x7f080005;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -993,12 +995,18 @@ containing a value of this type.
         public static final int ic_media_play=0x7f020059;
         public static final int ic_menu_compass=0x7f02005a;
         public static final int ic_menu_play_clip=0x7f02005b;
-        public static final int splash_screen=0x7f02005c;
-        public static final int splash_screen1=0x7f02005d;
-        public static final int text_back=0x7f02005e;
+        public static final int record_button=0x7f02005c;
+        public static final int search_even_row=0x7f02005d;
+        public static final int search_odd_row=0x7f02005e;
+        public static final int search_selector_even=0x7f02005f;
+        public static final int search_selector_odd=0x7f020060;
+        public static final int splash_screen=0x7f020061;
+        public static final int splash_screen1=0x7f020062;
+        public static final int text_back=0x7f020063;
     }
     public static final class id {
-<<<<<<< Updated upstream
+        public static final int account_name=0x7f06004d;
+        public static final int account_password=0x7f06004e;
         public static final int action_bar=0x7f06001c;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f06001b;
@@ -1006,46 +1014,25 @@ containing a value of this type.
         public static final int action_bar_root=0x7f06001a;
         public static final int action_bar_subtitle=0x7f060023;
         public static final int action_bar_title=0x7f060022;
-        public static final int action_compose=0x7f060054;
+        public static final int action_compose=0x7f060059;
         public static final int action_context_bar=0x7f06001d;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_search=0x7f060053;
-        public static final int action_settings=0x7f060051;
+        public static final int action_search=0x7f060058;
+        public static final int action_settings=0x7f060056;
         public static final int activity_chooser_view_content=0x7f060025;
-=======
-        public static final int account_name=0x7f060052;
-        public static final int account_password=0x7f060053;
-        public static final int action_bar=0x7f06001a;
-        public static final int action_bar_activity_content=0x7f060015;
-        public static final int action_bar_container=0x7f060019;
-        public static final int action_bar_overlay_layout=0x7f06001d;
-        public static final int action_bar_root=0x7f060018;
-        public static final int action_bar_subtitle=0x7f060021;
-        public static final int action_bar_title=0x7f060020;
-        public static final int action_compose=0x7f06005e;
-        public static final int action_context_bar=0x7f06001b;
-        public static final int action_menu_divider=0x7f060016;
-        public static final int action_menu_presenter=0x7f060017;
-        public static final int action_mode_bar=0x7f06002f;
-        public static final int action_mode_bar_stub=0x7f06002e;
-        public static final int action_mode_close_button=0x7f060022;
-        public static final int action_search=0x7f06005d;
-        public static final int action_settings=0x7f06005b;
-        public static final int activity_chooser_view_content=0x7f060023;
->>>>>>> Stashed changes
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
         public static final int browse_languages=0x7f06003c;
         public static final int browse_phrasebooks=0x7f06003d;
         public static final int checkbox=0x7f06002d;
         public static final int collapseActionView=0x7f06000d;
-        public static final int confirm_save=0x7f060046;
-        public static final int confirm_save_button_id=0x7f060047;
-        public static final int confirm_save_dialog=0x7f060045;
-        public static final int create_phrasebook_button_id=0x7f06004a;
-        public static final int create_phrasebook_dialog=0x7f060048;
+        public static final int confirm_save=0x7f060047;
+        public static final int confirm_save_button_id=0x7f060048;
+        public static final int confirm_save_dialog=0x7f060046;
+        public static final int create_phrasebook_button_id=0x7f06004b;
+        public static final int create_phrasebook_dialog=0x7f060049;
         public static final int default_activity_button=0x7f060028;
         public static final int dialog=0x7f06000e;
         public static final int disableHome=0x7f060008;
@@ -1054,51 +1041,36 @@ containing a value of this type.
         public static final int edit_tags=0x7f060042;
         public static final int edit_title=0x7f06003f;
         public static final int end=0x7f060013;
-<<<<<<< Updated upstream
         public static final int entry_phrasebook_spinner=0x7f060041;
+        public static final int entry_record_btn=0x7f060043;
+        public static final int existing_user_dialog=0x7f06004c;
         public static final int expand_activities_button=0x7f060026;
         public static final int expanded_menu=0x7f06002c;
-        public static final int foreign_text=0x7f060044;
-=======
-        public static final int entry_phrasebook_spinner=0x7f060047;
-        public static final int existing_user_dialog=0x7f060051;
-        public static final int expand_activities_button=0x7f060024;
-        public static final int expanded_menu=0x7f06002a;
-        public static final int foreign_text=0x7f06004a;
->>>>>>> Stashed changes
+        public static final int foreign_text=0x7f060045;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
         public static final int icon=0x7f06002a;
         public static final int ifRoom=0x7f06000a;
-<<<<<<< Updated upstream
         public static final int image=0x7f060027;
-        public static final int item_native_text=0x7f06004f;
-        public static final int item_tags=0x7f060050;
-        public static final int item_title=0x7f06004e;
-        public static final int language_dialog_btnId=0x7f06004d;
-=======
-        public static final int image=0x7f060025;
-        public static final int item_native_text=0x7f060059;
-        public static final int item_tags=0x7f06005a;
-        public static final int item_title=0x7f060058;
-        public static final int language_dialog_btnId=0x7f060056;
-        public static final int left_icon=0x7f060031;
->>>>>>> Stashed changes
+        public static final int item_native_text=0x7f060054;
+        public static final int item_tags=0x7f060055;
+        public static final int item_title=0x7f060053;
+        public static final int language_dialog_btnId=0x7f060051;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
         public static final int middle=0x7f060012;
-        public static final int native_text=0x7f060043;
+        public static final int native_text=0x7f060044;
         public static final int never=0x7f060009;
-<<<<<<< Updated upstream
-        public static final int new_language_dialog=0x7f06004b;
-        public static final int new_language_edit_text_id=0x7f06004c;
-        public static final int new_phrasebook_name=0x7f060049;
+        public static final int new_language_dialog=0x7f06004f;
+        public static final int new_language_edit_text_id=0x7f060050;
+        public static final int new_phrasebook_name=0x7f06004a;
+        public static final int new_user_dialog=0x7f060052;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
-        public static final int save=0x7f060052;
+        public static final int save=0x7f060057;
         public static final int search_badge=0x7f060032;
         public static final int search_bar=0x7f060031;
         public static final int search_button=0x7f060033;
@@ -1111,32 +1083,6 @@ containing a value of this type.
         public static final int search_voice_btn=0x7f06003b;
         public static final int select_language=0x7f060040;
         public static final int shortcut=0x7f06002e;
-=======
-        public static final int new_language_dialog=0x7f060054;
-        public static final int new_language_edit_text_id=0x7f060055;
-        public static final int new_phrasebook_name=0x7f06004f;
-        public static final int new_user_dialog=0x7f060057;
-        public static final int none=0x7f060010;
-        public static final int normal=0x7f060000;
-        public static final int progress_circular=0x7f060034;
-        public static final int progress_horizontal=0x7f060035;
-        public static final int radio=0x7f06002d;
-        public static final int right_container=0x7f060032;
-        public static final int right_icon=0x7f060033;
-        public static final int save=0x7f06005c;
-        public static final int search_badge=0x7f060038;
-        public static final int search_bar=0x7f060037;
-        public static final int search_button=0x7f060039;
-        public static final int search_close_btn=0x7f06003e;
-        public static final int search_edit_frame=0x7f06003a;
-        public static final int search_go_btn=0x7f060040;
-        public static final int search_mag_icon=0x7f06003b;
-        public static final int search_plate=0x7f06003c;
-        public static final int search_src_text=0x7f06003d;
-        public static final int search_voice_btn=0x7f060041;
-        public static final int select_language=0x7f060046;
-        public static final int shortcut=0x7f06002c;
->>>>>>> Stashed changes
         public static final int showCustom=0x7f060007;
         public static final int showHome=0x7f060004;
         public static final int showTitle=0x7f060006;
@@ -1197,39 +1143,22 @@ containing a value of this type.
         public static final int abc_list_menu_item_layout=0x7f030012;
         public static final int abc_list_menu_item_radio=0x7f030013;
         public static final int abc_popup_menu_item_layout=0x7f030014;
-<<<<<<< Updated upstream
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
         public static final int activity_browse=0x7f030017;
         public static final int activity_browse_phrasebook=0x7f030018;
         public static final int activity_entry=0x7f030019;
-        public static final int activity_main=0x7f03001a;
-        public static final int activity_search=0x7f03001b;
-        public static final int activity_splash=0x7f03001c;
-        public static final int confirm_save=0x7f03001d;
-        public static final int create_phrasebook=0x7f03001e;
-        public static final int new_language=0x7f03001f;
-        public static final int search_list_item=0x7f030020;
-        public static final int support_simple_spinner_dropdown_item=0x7f030021;
-=======
-        public static final int abc_screen=0x7f030015;
-        public static final int abc_search_dropdown_item_icons_2line=0x7f030016;
-        public static final int abc_search_view=0x7f030017;
-        public static final int activity_browse=0x7f030018;
-        public static final int activity_browse_phrasebook=0x7f030019;
-        public static final int activity_entry=0x7f03001a;
-        public static final int activity_login=0x7f03001b;
-        public static final int activity_main=0x7f03001c;
-        public static final int activity_search=0x7f03001d;
-        public static final int activity_splash=0x7f03001e;
-        public static final int confirm_save=0x7f03001f;
-        public static final int create_phrasebook=0x7f030020;
-        public static final int existing_user=0x7f030021;
-        public static final int new_language=0x7f030022;
-        public static final int new_user=0x7f030023;
-        public static final int search_list_item=0x7f030024;
-        public static final int support_simple_spinner_dropdown_item=0x7f030025;
->>>>>>> Stashed changes
+        public static final int activity_login=0x7f03001a;
+        public static final int activity_main=0x7f03001b;
+        public static final int activity_search=0x7f03001c;
+        public static final int activity_splash=0x7f03001d;
+        public static final int confirm_save=0x7f03001e;
+        public static final int create_phrasebook=0x7f03001f;
+        public static final int existing_user=0x7f030020;
+        public static final int new_language=0x7f030021;
+        public static final int new_user=0x7f030022;
+        public static final int search_list_item=0x7f030023;
+        public static final int support_simple_spinner_dropdown_item=0x7f030024;
     }
     public static final class menu {
         public static final int browse=0x7f0e0000;
@@ -1356,11 +1285,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0c008a;
+        public static final int AppBaseTheme=0x7f0c008c;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0c008b;
+        public static final int AppTheme=0x7f0c008d;
         /**  	    <item name="android:windowNoTitle">true</item> 
          */
         public static final int Main=0x7f0c0083;
@@ -1563,8 +1492,10 @@ containing a value of this type.
         public static final int app_editTextStyle=0x7f0c0086;
         /**  Style TextView 
          */
-        public static final int app_textViewStyle=0x7f0c0088;
-        public static final int main_textViewStyle=0x7f0c0089;
+        public static final int app_textViewStyle=0x7f0c008a;
+        public static final int button_focused=0x7f0c0089;
+        public static final int button_pressed=0x7f0c0088;
+        public static final int main_textViewStyle=0x7f0c008b;
     }
     public static final class xml {
         public static final int searchable=0x7f050000;

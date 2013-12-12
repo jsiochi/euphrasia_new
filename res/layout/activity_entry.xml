@@ -73,8 +73,10 @@
 	  				android:layout_height="10dp"
 	  				android:layout_weight=".03">
 				</View>
+
 	    	
 	     	<Button
+			    android:id="@+id/entry_record_btn"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:drawableLeft="@android:drawable/ic_btn_speak_now"
