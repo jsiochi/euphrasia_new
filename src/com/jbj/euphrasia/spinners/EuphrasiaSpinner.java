@@ -63,7 +63,8 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	
 	public void doSelect(AdapterView<?> parent, View view, int position,
 			long id){
-		String selected = parent.getSelectedItem().toString();
+		String selected = ((MergeCursor) parent.getSelectedItem()).getString(0);
+		//String selected2 = parent.get
 		if(mySourceActivity instanceof EntryActivity){
 			EntryActivity entryActivity = (EntryActivity)mySourceActivity;
 			Controller controller = entryActivity.getController();
@@ -82,7 +83,8 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 		}
 		if(mySourceActivity instanceof IntermediateSearchActivity && id != -1){
 			IntermediateSearchActivity searchActivity = (IntermediateSearchActivity)mySourceActivity;
-			String selectedItem = parent.getSelectedItem().toString();
+			String selectedItem = ((MergeCursor) parent.getSelectedItem()).getString(0);
+			//String selectedItem = parent.getSelectedItem().toString();
 			searchActivity.onFilter(selectedItem, this.getAction(), this.getColumnKey());
 		}
 		mySize = parent.getCount();
