@@ -7,6 +7,7 @@ import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.spinners.LanguageSpinner;
+import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -32,8 +33,9 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_browse);
 		LanguageSpinner languageChoices = (LanguageSpinner) findViewById(R.id.browse_languages);
-		languageChoices.setActivitySource(this);	
-		//PhrasebookSpinner phrasebooksChoices = ()
+		languageChoices.setActivitySource(this);
+		PhrasebookSpinner phrasebookChoices = (PhrasebookSpinner) findViewById(R.id.browse_phrasebooks);
+		phrasebookChoices.setActivitySource(this);
 	}
 
 //	private SimpleCursorAdapter getLanguageAdapter() {

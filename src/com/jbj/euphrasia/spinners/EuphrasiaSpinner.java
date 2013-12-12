@@ -63,7 +63,6 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	
 	public void doSelect(AdapterView<?> parent, View view, int position,
 			long id){
-		Log.i("HELLO_SELECTED", String.valueOf(id));
 		String selected = parent.getSelectedItem().toString();
 		if(mySourceActivity instanceof EntryActivity){
 			EntryActivity entryActivity = (EntryActivity)mySourceActivity;

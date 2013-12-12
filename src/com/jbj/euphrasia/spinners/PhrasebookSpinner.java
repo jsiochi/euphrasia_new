@@ -39,7 +39,9 @@ public class PhrasebookSpinner extends EuphrasiaSpinner {
 
 	@Override
 	protected int getArrayData() {
-		return R.array.test_phrasebooks;
+		if(canCreateItems)
+			return R.array.test_phrasebooks;
+		return R.array.test_phrasebooks_no_edit;
 	}
 
 	@Override
