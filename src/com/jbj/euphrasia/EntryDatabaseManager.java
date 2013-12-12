@@ -185,6 +185,7 @@ public class EntryDatabaseManager {
 	}
 
 	public void setPhrasebook(PhrasebookField phrasebookField) {
+		Log.i("DB_MANAGER","Updated phrasebook");
 		myPhrasebookField = phrasebookField;
 	}
 
