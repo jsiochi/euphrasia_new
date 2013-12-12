@@ -81,7 +81,7 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 			mySize = parent.getCount();
 			mySpinnerParent = parent;
 		}
-		if(mySourceActivity instanceof IntermediateSearchActivity){
+		if(mySourceActivity instanceof IntermediateSearchActivity && id != -1){
 			IntermediateSearchActivity searchActivity = (IntermediateSearchActivity)mySourceActivity;
 			String selectedItem = parent.getSelectedItem().toString();
 			searchActivity.onFilter(selectedItem, this.getAction(), this.getColumnKey());

@@ -35,7 +35,10 @@ public class LanguageSpinner extends EuphrasiaSpinner {
 
 	@Override
 	protected int getArrayData() {
-		return R.array.languages;
+		if(canCreateItems){
+			return R.array.languages;
+		}
+		return R.array.languages_no_edit;
 	}
 
 	@Override

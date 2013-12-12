@@ -18,7 +18,8 @@ public final class R {
     }
     public static final class array {
         public static final int languages=0x7f0d0000;
-        public static final int test_phrasebooks=0x7f0d0001;
+        public static final int languages_no_edit=0x7f0d0001;
+        public static final int test_phrasebooks=0x7f0d0002;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
