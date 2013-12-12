@@ -1005,8 +1005,13 @@ containing a value of this type.
         public static final int text_back=0x7f020063;
     }
     public static final class id {
+<<<<<<< HEAD
         public static final int account_name=0x7f06004d;
         public static final int account_password=0x7f06004e;
+=======
+        public static final int account_name=0x7f06004c;
+        public static final int account_password=0x7f06004d;
+>>>>>>> 4614c2f3fc5cdfdda86ab1999f296423358142c1
         public static final int action_bar=0x7f06001c;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f06001b;
@@ -1014,13 +1019,22 @@ containing a value of this type.
         public static final int action_bar_root=0x7f06001a;
         public static final int action_bar_subtitle=0x7f060023;
         public static final int action_bar_title=0x7f060022;
+<<<<<<< HEAD
         public static final int action_compose=0x7f060059;
+=======
+        public static final int action_compose=0x7f060058;
+>>>>>>> 4614c2f3fc5cdfdda86ab1999f296423358142c1
         public static final int action_context_bar=0x7f06001d;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
+<<<<<<< HEAD
         public static final int action_search=0x7f060058;
         public static final int action_settings=0x7f060056;
+=======
+        public static final int action_search=0x7f060057;
+        public static final int action_settings=0x7f060055;
+>>>>>>> 4614c2f3fc5cdfdda86ab1999f296423358142c1
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1042,35 +1056,60 @@ containing a value of this type.
         public static final int edit_title=0x7f06003f;
         public static final int end=0x7f060013;
         public static final int entry_phrasebook_spinner=0x7f060041;
+<<<<<<< HEAD
         public static final int entry_record_btn=0x7f060043;
         public static final int existing_user_dialog=0x7f06004c;
         public static final int expand_activities_button=0x7f060026;
         public static final int expanded_menu=0x7f06002c;
         public static final int foreign_text=0x7f060045;
+=======
+        public static final int existing_user_dialog=0x7f06004b;
+        public static final int expand_activities_button=0x7f060026;
+        public static final int expanded_menu=0x7f06002c;
+        public static final int foreign_text=0x7f060044;
+>>>>>>> 4614c2f3fc5cdfdda86ab1999f296423358142c1
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
         public static final int icon=0x7f06002a;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060027;
+<<<<<<< HEAD
         public static final int item_native_text=0x7f060054;
         public static final int item_tags=0x7f060055;
         public static final int item_title=0x7f060053;
         public static final int language_dialog_btnId=0x7f060051;
+=======
+        public static final int item_native_text=0x7f060053;
+        public static final int item_tags=0x7f060054;
+        public static final int item_title=0x7f060052;
+        public static final int language_dialog_btnId=0x7f060050;
+>>>>>>> 4614c2f3fc5cdfdda86ab1999f296423358142c1
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
         public static final int middle=0x7f060012;
         public static final int native_text=0x7f060044;
         public static final int never=0x7f060009;
+<<<<<<< HEAD
         public static final int new_language_dialog=0x7f06004f;
         public static final int new_language_edit_text_id=0x7f060050;
         public static final int new_phrasebook_name=0x7f06004a;
         public static final int new_user_dialog=0x7f060052;
+=======
+        public static final int new_language_dialog=0x7f06004e;
+        public static final int new_language_edit_text_id=0x7f06004f;
+        public static final int new_phrasebook_name=0x7f060049;
+        public static final int new_user_dialog=0x7f060051;
+>>>>>>> 4614c2f3fc5cdfdda86ab1999f296423358142c1
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
+<<<<<<< HEAD
         public static final int save=0x7f060057;
+=======
+        public static final int save=0x7f060056;
+>>>>>>> 4614c2f3fc5cdfdda86ab1999f296423358142c1
         public static final int search_badge=0x7f060032;
         public static final int search_bar=0x7f060031;
         public static final int search_button=0x7f060033;
