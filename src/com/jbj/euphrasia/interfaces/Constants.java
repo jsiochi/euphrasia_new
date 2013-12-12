@@ -12,4 +12,6 @@ public interface Constants {
 	final String ENTRY_INTENT_PARCELABLE = "com.jbj.euphrasia.entryFromSearch";
 	final String EXTRA_LANGUAGE_KEY = "language key";
 	final String EXTRA_PHRASEBOOK_KEY = "phrasebook key";
+	final String ACTION_EXISTING_LOGIN ="ëxisting user login";
+	final String EXTRA_EXISTING_USER = "existing user";
 }

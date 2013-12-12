@@ -13,7 +13,7 @@
     <string name="edit_entry_language">Language</string>
     <!--
     <string name="button_record_begin">Rec</string>
-    <string name="button_play">Play</string>
+    <string name="button_play">Play</string>
     -->
 
     <string name="text_entry_native">In your language</string>
@@ -39,8 +39,18 @@
     <string name="title_activity_browse_phrasebook">BrowsePhrasebookActivity</string>
     <string name="browse_phrasebooks_button">Browse by Phrasebook.</string>
     <string name="viewAll_btnText">View All Entries</string>
-    
-    <string name="language_dialog_btnMessage">Ok</string>
+    <string name="language_dialog_btnMessage">OK</string>
     <string name="new_language_message">Add a new language.</string>
+    <string name="title_activity_login">LoginActivity</string>
+    
+    <string name="login_message">Please login.</string>
+    <string name="new_user_btn">New User</string>
+    <string name="existing_user_btn">Existing User</string>
+    
+    <string name="new_user_message">Enter new user information.</string>
+    <string name="hint_user_account">Create a valid account name.</string>
+    <string name="hint_user_password">Enter valid password for new account.</string>
+    
+    <string name="existing_user_message">Enter information for existing user.</string>
 
 </resources>
