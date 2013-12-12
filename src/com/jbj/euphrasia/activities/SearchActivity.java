@@ -62,6 +62,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		if(ACTION_BROWSE_PHRASEBOOKS.equals(intent.getAction())){
 			//show only entries from this phrasebook. 
 			String phrasebookExtra = intent.getStringExtra(EXTRA_PHRASEBOOK_KEY);
+			Log.i("DEBUG_PHRASEBOOKS", phrasebookExtra);
 			String selection = EntryColumns.COLUMN_NAME_PHRASEBOOK + " LIKE '%" + phrasebookExtra + "%'";
 			this.doEntrySearch(selection);
 		}
