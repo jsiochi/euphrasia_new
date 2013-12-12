@@ -13,6 +13,11 @@
 		    android:id="@+id/browse_languages"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content" />
+	    
+	    <com.jbj.euphrasia.spinners.PhrasebookSpinner
+	        android:id="@+id/browse_phrasebooks"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"/>
 	   	
 	   	<Button 
 	       	android:layout_height="wrap_content"
