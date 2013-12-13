@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 public class LoginActivity extends FragmentActivity implements Constants{
 
@@ -53,12 +54,14 @@ public class LoginActivity extends FragmentActivity implements Constants{
 	public void onLoginAttempt(String name, String password){
 		// check the database to see if these 
 		// credentials match an existing user
-		Log.i("SNOW_GLOBE",name + " " + password);
 		if(name.equals("Euphrasia") && password.equals("1234")){
 			Intent intent = new Intent(this,MainActivity.class);
 			intent.setAction(ACTION_EXISTING_LOGIN);
 			intent.putExtra(EXTRA_EXISTING_USER, name);
 			startActivity(intent);
+		}
+		else{
+			Toast.makeText(this, "Account not found! Please try again. Input is case-sensitive.", 10).show();
 		}
 	}
 
