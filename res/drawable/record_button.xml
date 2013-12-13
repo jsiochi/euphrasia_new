@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:state_pressed="true" /> <!-- currently pressed turning the toggle on -->
+    <item android:state_pressed="true" /> <!-- currently pressed turning the toggle off -->
+    <item android:state_checked="true" /> <!-- not pressed default checked state -->
+    <item android:drawable="@android:drawable/btn_default"/> <!-- default non-pressed non-checked -->
+</selector>
+
+<!-- /*		final Button button = (Button) findViewById(R.id.test_btn);
+//		final boolean pressed = true;
+		
+	//	((ImageView) button).setImageDrawable(getBaseContext().getResources().getDrawable(R.drawable.button));
+		button.setOnClickListener(new View.OnClickListener() {
+			
+		    public void onClick(View button) {
+		        if (button.isSelected()){
+		        	button.setSelected(false);
+		            //Log.v("", Boolean.toString(imagebutton.isSelected()));
+		            //...Handle toggle off
+		        } else {
+		        	button.setSelected(true);
+		            //...Handled toggle on
+		        }
+		    }
+		});*/ -->
