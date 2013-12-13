@@ -19,7 +19,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public abstract class AbstractRemoteTask extends AsyncTask {
+public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 	
 	protected String myServiceUrl;
 	protected BasicHttpParams myParams;
@@ -30,10 +30,10 @@ public abstract class AbstractRemoteTask extends AsyncTask {
 	 * @param Object[] params : an array of objects where each object is a array of Objects
 	 * Converts each nested object array to a string array and uses to create BasicHttpParams.
 	 */
-	protected void setParams(Object[] params){
+	protected void setParams(String[]... params){
 		myParams = new BasicHttpParams();
 		for(int i = 0;i<params.length;i++){
-			String[] param = (String[])params[i];
+			String[] param = params[i];
 			myParams.setParameter(param[0], param[1]);
 			Log.i("AbstractTask","Added parameter "+ param[0] + " "+param[1]);
 		}
@@ -49,7 +49,7 @@ public abstract class AbstractRemoteTask extends AsyncTask {
 	}
 
 	@Override
-	protected Object doInBackground(Object... params) {
+	protected Void doInBackground(String[]... params) {
 		this.setParams(params);
 		Log.i("AbstractTask","Accessing service at "+this.getServiceUrl());
 		HttpUriRequest post = this.getUriRequest();

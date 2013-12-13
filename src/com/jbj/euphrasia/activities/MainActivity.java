@@ -1,5 +1,8 @@
 package com.jbj.euphrasia.activities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -51,19 +54,19 @@ public class MainActivity extends ActionBarActivity implements Constants {
 //		int j;
 //		while(cursor.moveToNext()){
 //			j = 0;
-//			String[][] params = new String[][]{}; 
+//			List<Object[]> params = new ArrayList<Object[]>(); 
 //			for(int i=0;i<cursor.getColumnCount();i++){
-//				String[] param = new String[]{};
+//				String[2] param = new String[2];
 //				param[0] = cursor.getColumnName(i);
 //				param[1] = cursor.getString(i);
-//				params[j] = param;
+//				params.add(param);
 //				j++;
 //			}
 //			//write each entry to the remote database before continuing
-//			write.execute(params);
+//			write.execute(params.toArray());
 		AbstractRemoteTask testTask = new WriteRemoteTask();
 		String[][] stuff = new String[][]{};
-		for(int i = 0; i<SELECT_ALL_PROJECTION.length;i++){
+		for(int i = 0; i<SELECT_ALL_PROJECTION.length-1;i++){
 			if(i==2){
 				String[] nestedStuff = {SELECT_ALL_PROJECTION[i],"2002-09-22 11:11:11"};
 				stuff[i] = nestedStuff;

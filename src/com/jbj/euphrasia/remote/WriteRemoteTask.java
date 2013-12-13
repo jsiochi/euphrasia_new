@@ -8,7 +8,7 @@ import android.widget.Toast;
 public class WriteRemoteTask extends AbstractRemoteTask {
 
 	@Override
-	protected Object doInBackground(Object... arg0) {
+	protected Void doInBackground(String[]... arg0) {
 		super.doInBackground(arg0);
 		try{
 			int success = myJsonObject.getInt("success");

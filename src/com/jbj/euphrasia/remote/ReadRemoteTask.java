@@ -7,7 +7,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 public class ReadRemoteTask extends AbstractRemoteTask {
 
 	@Override
-	protected Object doInBackground(Object... args) { 
+	protected Void doInBackground(String[]... args) { 
 		super.doInBackground(args);
 		return null;
 	}
