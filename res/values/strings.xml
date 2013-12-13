@@ -24,7 +24,9 @@
     <string name="hint_entry_foreign">Foreign Language goes here&#8230; </string>
     <string name="hint_search">Search entries</string>
     <string name="title_activity_search">Search</string>
+    <string name="title_main_activity">Main</string>
     <string name="main_button_search">Search</string>
+    <string name="sync_btnText">Sync Database</string>
     <string name="action_search">Search</string>
     <string name="action_compose">Compose</string>
     <string name="tag_field">Tags</string>
@@ -52,5 +54,7 @@
     <string name="hint_user_password">Enter valid password for new account.</string>
     
     <string name="existing_user_message">Enter information for existing user.</string>
+    
+ 
 
 </resources>

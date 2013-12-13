@@ -3,8 +3,9 @@
 db connection variables
 */
 
-define('DB_USER',"root");
+define('DB_USER',"Euphrasia");
 define("DB_PASSWORD","");
-define("DB_DATABASE","");
-define("DB_SERVER","");
+define("DB_DATABASE","goeuph5_euphrasia1");
+define("DB_SERVER","ecbiz137");
+
 ?>

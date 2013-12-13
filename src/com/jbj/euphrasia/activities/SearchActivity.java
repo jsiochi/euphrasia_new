@@ -31,6 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -72,8 +73,23 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			String selection = EntryColumns.COLUMN_NAME_LANGUAGE + " LIKE '%" + languageExtra + "%'";
 			this.doEntrySearch(selection);
 		}
-		ListView listView = (ListView) findViewById(android.R.id.list);
+		
 		myListView = (ListView) findViewById(android.R.id.list);
+		myListView.setLongClickable(true);
+		myListView.setOnItemLongClickListener(new OnItemLongClickListener(){
+			
+			/**
+			 * Delete item from database on long click. 
+			 */
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				myActivity.getContentResolver().delete(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
+						String.valueOf(id)), null, null);
+				return false;
+			}
+			
+		});
 		myListView.setOnItemClickListener(new EntryListListener());
 
 		Bundle emptyBundle = new Bundle();

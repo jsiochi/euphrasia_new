@@ -43,6 +43,14 @@
   				android:layout_height="300dp"
   				android:layout_weight="1">
 			</View>
+
+	    	<Button
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_weight=".5"
+	    	    android:onClick="onSyncDatabase"
+	    	    android:text="@string/sync_btnText" />
+
 	</LinearLayout>
     
 	<LinearLayout 
@@ -66,7 +74,9 @@
        		android:layout_weight=".5"
         	android:text="@string/main_button_search" 
         	android:onClick="onStartSearch"	/>
-
+    	
+ 
    </LinearLayout> 
+   
 
 </LinearLayout>
