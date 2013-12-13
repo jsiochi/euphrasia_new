@@ -65,6 +65,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 //			//write each entry to the remote database before continuing
 //			write.execute(params.toArray());
 		AbstractRemoteTask testTask = new WriteRemoteTask();
+		testTask.setActivity(this);
 		String[][] stuff = new String[][]{};
 		for(int i = 0; i<SELECT_ALL_PROJECTION.length-1;i++){
 			if(i==2){
