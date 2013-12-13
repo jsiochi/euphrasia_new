@@ -5,12 +5,17 @@
 		$foreign_text = $_POST['foreign_text'];
 		$native_text = $_POST['native_text'];
 		$title = $_POST['title'];
-
+		$user_id = $_POST['user_id'];
+		$tags = $_POST['tag'];
+		$phrasebook = $_POST['phrasebook'];
+		$language = $_POST['language'];
+		$date = $_POST['date'];
+		$audio = $_POST['audio'];
 		require_once __DIR__ . '/db_connect.php';
 
 		$db = new DB_CONNECT();
 
-		$result = mysql_query("INSERT INTO entries(title,native_text,foreign_text) VALUES('$title,$native_text,$foreign_text')");
+		$result = mysql_query("INSERT INTO entries(title,native_text,foreign_text,user_id,tag,phrasebook,language,created_at,audio) VALUES('$title,$native_text,$foreign_text,$user_id,$tag,$phrasebook,$language,$date,$audio')");
 		
 		if($result){
 			$response["success"] = 1;

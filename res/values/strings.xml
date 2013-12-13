@@ -53,6 +53,8 @@
     <string name="hint_user_account">Create a valid account name.</string>
     <string name="hint_user_password">Enter valid password for new account.</string>
     
+    <string name="hint_user_email">Enter a valid email address.</string>
+    
     <string name="existing_user_message">Enter information for existing user.</string>
     
  
