@@ -994,6 +994,7 @@ containing a value of this type.
         public static final int text_back=0x7f02005e;
     }
     public static final class id {
+        public static final int account_email=0x7f060058;
         public static final int account_name=0x7f060052;
         public static final int account_password=0x7f060053;
         public static final int action_bar=0x7f06001a;
@@ -1003,15 +1004,15 @@ containing a value of this type.
         public static final int action_bar_root=0x7f060018;
         public static final int action_bar_subtitle=0x7f060021;
         public static final int action_bar_title=0x7f060020;
-        public static final int action_compose=0x7f06005e;
+        public static final int action_compose=0x7f06005f;
         public static final int action_context_bar=0x7f06001b;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_bar=0x7f06002f;
         public static final int action_mode_bar_stub=0x7f06002e;
         public static final int action_mode_close_button=0x7f060022;
-        public static final int action_search=0x7f06005d;
-        public static final int action_settings=0x7f06005b;
+        public static final int action_search=0x7f06005e;
+        public static final int action_settings=0x7f06005c;
         public static final int activity_chooser_view_content=0x7f060023;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1042,9 +1043,9 @@ containing a value of this type.
         public static final int icon=0x7f060028;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060025;
-        public static final int item_native_text=0x7f060059;
-        public static final int item_tags=0x7f06005a;
-        public static final int item_title=0x7f060058;
+        public static final int item_native_text=0x7f06005a;
+        public static final int item_tags=0x7f06005b;
+        public static final int item_title=0x7f060059;
         public static final int language_dialog_btnId=0x7f060056;
         public static final int left_icon=0x7f060031;
         public static final int listMode=0x7f060001;
@@ -1063,7 +1064,7 @@ containing a value of this type.
         public static final int radio=0x7f06002d;
         public static final int right_container=0x7f060032;
         public static final int right_icon=0x7f060033;
-        public static final int save=0x7f06005c;
+        public static final int save=0x7f06005d;
         public static final int search_badge=0x7f060038;
         public static final int search_bar=0x7f060037;
         public static final int search_button=0x7f060039;
@@ -1221,13 +1222,14 @@ containing a value of this type.
         public static final int edit_entry_name=0x7f0b0012;
         public static final int edit_entry_tags=0x7f0b0013;
         public static final int existing_user_btn=0x7f0b0035;
-        public static final int existing_user_message=0x7f0b0039;
+        public static final int existing_user_message=0x7f0b003a;
         public static final int foreign_submit=0x7f0b001a;
         public static final int hello_world=0x7f0b0029;
         public static final int hint_entry_foreign=0x7f0b001c;
         public static final int hint_entry_native=0x7f0b001b;
         public static final int hint_search=0x7f0b001d;
         public static final int hint_user_account=0x7f0b0037;
+        public static final int hint_user_email=0x7f0b0039;
         public static final int hint_user_password=0x7f0b0038;
         public static final int language_dialog_btnMessage=0x7f0b0030;
         public static final int login_message=0x7f0b0033;

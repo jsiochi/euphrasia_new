@@ -4,6 +4,8 @@ import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.remote.AbstractRemoteTask;
+import com.jbj.euphrasia.remote.WriteRemoteTask;
 
 import dialog_fragments.ExistingUserDialog;
 import dialog_fragments.NewUserDialog;
@@ -18,6 +20,10 @@ import android.view.View;
 import android.widget.Toast;
 
 public class LoginActivity extends FragmentActivity implements Constants{
+
+	private String myUsername;
+	private String myEmail;
+	private String myPassword;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +52,15 @@ public class LoginActivity extends FragmentActivity implements Constants{
 		return true;
 	}
 
-	public void onUserCreation(String accountName, String accountPassword) {
+	public void onUserCreation(String accountName, String accountPassword, String accountEmail) {
 		// user has specified the desired credentials for a new user account. Initialize
 		// database. 
+		AbstractRemoteTask writeUser = new WriteRemoteTask();
+		writeUser.setActivity(this);
+		String[] name = new String[]{"user_name",accountName};
+		String[] email = new String[]{"user_email",accountEmail};
+		String[] password = new String[]{"user_password",accountPassword};
+		writeUser.execute(new String[][]{name,email,password});
 	}
 	
 	public void onLoginAttempt(String name, String password){

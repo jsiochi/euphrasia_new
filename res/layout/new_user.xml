@@ -17,6 +17,14 @@
         android:layout_weight=".75"
         android:hint="@string/hint_user_account" />
     
+    <EditText 
+        android:id="@+id/account_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".75"
+        android:inputType="textEmailAddress"
+        android:hint="@string/hint_user_email" />
+    
       <EditText 
         android:id="@+id/account_password"
         android:layout_width="wrap_content"

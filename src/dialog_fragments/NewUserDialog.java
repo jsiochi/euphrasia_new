@@ -17,6 +17,7 @@ public class NewUserDialog extends AbstractDialog {
 
 	protected EditText myNameField;
 	protected EditText myPasswordField;
+	private EditText myEmailField;
 	
 	public NewUserDialog(){
 		//empty required
@@ -25,6 +26,7 @@ public class NewUserDialog extends AbstractDialog {
 	protected void useView(View view){
 		myNameField = (EditText) view.findViewById(R.id.account_name);
 		myPasswordField = (EditText) view.findViewById(R.id.account_password);
+		myEmailField = (EditText) view.findViewById(R.id.account_email);
 	}
 	
 	@Override
@@ -38,7 +40,8 @@ public class NewUserDialog extends AbstractDialog {
                        // create a new phrasebook with user data
                 	   String accountName = myNameField.getText().toString();
                 	   String accountPassword = myPasswordField.getText().toString();
-                	   mySourceActivity.onUserCreation(accountName, accountPassword);
+                	   String accountEmail = myEmailField.getText().toString();
+                	   mySourceActivity.onUserCreation(accountName, accountPassword, accountEmail);
                 	   dialog.dismiss();
                    }
                })
