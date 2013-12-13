@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 
 public abstract class AbstractRemoteTask extends AsyncTask {
 	
@@ -34,6 +35,7 @@ public abstract class AbstractRemoteTask extends AsyncTask {
 		for(int i = 0;i<params.length;i++){
 			String[] param = (String[])params[i];
 			myParams.setParameter(param[0], param[1]);
+			Log.i("AbstractTask","Added parameter "+ param[0] + " "+param[1]);
 		}
 	}
 	
@@ -49,6 +51,7 @@ public abstract class AbstractRemoteTask extends AsyncTask {
 	@Override
 	protected Object doInBackground(Object... params) {
 		this.setParams(params);
+		Log.i("AbstractTask","Accessing service at "+this.getServiceUrl());
 		HttpUriRequest post = this.getUriRequest();
 		post.setHeader("Content-type", "application/json");
 		InputStream inputStream = null;
