@@ -1,6 +1,7 @@
 package com.jbj.euphrasia.activities;
 
 import com.jbj.euphrasia.Controller;
+import com.jbj.euphrasia.CustomCursorAdapter;
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
@@ -101,7 +102,16 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
         int[] toViews = {R.id.item_title, R.id.item_tags, R.id.item_native_text};
         myCursorAdapter = new SimpleCursorAdapter(this, 
                 R.layout.search_list_item, myCursor,
-                fromColumns, toViews, 0);
+                fromColumns, toViews, 0){
+           @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+              View view = super.getView(position, convertView, parent);
+              if ( position % 2 == 0)
+                  view.setBackgroundResource(R.drawable.search_even_row);
+              else
+                  view.setBackgroundResource(R.drawable.search_odd_row);
+              return view;}
+        };
         setListAdapter(myCursorAdapter);
 	}
 

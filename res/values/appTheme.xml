@@ -2,6 +2,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color name="app_themeColor">#00CC00</color>
     <color name="app_darkColor">#000000</color>
+    <color name="button_recordColor">#ff0000</color>
+    <color name="button_highlightColor">#0066ff</color>
 	<style name="Main" parent="@style/appTheme">
 	    <item name="android:windowBackground">@drawable/splash_screen1</item>
 	    <item name="android:textViewStyle">@style/main_textViewStyle</item>
@@ -50,6 +52,16 @@
 		    <item name="android:textAppearance">?android:attr/textAppearanceSmallInverse</item>
 		    <item name="android:textColor">@android:color/primary_text_light</item>
 		    <item name="android:gravity">center_vertical|center_horizontal</item>
+		</style>
+		
+		<style name="button_pressed"
+				parent="@android:style/Widget.Button">
+		    <item name="android:background">@color/button_recordColor</item>
+		</style>
+		
+		<style name="button_focused"
+				parent="@android:style/Widget.Button">
+		    <item name="android:background">@color/button_highlightColor</item>
 		</style>
 		
 	<!-- Style TextView -->
