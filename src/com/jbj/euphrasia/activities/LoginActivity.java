@@ -5,6 +5,7 @@ import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
+import com.jbj.euphrasia.remote.CreateUserTask;
 import com.jbj.euphrasia.remote.WriteRemoteTask;
 
 import dialog_fragments.ExistingUserDialog;
@@ -55,7 +56,7 @@ public class LoginActivity extends FragmentActivity implements Constants{
 	public void onUserCreation(String accountName, String accountPassword, String accountEmail) {
 		// user has specified the desired credentials for a new user account. Initialize
 		// database. 
-		AbstractRemoteTask writeUser = new WriteRemoteTask();
+		AbstractRemoteTask writeUser = new CreateUserTask();
 		writeUser.setActivity(this);
 		String[] name = new String[]{"user_name",accountName};
 		String[] email = new String[]{"user_email",accountEmail};

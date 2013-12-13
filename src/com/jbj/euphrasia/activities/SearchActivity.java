@@ -1,7 +1,6 @@
 package com.jbj.euphrasia.activities;
 
 import com.jbj.euphrasia.Controller;
-import com.jbj.euphrasia.CustomCursorAdapter;
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;

@@ -1,9 +1,12 @@
 package com.jbj.euphrasia.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -44,7 +47,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
 	
 	public void onSyncDatabase(View view){
 		Toast.makeText(this, "Attempting to sync to remote", Toast.LENGTH_LONG).show();
-//		AbstractRemoteTask clear = new ClearRemoteTask();
+getMainLooper();
+		//		AbstractRemoteTask clear = new ClearRemoteTask();
 //		clear.setActivity(this);
 //		clear.execute(new Object[]{"user", myUser});
 //		AbstractRemoteTask write = new WriteRemoteTask();
@@ -53,17 +57,19 @@ public class MainActivity extends ActionBarActivity implements Constants {
 //		int j;
 //		while(cursor.moveToNext()){
 //			j = 0;
-//			String[][] params = new String[][]{}; 
+//			List<Object[]> params = new ArrayList<Object[]>(); 
 //			for(int i=0;i<cursor.getColumnCount();i++){
-//				String[] param = new String[]{};
+//				String[2] param = new String[2];
 //				param[0] = cursor.getColumnName(i);
 //				param[1] = cursor.getString(i);
-//				params[j] = param;
+//				params.add(param);
 //				j++;
 //			}
 //			//write each entry to the remote database before continuing
-//			write.execute(params);
+//			write.execute(params.toArray());
+
 		AbstractRemoteTask testTask = new WriteRemoteTask();
+		testTask.setActivity(this);
 		ArrayList<String[]> stuff = new ArrayList<String[]>();
 		for(int i = 0; i<SELECT_ALL_PROJECTION.length-1;i++){
 			if(i==2){
@@ -75,7 +81,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 				stuff.add(i, nestedStuff);
 			}
 		}
-		testTask.execute(stuff);
+		testTask.execute(stuff.toArray(new String[stuff.size()][2]));
 	}
 	
 	public void onStartSearch(View view){
