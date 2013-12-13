@@ -47,6 +47,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 			String[] param = params[i];
 			myParams.setParameter(param[0], param[1]);
 			Log.i("AbstractTask","Added parameter "+ myParams.getParameter(param[0]));
+
 		}
 	}
 	
@@ -70,6 +71,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 		try {
 			DefaultHttpClient client = new DefaultHttpClient(myParams);
 		    Log.i("AbstractTaskHttpClient", client.getParams().getParameter("title") + " " + client.getParams().getParameter("native_text")+ " " + client.getParams().getParameter("foreign_text"));
+
 			HttpResponse response = client.execute(post);           
 		    HttpEntity entity = response.getEntity();
 		    inputStream = entity.getContent();
