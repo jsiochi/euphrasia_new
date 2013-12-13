@@ -32,7 +32,7 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 
 	@Override
 	protected String getServiceUrl() {
-		return "http://goeuphrasia.com//php//db_create.php";
+		return "http://goeuphrasia.com//php//db_create_entry.php";
 	}
 
 }
