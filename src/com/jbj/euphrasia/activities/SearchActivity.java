@@ -42,7 +42,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	private String myCursorFilter;
 	private Cursor myCursor;
 	private ListView myListView;
-	private ListActivity myActivity;
+	private SearchActivity myActivity;
 	
 	private static final String SELECTION_QUERY = "SelectionQuery";
 	private static final String SELECTION_ARGS = "SelectionArgs";
@@ -85,8 +85,10 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				myActivity.getContentResolver().delete(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
-						String.valueOf(id)), null, null);
-				return false;
+						String.valueOf(id)), "", null);
+				Log.i("ENTRYLONGCLICK","long press is " + String.valueOf(id));
+				myActivity.getLoaderManager().restartLoader(0, new Bundle(), myActivity);
+				return true;
 			}
 			
 		});
@@ -123,6 +125,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 					EntryColumns.COLUMN_NAME_AUDIO,EntryColumns.COLUMN_NAME_DATE,EntryColumns.COLUMN_NAME_TAG};
 			Cursor cursor = myActivity.getContentResolver().query(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
 					String.valueOf(id)), projection, null,null,null);
+			Log.i("ENTRYCLICK",String.valueOf(id));
 			sendToEntry(cursor, id);
 		}
 		
