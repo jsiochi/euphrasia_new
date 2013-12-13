@@ -1,7 +1,8 @@
 <?php
 	$response = array();
 
-	if(isset($_POST['foreign_text'])&&isset($_POST['native_text'])&& isset($_POST['title'])){
+	//if(!empty($_POST['foreign_text'])&&!empty($_POST['native_text'])&& !empty($_POST['title'])){
+	//if(1==1) {
 		$foreign_text = $_POST['foreign_text'];
 		$native_text = $_POST['native_text'];
 		$title = $_POST['title'];
@@ -28,10 +29,10 @@
 			echo json_encode($response);
 		}	
 	}
-	else{
-		$response["success"] = 0;
-		$response["message"] = "Missing required field! 
-		Please enter title, native text, and foreign text";
-		echo json_encode($response);
-	}
-?>
+	// else{
+// 		$response["success"] = 0;
+// 		$response["message"] = "Missing required field! 
+// 		Please enter title, native text, and foreign text";
+// 		echo json_encode($response);
+// 	}
+	?>

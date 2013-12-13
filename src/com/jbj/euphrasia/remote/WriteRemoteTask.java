@@ -15,6 +15,7 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 		super.doInBackground(arg0);
 		try{
 			int success = myJsonObject.getInt("success");
+			Log.i("YOMAMA", myJsonObject.getString("message"));
 			Log.i("JOMAMA", String.valueOf(success));
 			if(success==1){
 				Toast.makeText(mySourceActivity, "Successfully synced to remote database.", Toast.LENGTH_LONG).show();
