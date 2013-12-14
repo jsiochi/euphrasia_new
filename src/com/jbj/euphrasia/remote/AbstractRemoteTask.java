@@ -72,11 +72,10 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 		Log.i("AbstractTask","Accessing service at "+this.getServiceUrl());
 		//post.setHeader("Content-type", "application/json");
 		HttpUriRequest post = this.getUriRequest(params);
-		post.setHeader("Accept", "application/json");
 		InputStream inputStream = null;
 		String result = null;
 		try {
-			DefaultHttpClient client = new DefaultHttpClient(myParams);
+			DefaultHttpClient client = new DefaultHttpClient();
 		    Log.i("AbstractTaskHttpClient", client.getParams().getParameter("title") + " " + client.getParams().getParameter("native_text")+ " " + client.getParams().getParameter("foreign_text"));
 
 			HttpResponse response = client.execute(post);           

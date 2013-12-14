@@ -38,6 +38,7 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 	protected HttpUriRequest getUriRequest(String[]...params) {
 		myPairs = this.setParams(params);
 		HttpPost post = new HttpPost(myServiceUrl);
+		post.setHeader("Accept", "application/json");
 		try {
 			post.setEntity(new UrlEncodedFormEntity(myPairs));
 		} catch (UnsupportedEncodingException e) {
