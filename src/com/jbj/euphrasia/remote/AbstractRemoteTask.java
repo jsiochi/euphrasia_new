@@ -64,7 +64,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 		this.setParams(params);
 		Log.i("AbstractTask","Accessing service at "+this.getServiceUrl());
 		HttpUriRequest post = this.getUriRequest();
-		post.setHeader("Content-type", "application/json");
+		//post.setHeader("Accept", "application/json");
 		InputStream inputStream = null;
 		String result = null;
 		try {
@@ -83,6 +83,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 		        sb.append(line + "\n");
 		    }
 		    result = sb.toString();
+		    Log.i("AbstractTaskResult",result);
 		    myJsonObject = new JSONObject(result);
 		} catch (Exception e) { 
 		    e.printStackTrace();
