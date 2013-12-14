@@ -6,6 +6,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
+import com.jbj.euphrasia.activities.MainActivity;
+
+import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,7 +16,7 @@ import android.widget.Toast;
 public class WriteRemoteTask extends AbstractRemoteTask {
 
 	@Override
-	protected Void doInBackground(String[]... arg0) {
+	protected Bundle doInBackground(String[]... arg0) {
 		Looper.getMainLooper().prepare();
 		super.doInBackground(arg0);
 		try{
@@ -50,6 +53,11 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 	@Override
 	protected String getServiceUrl() {
 		return "http://goeuphrasia.com/php/db_create_entry.php";
+	}
+	
+	protected void onPostExecute(Bundle args) {
+		MainActivity theMain = (MainActivity) mySourceActivity;
+		theMain.onSyncHelper();
 	}
 
 }
