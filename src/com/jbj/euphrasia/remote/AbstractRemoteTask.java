@@ -73,8 +73,6 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 		//post.setHeader("Content-type", "application/json");
 		HttpUriRequest post = this.getUriRequest(params);
 		post.setHeader("Accept", "application/json");
-		//HttpPost post2 = new HttpPost("ggg");
-		//post.setHeader("Content-type", "application/json");
 		InputStream inputStream = null;
 		String result = null;
 		try {

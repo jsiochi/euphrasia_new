@@ -1,5 +1,6 @@
 package com.jbj.euphrasia.remote;
 
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.json.JSONException;
@@ -33,7 +34,9 @@ public class ReadUserTask extends AbstractRemoteTask {
 
 	@Override
 	protected HttpUriRequest getUriRequest(String[]...params) {
-		return new HttpGet(myServiceUrl);
+		myPairs = this.setParams(params);
+		HttpGet get = new HttpGet(myServiceUrl);
+		return get;
 	}
 
 	@Override

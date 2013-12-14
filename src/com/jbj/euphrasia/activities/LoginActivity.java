@@ -75,18 +75,18 @@ public class LoginActivity extends FragmentActivity implements Constants{
 	public void onLoginAttempt(String name, String password){
 		// check the database to see if these 
 		// credentials match an existing user
-//		AbstractRemoteTask checkUser = new ReadUserTask();
-//		checkUser.setActivity(this);
-//		String[] userName = new String[]{"user_name",name};
-//		String[] userPassword = new String[]{"password",password};
-//		String[][] params = new String[][]{userName,userPassword};
-//		checkUser.execute(params);
-		if(name.equals("Euphrasia") && password.equals("1234")){
-			Intent intent = new Intent(this,MainActivity.class);
-			intent.setAction(ACTION_EXISTING_LOGIN);
-			intent.putExtra(EXTRA_EXISTING_USER, name);
-			startActivity(intent);
-		}
+		AbstractRemoteTask checkUser = new ReadUserTask();
+		checkUser.setActivity(this);
+		String[] userName = new String[]{"user_name",name};
+		String[] userPassword = new String[]{"password",password};
+		String[][] params = new String[][]{userName,userPassword};
+		checkUser.execute(params);
+//		if(name.equals("Euphrasia") && password.equals("1234")){
+//			Intent intent = new Intent(this,MainActivity.class);
+//			intent.setAction(ACTION_EXISTING_LOGIN);
+//			intent.putExtra(EXTRA_EXISTING_USER, name);
+//			startActivity(intent);
+//		}
 	}
 
 }
