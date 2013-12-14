@@ -34,7 +34,8 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 	}
 
 	@Override
-	protected HttpUriRequest getUriRequest() {
+	protected HttpUriRequest getUriRequest(String[]...params) {
+		myPairs = this.setParams(params);
 		HttpPost post = new HttpPost(myServiceUrl);
 		try {
 			post.setEntity(new UrlEncodedFormEntity(myPairs));

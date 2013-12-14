@@ -32,7 +32,7 @@ public class ReadUserTask extends AbstractRemoteTask {
 	}
 
 	@Override
-	protected HttpUriRequest getUriRequest() {
+	protected HttpUriRequest getUriRequest(String[]...params) {
 		return new HttpGet(myServiceUrl);
 	}
 

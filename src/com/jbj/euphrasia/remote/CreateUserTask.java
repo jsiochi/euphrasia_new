@@ -6,7 +6,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 public class CreateUserTask extends AbstractRemoteTask {
 
 	@Override
-	protected HttpUriRequest getUriRequest() {
+	protected HttpUriRequest getUriRequest(String[]...params) {
 		return new HttpPost(myServiceUrl);
 	}
 
