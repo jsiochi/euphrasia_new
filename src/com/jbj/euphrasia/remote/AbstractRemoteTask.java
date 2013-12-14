@@ -69,10 +69,11 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 
 	@Override
 	protected Void doInBackground(String[]... params) {
-		myPairs = this.setParams(params);
 		Log.i("AbstractTask","Accessing service at "+this.getServiceUrl());
-		HttpUriRequest post = this.getUriRequest();
+		//post.setHeader("Content-type", "application/json");
+		HttpUriRequest post = this.getUriRequest(params);
 		post.setHeader("Accept", "application/json");
+		//HttpPost post2 = new HttpPost("ggg");
 		//post.setHeader("Content-type", "application/json");
 		InputStream inputStream = null;
 		String result = null;
@@ -101,7 +102,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 		return null;
 	}
 	
-	protected abstract HttpUriRequest getUriRequest();
+	protected abstract HttpUriRequest getUriRequest(String[]...params);
 	
 	protected abstract String getServiceUrl();
 
