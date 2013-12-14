@@ -1,5 +1,8 @@
 package com.jbj.euphrasia.remote;
 
+import java.io.UnsupportedEncodingException;
+
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
@@ -32,7 +35,13 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 
 	@Override
 	protected HttpUriRequest getUriRequest() {
-		return new HttpPost(myServiceUrl);
+		HttpPost post = new HttpPost(myServiceUrl);
+		try {
+			post.setEntity(new UrlEncodedFormEntity(myPairs));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return post;
 	}
 
 	@Override

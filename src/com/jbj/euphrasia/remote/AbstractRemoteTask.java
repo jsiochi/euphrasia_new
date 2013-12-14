@@ -3,15 +3,18 @@ package com.jbj.euphrasia.remote;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.json.JSONObject;
 
@@ -27,6 +30,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 	protected BasicHttpParams myParams;
 	protected JSONObject myJsonObject;
 	protected Activity mySourceActivity;
+	protected List<NameValuePair> myPairs;
 //	protected Handler mHandler = new Handler(Looper.getMainLooper());
 //	
 //	public void run() {
@@ -41,14 +45,17 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 	 * @param Object[] params : an array of objects where each object is a array of Objects
 	 * Converts each nested object array to a string array and uses to create BasicHttpParams.
 	 */
-	protected void setParams(String[]... params){
+	protected List<NameValuePair> setParams(String[]... params){
 		myParams = new BasicHttpParams();
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		for(int i = 0;i<params.length;i++){
 			String[] param = params[i];
 			myParams.setParameter(param[0], param[1]);
 			Log.i("AbstractTask","Added parameter "+ myParams.getParameter(param[0]));
-
+			NameValuePair pair = new BasicNameValuePair(param[0],param[1]);
+			pairs.add(pair);
 		}
+		return pairs;
 	}
 	
 	public void setActivity(Activity activity){
@@ -62,9 +69,10 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 
 	@Override
 	protected Void doInBackground(String[]... params) {
-		this.setParams(params);
+		myPairs = this.setParams(params);
 		Log.i("AbstractTask","Accessing service at "+this.getServiceUrl());
 		HttpUriRequest post = this.getUriRequest();
+		HttpPost post2 = new HttpPost("ggg");
 		post.setHeader("Content-type", "application/json");
 		InputStream inputStream = null;
 		String result = null;

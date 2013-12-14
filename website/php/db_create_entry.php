@@ -16,9 +16,10 @@
 
 		$db = new DB_CONNECT();
 
-		$query = sprintf("INSERT INTO entries(title,native_text,foreign_text,user_id,tag,phrasebook,language,created_at,audio) VALUES('%s,%s,%s,%s,%s,%s,%s,%s,%s')",mysql_real_escape_string($title),
-			mysql_real_escape_string($native_text),mysql_real_escape_string($foreign_text),mysql_real_escape_string($used_id),
-			mysql_real_escape_string($tag),mysql_real_escape_string($phrasebook),mysql_real_escape_string($language),
+		$query = sprintf("INSERT INTO entries(title,native_text,foreign_text,user_id,tag,phrasebook,language,created_at,audio) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+			mysql_real_escape_string($title),mysql_real_escape_string($native_text),mysql_real_escape_string($foreign_text),
+			mysql_real_escape_string($user_id),mysql_real_escape_string($tag),mysql_real_escape_string($phrasebook),
+			mysql_real_escape_string($language),
 			mysql_real_escape_string($date),mysql_real_escape_string($audio));
 		$result = mysql_query($query);
 		
