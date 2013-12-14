@@ -18,17 +18,17 @@ public class CreateUserTask extends AbstractRemoteTask {
 	protected Bundle doInBackground(String[]... arg0) {
 		Looper.getMainLooper().prepare();
 		super.doInBackground(arg0);
+		Bundle theArgs = new Bundle();
 		int success;
 		try {
 			success = myJsonObject.getInt("success");
 			if(success==1){
-				//user exists. Send to main activity.
-				LoginActivity login = (LoginActivity) mySourceActivity;
-				login.login("holder");
+				theArgs.putBoolean("CanLogin", true);
 			}
 			else{
 				//user does not exist. Reject access.
 				Toast.makeText(mySourceActivity,"User not found!", Toast.LENGTH_LONG).show();
+				theArgs.putBoolean("CanLogin", false);
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -53,6 +53,13 @@ public class CreateUserTask extends AbstractRemoteTask {
 	@Override
 	protected String getServiceUrl() {
 		return "http://goeuphrasia.com/php/db_create_user.php";
+	}
+	
+	protected void onPostExecute(Bundle args) {
+		if(args.getBoolean("CanLogin")) {
+			LoginActivity login = (LoginActivity) mySourceActivity;
+			login.login("holder");
+		}
 	}
 
 }
