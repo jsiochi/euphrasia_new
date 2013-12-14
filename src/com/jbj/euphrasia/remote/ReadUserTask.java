@@ -9,12 +9,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.jbj.euphrasia.activities.*;
+
+import android.os.Looper;
 import android.widget.Toast;
 
 public class ReadUserTask extends AbstractRemoteTask {
 	
 	@Override
 	public Void doInBackground(String[]...params){
+		Looper.getMainLooper().prepare();
 		super.doInBackground(params);
 		try {
 			int success = myJsonObject.getInt("success");

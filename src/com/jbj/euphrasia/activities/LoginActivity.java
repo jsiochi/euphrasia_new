@@ -78,7 +78,7 @@ public class LoginActivity extends FragmentActivity implements Constants{
 		AbstractRemoteTask checkUser = new ReadUserTask();
 		checkUser.setActivity(this);
 		String[] userName = new String[]{"user_name",name};
-		String[] userPassword = new String[]{"password",password};
+		String[] userPassword = new String[]{"pass",password};
 		String[][] params = new String[][]{userName,userPassword};
 		checkUser.execute(params);
 //		if(name.equals("Euphrasia") && password.equals("1234")){
