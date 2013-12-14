@@ -21,15 +21,18 @@ if(isset($_GET['user_name']) && isset($_GET['pass'])){
 			$response["success"] = 1;
 			$response["product"] = array();
 			array_push($response['product'],$product);
+			echo json_encode($response);
 		}
 		else{
 			$response['success'] = 0;
 			$response["message"] = "No such user";
+			echo json_encode($response);
 		}
 	}
 }
 else{
 		$response['success'] = 0;
 		$response['message'] = "Missing fields.";
+		echo json_encode($response);
 	}
 ?>

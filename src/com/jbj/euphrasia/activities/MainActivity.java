@@ -91,5 +91,9 @@ getMainLooper();
 		startActivity(toIntermediateIntent);
 	}
 	
+	public void onBrowseRemote(View view){
+		startActivity(new Intent(this,RemoteSearchActivity.class));
+	}
+	
 
 }

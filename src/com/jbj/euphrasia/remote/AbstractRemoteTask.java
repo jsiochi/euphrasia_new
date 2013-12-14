@@ -20,11 +20,12 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
+public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Bundle> {
 	
 	protected String myServiceUrl;
 	protected BasicHttpParams myParams;
@@ -68,7 +69,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 	}
 
 	@Override
-	protected Void doInBackground(String[]... params) {
+	protected Bundle doInBackground(String[]... params) {
 		Log.i("AbstractTask","Accessing service at "+this.getServiceUrl());
 		//post.setHeader("Content-type", "application/json");
 		HttpUriRequest post = this.getUriRequest(params);
@@ -98,6 +99,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Void> {
 		}
 		return null;
 	}
+
 	
 	protected abstract HttpUriRequest getUriRequest(String[]...params);
 	

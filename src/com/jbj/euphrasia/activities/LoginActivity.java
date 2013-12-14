@@ -60,15 +60,15 @@ public class LoginActivity extends FragmentActivity implements Constants{
 		AbstractRemoteTask writeUser = new CreateUserTask();
 		writeUser.setActivity(this);
 		String[] name = new String[]{"user_name",accountName};
-		String[] email = new String[]{"user_email",accountEmail};
-		String[] password = new String[]{"user_password",accountPassword};
+		String[] email = new String[]{"user_mail",accountEmail};
+		String[] password = new String[]{"pass",accountPassword};
 		writeUser.execute(new String[][]{name,email,password});
 	}
 	
-	public void login(String name, String password){
+	public void login(String id){
 		Intent intent = new Intent(this,MainActivity.class);
 		intent.setAction(ACTION_EXISTING_LOGIN);
-		intent.putExtra(EXTRA_EXISTING_USER, name);
+		intent.putExtra(EXTRA_EXISTING_USER, id);
 		startActivity(intent);
 	}
 	

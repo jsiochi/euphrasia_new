@@ -1,7 +1,7 @@
 <?php
 	$response = array();
 
-	if(isset($_POST['foreign_text'])&&isset($_POST['native_text'])&& isset($_POST['title'])){
+	if(isset($_POST['foreign_text']) && isset($_POST['native_text']) && isset($_POST['title'])){
 		$foreign_text = $_POST['foreign_text'];
 		$native_text = $_POST['native_text'];
 		$title = $_POST['title'];

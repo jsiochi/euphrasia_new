@@ -13,7 +13,7 @@
     <string name="edit_entry_language">Language</string>
     <!--
     <string name="button_record_begin">Rec</string>
-    <string name="button_play">Play</string>
+    <string name="button_play">Play</string>
     -->
 
     <string name="text_entry_native">In your language</string>
@@ -44,22 +44,22 @@
     <string name="language_dialog_btnMessage">OK</string>
     <string name="new_language_message">Add a new language.</string>
     <string name="title_activity_login">LoginActivity</string>
-    
     <string name="login_message">Please login.</string>
     <string name="new_user_btn">New User</string>
     <string name="existing_user_btn">Existing User</string>
-    
     <string name="new_user_message">Enter new user information.</string>
     <string name="hint_user_account">Create a valid account name.</string>
     <string name="hint_user_password">Enter valid password for new account.</string>
-    
     <string name="hint_user_email">Enter a valid email address.</string>
-    
     <string name="existing_user_message">Enter information for existing user.</string>
+    <string name="main_browse_remote">Browse Remote Entries</string>
+    <string name="title_activity_remote_search">RemoteSearchActivity</string>
     
-    
-    
-    
- 
+    <string name="browse_remote_title">Browse uploaded entries.</string>
+    <string name="browse_filter_hint">Browse by user, title, or language.</string>
+    <string name="browse_user">By User</string>
+    <string name="browse_language">By Language</string>
+    <string name="browse_title">By Title</string>
+    <string name="browse_remote_button">Go!</string>
 
 </resources>

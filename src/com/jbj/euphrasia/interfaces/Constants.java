@@ -16,6 +16,10 @@ public interface Constants {
 	final String ACTION_EXISTING_LOGIN ="ëxisting user login";
 	final String EXTRA_EXISTING_USER = "existing user";
 	
+	final String EXTRA_REMOTE_BUNDLE = "Remote query results";
+	final String ACTION_REMOTE_QUERY = "display remote query results";
+	final String[] DISPLAY_FROM_COLUMNS = {EntryColumns._ID, EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_TAG, 
+			EntryColumns.COLUMN_NAME_NATIVE_TEXT};
 	final String[] SELECT_ALL_PROJECTION = {EntryColumns.COLUMN_NAME_TITLE, 
 			EntryColumns.COLUMN_NAME_TAG,EntryColumns.COLUMN_NAME_DATE,
 			EntryColumns.COLUMN_NAME_FOREIGN_TEXT, EntryColumns.COLUMN_NAME_LANGUAGE, EntryColumns.COLUMN_NAME_NATIVE_TEXT,

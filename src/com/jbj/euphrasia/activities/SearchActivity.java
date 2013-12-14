@@ -17,6 +17,7 @@ import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -52,6 +53,24 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		super.onCreate(savedInstanceState);
 		myActivity = this;
 		setContentView(R.layout.activity_search);
+		Bundle emptyBundle = new Bundle();
+        getLoaderManager().initLoader(0, emptyBundle, this);
+        //take data from columns and put in specific views
+        String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};
+        int[] toViews = {R.id.item_title, R.id.item_tags, R.id.item_native_text};
+        myCursorAdapter = new SimpleCursorAdapter(this, 
+                R.layout.search_list_item, myCursor,
+                fromColumns, toViews, 0){
+           @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+              View view = super.getView(position, convertView, parent);
+              if ( position % 2 == 0)
+                  view.setBackgroundResource(R.drawable.search_even_row);
+              else
+                  view.setBackgroundResource(R.drawable.search_odd_row);
+              return view;}
+        };
+        setListAdapter(myCursorAdapter);
 		
 		Intent intent = getIntent();
 		String query = intent.getStringExtra(SearchManager.QUERY);
@@ -73,6 +92,19 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			String selection = EntryColumns.COLUMN_NAME_LANGUAGE + " LIKE '%" + languageExtra + "%'";
 			this.doEntrySearch(selection);
 		}
+		if(ACTION_REMOTE_QUERY.equals(intent.getAction())){
+			Bundle remoteResults = intent.getBundleExtra(EXTRA_REMOTE_BUNDLE);
+			Log.i("bundle check",""+remoteResults.size());
+			MatrixCursor matrixCursor = new MatrixCursor(DISPLAY_FROM_COLUMNS);
+			for(int i = 0;i<remoteResults.size();i++){
+				Bundle entryBundle = remoteResults.getBundle(String.valueOf(i));
+				String[] values = new String[]{String.valueOf(i), entryBundle.getString("title"),entryBundle.getString("tag"),
+						entryBundle.getString("native_text")};
+				matrixCursor.addRow(values);
+			}
+			Log.i("Matrix Cursor rows",""+matrixCursor.getCount());
+			myCursor = matrixCursor;
+		}
 		
 		myListView = (ListView) findViewById(android.R.id.list);
 		myListView.setLongClickable(true);
@@ -93,25 +125,6 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			
 		});
 		myListView.setOnItemClickListener(new EntryListListener());
-
-		Bundle emptyBundle = new Bundle();
-        getLoaderManager().initLoader(0, emptyBundle, this);
-        //take data from columns and put in specific views
-        String[] fromColumns = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};
-        int[] toViews = {R.id.item_title, R.id.item_tags, R.id.item_native_text};
-        myCursorAdapter = new SimpleCursorAdapter(this, 
-                R.layout.search_list_item, myCursor,
-                fromColumns, toViews, 0){
-           @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-              View view = super.getView(position, convertView, parent);
-              if ( position % 2 == 0)
-                  view.setBackgroundResource(R.drawable.search_even_row);
-              else
-                  view.setBackgroundResource(R.drawable.search_odd_row);
-              return view;}
-        };
-        setListAdapter(myCursorAdapter);
 	}
 
 

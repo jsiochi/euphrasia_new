@@ -6,6 +6,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
+import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 public class WriteRemoteTask extends AbstractRemoteTask {
 
 	@Override
-	protected Void doInBackground(String[]... arg0) {
+	protected Bundle doInBackground(String[]... arg0) {
 		Looper.getMainLooper().prepare();
 		super.doInBackground(arg0);
 		try{

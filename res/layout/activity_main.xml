@@ -75,6 +75,13 @@
         	android:text="@string/main_button_search" 
         	android:onClick="onStartSearch"	/>
     	
+    	<Button 
+       		android:layout_height="wrap_content"
+       		android:layout_width="wrap_content"
+       		android:layout_weight=".5"
+        	android:text="@string/main_browse_remote" 
+        	android:onClick="onBrowseRemote"	/>
+    	
  
    </LinearLayout> 
    

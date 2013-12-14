@@ -10,13 +10,15 @@ import org.json.JSONObject;
 
 import com.jbj.euphrasia.activities.*;
 
+import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 public class ReadUserTask extends AbstractRemoteTask {
 	
 	@Override
-	public Void doInBackground(String[]...params){
+	public Bundle doInBackground(String[]...params){
 		Looper.getMainLooper().prepare();
 		super.doInBackground(params);
 		try {
@@ -29,7 +31,7 @@ public class ReadUserTask extends AbstractRemoteTask {
 				//String password = myJsonObject.getString("pass");
 				LoginActivity login = (LoginActivity)mySourceActivity;
 				//user account found. Send to main activity.
-				login.login(user_id, "heytheregurrl");
+				login.login(user_id);
 			}
 			else{
 				// no such user. Reject access. 
@@ -47,6 +49,7 @@ public class ReadUserTask extends AbstractRemoteTask {
 		String url = getServiceUrl();
 		String requestEnding = URLEncodedUtils.format(myPairs, "utf-8");
 		url += "?" + requestEnding;
+		Log.i("ReadUserTask",url);
 		HttpGet get = new HttpGet(url);
 		return get;
 	}
