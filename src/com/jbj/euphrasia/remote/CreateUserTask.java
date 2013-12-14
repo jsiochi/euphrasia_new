@@ -15,10 +15,9 @@ import android.widget.Toast;
 
 public class CreateUserTask extends AbstractRemoteTask {
 	
-	@Override
-	protected Bundle doInBackground(String[]... params) {
+	protected Bundle doInBackground(String[]... arg0) {
 		Looper.getMainLooper().prepare();
-		super.doInBackground(params);
+		super.doInBackground(arg0);
 		int success;
 		try {
 			success = myJsonObject.getInt("success");
@@ -37,7 +36,7 @@ public class CreateUserTask extends AbstractRemoteTask {
 		}
 		return null;
 	}
-
+	
 	@Override
 	protected HttpUriRequest getUriRequest(String[]...params) {
 		myPairs = this.setParams(params);

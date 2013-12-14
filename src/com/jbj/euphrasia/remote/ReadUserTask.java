@@ -21,6 +21,7 @@ public class ReadUserTask extends AbstractRemoteTask {
 	public Bundle doInBackground(String[]...params){
 		Looper.getMainLooper().prepare();
 		super.doInBackground(params);
+		Bundle theArgs = new Bundle();
 		try {
 			int success = myJsonObject.getInt("success");
 			if(success==1){
@@ -29,18 +30,18 @@ public class ReadUserTask extends AbstractRemoteTask {
 				JSONObject user = array.getJSONObject(0);
 				String user_id = user.getString("user_id");
 				//String password = myJsonObject.getString("pass");
-				LoginActivity login = (LoginActivity)mySourceActivity;
-				//user account found. Send to main activity.
-				login.login(user_id);
+				theArgs.putBoolean("CanLogin", true);
+				theArgs.putString("UID",user_id);
 			}
 			else{
 				// no such user. Reject access. 
 				Toast.makeText(mySourceActivity, "Account not found! Please try again. Input is case-sensitive.", 10).show();
+				theArgs.putBoolean("CanLogin", false);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return theArgs;
 	}
 
 	@Override
@@ -57,6 +58,15 @@ public class ReadUserTask extends AbstractRemoteTask {
 	@Override
 	protected String getServiceUrl() {
 		return "http://goeuphrasia.com/php/db_read_user.php";
+	}
+	
+	protected void onPostExecute(Bundle args) {
+		//log the user in
+		LoginActivity login = (LoginActivity)mySourceActivity;
+		Boolean canLogin = args.getBoolean("CanLogin");
+		if(!canLogin)
+			return;
+		login.login(args.getString("UID"));
 	}
 
 }

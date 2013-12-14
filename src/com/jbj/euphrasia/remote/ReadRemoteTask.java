@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.jbj.euphrasia.activities.RemoteSearchActivity;
-import com.jbj.euphrasia.activities.SearchActivity;
 
 import android.os.Bundle;
 import android.os.Looper;

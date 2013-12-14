@@ -6,7 +6,16 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
+import android.os.Bundle;
+import android.os.Looper;
+
 public class ClearRemoteTask extends AbstractRemoteTask {
+	
+	protected Bundle doInBackground(String[]... arg0) {
+		Looper.getMainLooper().prepare();
+		super.doInBackground(arg0);
+		return null;
+	}
 
 	@Override
 	protected HttpUriRequest getUriRequest(String[]...params) {
@@ -22,7 +31,7 @@ public class ClearRemoteTask extends AbstractRemoteTask {
 
 	@Override
 	protected String getServiceUrl() {
-		return "http://goeuphrasia.com//php//db_clear.php";
+		return "http://goeuphrasia.com/php/db_clear.php";
 	}
 
 }
