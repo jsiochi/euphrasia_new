@@ -9,6 +9,7 @@ package com.jbj.euphrasia;
 import java.util.ArrayList;
 
 import com.jbj.euphrasia.EntryContract.EntryColumns;
+import com.jbj.euphrasia.interfaces.Constants;
 
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
@@ -16,6 +17,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
@@ -31,18 +33,22 @@ public class EntryProvider extends ContentProvider {
 	private static final String MY_AUTHORITY = "com.jbj.euphrasia.provider"; 
 	private static final String MY_CONTENT_URI = "content://" + MY_AUTHORITY;
 	private static final UriMatcher myUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+	public static final String VIEW_ALL_REMOTE = "remote_entries";
+	public static final String VIEW_LANGUAGE_REMOTE = "remote_lang";
+	public static final String VIEW_PHRASEBOOK_REMOTE = "remote_phrase";
 	//TODO add all needed URI patterns here
 	static { 
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME, 1);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME + "/#", 2);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.COLUMN_NAME_PHRASEBOOK, 3);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.COLUMN_NAME_LANGUAGE, 4);
+		myUriMatcher.addURI(MY_AUTHORITY, VIEW_LANGUAGE_REMOTE, 7);
 		}
 	
 	public static final Uri CONTENT_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.TABLE_NAME);
 	public static final Uri CONTENT_PHRASEBOOKS_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_PHRASEBOOK);
 	public static final Uri CONTENT_LANGUAGES_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_LANGUAGE);
-	public static final String VIEW_ALL_REMOTE = "remoteview";
+	public static final Uri CONTENT_REMOTE_URI = Uri.parse(MY_CONTENT_URI + "/" + VIEW_ALL_REMOTE);
 	private static Bundle remoteBundle;
 	
 	//public static final String GET_PHRASEBOOKS = "get_phrasebooks";
@@ -50,6 +56,7 @@ public class EntryProvider extends ContentProvider {
 	@Override
 	public boolean onCreate() {
 		myDatabaseHelper = new EntryDatabaseHelper(getContext());
+		remoteBundle = new Bundle();
 		return true;
 	}
 
@@ -86,6 +93,21 @@ public class EntryProvider extends ContentProvider {
 			cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, theProjection, uri.getLastPathSegment() + " IS NOT NULL", null, uri.getLastPathSegment(), null, null, null, null);
 			cursor.setNotificationUri(getContext().getContentResolver(), uri);
 			return cursor;
+		case 7:
+			MatrixCursor matrixCursor = new MatrixCursor(Constants.SELECT_ALL_PROJECTION_WITH_ID);
+			for(int i = 0;i<remoteBundle.size();i++){
+				Bundle entryBundle = remoteBundle.getBundle(String.valueOf(i));
+				String[] values = new String[]{String.valueOf(i), entryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[1]),
+						entryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[2]),
+						entryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[3]),
+						entryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[4]),
+						entryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[5]),
+						entryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[6]),
+						entryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[7]),
+						entryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[8])};
+				matrixCursor.addRow(values);
+			}
+			return matrixCursor;
 			
 		default:
 			throw new IllegalArgumentException("Invalid URI");
@@ -202,16 +224,12 @@ public class EntryProvider extends ContentProvider {
 	
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public Bundle call(String method, String arg, Bundle extras) {
-		Bundle bundle = new Bundle();
-		
 		if(method == VIEW_ALL_REMOTE) {
-
-			//bundle.putStringArrayList(VIEW_ALL_REMOTE, results);
+			remoteBundle = extras;
 		} else {
 			throw new IllegalArgumentException("Invalid Method Name");
 		}
 		
-		
-		return bundle;
+		return null;
 	}
 }

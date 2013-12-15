@@ -190,8 +190,8 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	        	handleSave();
 	            return true;
 	        case R.id.sync:
-	        	SyncManager manager = new SyncManager(this);
-	        	manager.sync();
+	        	SyncManager.setActivity(this);
+	        	SyncManager.sync();
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

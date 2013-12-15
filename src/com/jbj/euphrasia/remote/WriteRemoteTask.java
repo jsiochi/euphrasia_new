@@ -6,6 +6,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
+import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.activities.MainActivity;
 
 import android.os.Bundle;
@@ -56,8 +57,8 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 	}
 	
 	protected void onPostExecute(Bundle args) {
-		MainActivity theMain = (MainActivity) mySourceActivity;
-		theMain.onSyncHelper();
+		SyncManager.setActivity(mySourceActivity);
+		SyncManager.completeSync();
 	}
 
 }

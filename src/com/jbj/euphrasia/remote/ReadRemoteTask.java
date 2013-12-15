@@ -28,7 +28,6 @@ public class ReadRemoteTask extends AbstractRemoteTask {
 			Log.i("Truth test",""+(success==1));
 			if(success==1){
 				Log.i("baf;lak","Jehovah");
-				RemoteSearchActivity search = (RemoteSearchActivity)mySourceActivity;
 				JSONArray arrayResults = myJsonObject.getJSONArray("entries");
 				Log.i("array size"," "+String.valueOf(arrayResults.length()));
 				for(int i = 0;i<arrayResults.length();i++){

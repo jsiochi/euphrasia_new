@@ -100,16 +100,18 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			myListView.setOnItemClickListener(new EntryListListener(this));
 		}
 		if(ACTION_REMOTE_QUERY.equals(intent.getAction())){
-			Bundle remoteResults = intent.getBundleExtra(EXTRA_REMOTE_BUNDLE);
-			MatrixCursor matrixCursor = new MatrixCursor(DISPLAY_FROM_COLUMNS);
-			for(int i = 0;i<remoteResults.size();i++){
-				Bundle entryBundle = remoteResults.getBundle(String.valueOf(i));
-				String[] values = new String[]{String.valueOf(i), entryBundle.getString("title"),entryBundle.getString("tag"),
-						entryBundle.getString("native_text")};
-				matrixCursor.addRow(values);
-			}
-			Log.i("Matrix Cursor rows",""+matrixCursor.getCount());
-			myCursor = matrixCursor;
+//			Bundle remoteResults = intent.getBundleExtra(EXTRA_REMOTE_BUNDLE);
+//			MatrixCursor matrixCursor = new MatrixCursor(DISPLAY_FROM_COLUMNS);
+//			for(int i = 0;i<remoteResults.size();i++){
+//				Bundle entryBundle = remoteResults.getBundle(String.valueOf(i));
+//				String[] values = new String[]{String.valueOf(i), entryBundle.getString("title"),entryBundle.getString("tag"),
+//						entryBundle.getString("native_text")};
+//				matrixCursor.addRow(values);
+//			}
+//			Log.i("Matrix Cursor rows",""+matrixCursor.getCount());
+//			myCursor = matrixCursor;
+			myCursorFilter = EntryProvider.VIEW_LANGUAGE_REMOTE;
+			this.doEntrySearch("");
 		}
 //		View checkBoxView = View.inflate(this, R.layout.checkbox, null);
 //		CheckBox noWarningOption = (CheckBox)checkBoxView.findViewById(R.id.checkbox);
@@ -218,8 +220,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.sync:
-	        	SyncManager manager = new SyncManager(this);
-	        	manager.sync();
+	        	SyncManager.setActivity(this);
+	        	SyncManager.sync();
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
