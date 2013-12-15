@@ -92,6 +92,7 @@
 	     	<Button 
 	        	android:layout_width="wrap_content"
 	       		android:layout_height="wrap_content"
+	       		android:id="@+id/entry_play_btn"
 	        	android:drawableLeft="@drawable/ic_menu_play_clip"
 	        	android:text="@string/button_play"  	
 	        	android:onClick="handlePlay" />

@@ -11,10 +11,12 @@ import android.os.Looper;
 import android.support.v7.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -22,14 +24,16 @@ import android.widget.Toast;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
+import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
+import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.ClearRemoteTask;
 import com.jbj.euphrasia.remote.WriteRemoteTask;
 
-public class MainActivity extends ActionBarActivity implements Constants {
+public class MainActivity extends Activity implements Constants {
 	
 	private String myUser;
 	private Cursor myCursor;
@@ -39,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		myUser = this.getIntent().getStringExtra(EXTRA_EXISTING_USER);
-		ActionBar actionBar = getSupportActionBar();
+		//ActionBar actionBar = getSupportActionBar();
 		//actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 	
@@ -105,6 +109,35 @@ public class MainActivity extends ActionBarActivity implements Constants {
 		startActivity(toIntermediateIntent);
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    menu.findItem(R.id.sync).setIcon(R.drawable.sync);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.sync:
+	        	SyncManager manager = new SyncManager(this);
+	        	manager.sync();
+	        	return true;
+	        case R.id.logout:
+	        	this.logout();
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	private void logout() {
+		new LogoutManager(this).logout();
+	}
+
 	public void onBrowseRemote(View view){
 		startActivity(new Intent(this,RemoteSearchActivity.class));
 	}

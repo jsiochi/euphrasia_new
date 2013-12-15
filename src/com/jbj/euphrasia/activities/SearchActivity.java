@@ -1,41 +1,44 @@
 package com.jbj.euphrasia.activities;
 
-import com.jbj.euphrasia.Controller;
+
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
+import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
-import com.jbj.euphrasia.R.id;
-import com.jbj.euphrasia.R.layout;
-import com.jbj.euphrasia.R.menu;
+import com.jbj.euphrasia.dialog_fragments.DeleteAlertDialog;
+import com.jbj.euphrasia.dialog_fragments.NewUserDialog;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.listeners.EntryListListener;
 
-import android.app.ActionBar.LayoutParams;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class SearchActivity extends ListActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor>, Constants {
 
@@ -44,6 +47,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	private Cursor myCursor;
 	private ListView myListView;
 	private SearchActivity myActivity;
+	private CheckBox myWarningCheckbox; 
+	private boolean warnOnDelete = true;
 	
 	private static final String SELECTION_QUERY = "SelectionQuery";
 	private static final String SELECTION_ARGS = "SelectionArgs";
@@ -78,23 +83,24 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			String selection = EntryColumns.COLUMN_NAME_TITLE + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " 
 					+ EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
 			this.doEntrySearch(selection);
+			myListView.setOnItemClickListener(new EntryListListener(this));
 		}
 		if(ACTION_BROWSE_PHRASEBOOKS.equals(intent.getAction())){
 			//show only entries from this phrasebook. 
 			String phrasebookExtra = intent.getStringExtra(EXTRA_PHRASEBOOK_KEY);
-			Log.i("DEBUG_PHRASEBOOKS", phrasebookExtra);
 			String selection = EntryColumns.COLUMN_NAME_PHRASEBOOK + " LIKE '%" + phrasebookExtra + "%'";
 			this.doEntrySearch(selection);
+			myListView.setOnItemClickListener(new EntryListListener(this));
 		}
 		if(ACTION_ONLY_LANGUAGES.equals(intent.getAction())){
 			//show only entries from this language.
 			String languageExtra = intent.getStringExtra(EXTRA_LANGUAGE_KEY);
 			String selection = EntryColumns.COLUMN_NAME_LANGUAGE + " LIKE '%" + languageExtra + "%'";
 			this.doEntrySearch(selection);
+			myListView.setOnItemClickListener(new EntryListListener(this));
 		}
 		if(ACTION_REMOTE_QUERY.equals(intent.getAction())){
 			Bundle remoteResults = intent.getBundleExtra(EXTRA_REMOTE_BUNDLE);
-			Log.i("bundle check",""+remoteResults.size());
 			MatrixCursor matrixCursor = new MatrixCursor(DISPLAY_FROM_COLUMNS);
 			for(int i = 0;i<remoteResults.size();i++){
 				Bundle entryBundle = remoteResults.getBundle(String.valueOf(i));
@@ -105,44 +111,78 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			Log.i("Matrix Cursor rows",""+matrixCursor.getCount());
 			myCursor = matrixCursor;
 		}
-		
+//		View checkBoxView = View.inflate(this, R.layout.checkbox, null);
+//		CheckBox noWarningOption = (CheckBox)checkBoxView.findViewById(R.id.checkbox);
+//		
+//		Log.i("Check",""+(noWarningOption==null));
+//		myWarningCheckbox = noWarningOption;
+//		noWarningOption.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+//
+//			@Override
+//			public void onCheckedChanged(CompoundButton buttonView,
+//					boolean isChecked) {
+//				if(isChecked)
+//					warnOnDelete = false;
+//			}
+//			
+//		});
 		myListView = (ListView) findViewById(android.R.id.list);
 		myListView.setLongClickable(true);
 		myListView.setOnItemLongClickListener(new OnItemLongClickListener(){
-			
+		
+
 			/**
 			 * Delete item from database on long click. 
 			 */
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				myActivity.getContentResolver().delete(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
-						String.valueOf(id)), "", null);
-				Log.i("ENTRYLONGCLICK","long press is " + String.valueOf(id));
-				myActivity.getLoaderManager().restartLoader(0, new Bundle(), myActivity);
-				return true;
+					int position, final long id) {
+				if(warnOnDelete){
+					// 1. Instantiate an AlertDialog.Builder with its constructor
+					AlertDialog.Builder builder = new AlertDialog.Builder(myActivity);
+
+					// 2. Chain together various setter methods to set the dialog characteristics
+					builder.setMessage(R.string.delete_alert_message);
+					//builder.setView(myWarningCheckbox);
+					builder.setPositiveButton(R.string.delete_confirm_button, new OnClickListener(){
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							warnOnDelete = false;
+							deleteEntry(id);
+						}
+						
+					});
+					builder.setNegativeButton(R.string.delete_cancel_button, new OnClickListener(){
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+						
+					});
+
+					// 3. Get the AlertDialog from create()
+					AlertDialog dialog = builder.create();
+					dialog.show();
+					return true;
+				}
+				else{
+					return deleteEntry(id);
+				}
 			}
 			
 		});
-		myListView.setOnItemClickListener(new EntryListListener());
+	}
+	
+	public boolean deleteEntry(long id){
+		myActivity.getContentResolver().delete(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
+				String.valueOf(id)), "", null);
+		Log.i("ENTRYLONGCLICK","long press is " + String.valueOf(id));
+		myActivity.getLoaderManager().restartLoader(0, new Bundle(), myActivity);
+		return true;
 	}
 
-
-	public class EntryListListener implements OnItemClickListener{
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			String[] projection = {EntryColumns.COLUMN_NAME_NATIVE_TEXT,EntryColumns.COLUMN_NAME_FOREIGN_TEXT,
-					EntryColumns.COLUMN_NAME_LANGUAGE,EntryColumns.COLUMN_NAME_TITLE,
-					EntryColumns.COLUMN_NAME_AUDIO,EntryColumns.COLUMN_NAME_DATE,EntryColumns.COLUMN_NAME_TAG};
-			Cursor cursor = myActivity.getContentResolver().query(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
-					String.valueOf(id)), projection, null,null,null);
-			Log.i("ENTRYCLICK",String.valueOf(id));
-			sendToEntry(cursor, id);
-		}
-		
-	}
 	
 	public void sendToEntry(Cursor cursor, long id) {
 		int columnCount = cursor.getColumnCount();
@@ -163,11 +203,27 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		toEntryIntent.setAction(ACTION_GET_ENTRY_DATA);
 		startActivity(toEntryIntent);
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.search,  menu);
-		return true;
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.search, menu);
+	    menu.findItem(R.id.sync).setIcon(R.drawable.sync);
+	    return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.sync:
+	        	SyncManager manager = new SyncManager(this);
+	        	manager.sync();
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 
 	@Override

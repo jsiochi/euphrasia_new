@@ -1,5 +1,6 @@
 package com.jbj.euphrasia;
 
+import com.jbj.euphrasia.activities.EntryActivity;
 import com.jbj.euphrasia.fields.AudioField;
 import com.jbj.euphrasia.fields.DateField;
 import com.jbj.euphrasia.fields.Field;
@@ -19,6 +20,7 @@ public class Controller {
 	private RecordingManager myRecordingManager;
 	private PlayManager myPlayManager;
 	private Uri myCurrentUri;
+	private EntryActivity mySourceActivity;
 
 	public Controller(Context context) {
 		myEntry = new EntryDatabaseManager(context);
@@ -28,8 +30,15 @@ public class Controller {
 	public String getAudioPath(){
 		return myEntry.getAudioField().toString();
 	}
+	public void setSourceActivity(EntryActivity activity){
+		mySourceActivity = activity;
+	}
 	public void updateEntryField(Field field){
 		field.updateEntryField(myEntry);
+	}
+	
+	public void enablePlayButton(){
+		mySourceActivity.enablePlay();
 	}
 
 	public void onRecord() {

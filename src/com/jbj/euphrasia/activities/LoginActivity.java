@@ -3,22 +3,24 @@ package com.jbj.euphrasia.activities;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
+import com.jbj.euphrasia.dialog_fragments.ExistingUserDialog;
+import com.jbj.euphrasia.dialog_fragments.NewUserDialog;
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.CreateUserTask;
 import com.jbj.euphrasia.remote.ReadUserTask;
 import com.jbj.euphrasia.remote.WriteRemoteTask;
 
-import dialog_fragments.ExistingUserDialog;
-import dialog_fragments.NewUserDialog;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 public class LoginActivity extends FragmentActivity implements Constants{
@@ -26,12 +28,30 @@ public class LoginActivity extends FragmentActivity implements Constants{
 	private String myUsername;
 	private String myEmail;
 	private String myPassword;
+	private boolean rememberMe = false;
+	private static final String PREFS_NAME = "My Preferences";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_NAME, 0);
+		String storedUsername = sharedPreferences.getString("user_name", "DNE");
+		String storedPassword = sharedPreferences.getString("pass", "DNE");
+		if(!storedUsername.equals("DNE")&&!storedPassword.equals("DNE")){
+			//user remembered
+			Log.i("User check","Stored user = "+storedUsername);
+			this.startActivity(new Intent(this,MainActivity.class));
+		}
 	}
+	
+	public void onRememberMe(View view){
+		CheckBox checkBox = (CheckBox) view;
+		if(checkBox.isChecked()){
+			rememberMe = true;
+		}
+	}
+
 	
 	public void doNewUser(View view){
 		//launch a dialogue to create a new user account
@@ -66,6 +86,16 @@ public class LoginActivity extends FragmentActivity implements Constants{
 	}
 	
 	public void login(String id){
+		if(rememberMe){
+			SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_NAME, 0);
+			SharedPreferences.Editor editor = sharedPreferences.edit();
+			editor.putString("user_name", myUsername);
+			editor.putString("pass", myPassword);
+			editor.commit();
+			Log.i("stored user name",sharedPreferences.getString("user_name" , "DNE"));
+			Log.i("stored password",sharedPreferences.getString("pass" , "DNE"));
+		}
+		
 		Intent intent = new Intent(this,MainActivity.class);
 		intent.setAction(ACTION_EXISTING_LOGIN);
 		intent.putExtra(EXTRA_EXISTING_USER, id);
@@ -77,6 +107,8 @@ public class LoginActivity extends FragmentActivity implements Constants{
 		// credentials match an existing user
 		AbstractRemoteTask checkUser = new ReadUserTask();
 		checkUser.setActivity(this);
+		myUsername = name;
+		myPassword = password;
 		String[] userName = new String[]{"user_name",name};
 		String[] userPassword = new String[]{"pass",password};
 		String[][] params = new String[][]{userName,userPassword};

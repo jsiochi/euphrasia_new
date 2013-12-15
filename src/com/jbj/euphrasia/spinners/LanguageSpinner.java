@@ -1,6 +1,8 @@
 package com.jbj.euphrasia.spinners;
 
 import com.jbj.euphrasia.EntryContract.EntryColumns;
+import com.jbj.euphrasia.dialog_fragments.EntryDialogFragment;
+import com.jbj.euphrasia.dialog_fragments.NewLanguageDialog;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.LanguageField;
 import com.jbj.euphrasia.fields.PhrasebookField;
@@ -8,8 +10,6 @@ import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
 
-import dialog_fragments.EntryDialogFragment;
-import dialog_fragments.NewLanguageDialog;
 
 import android.content.Context;
 import android.net.Uri;

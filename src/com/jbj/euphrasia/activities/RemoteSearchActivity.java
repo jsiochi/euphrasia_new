@@ -1,6 +1,7 @@
 package com.jbj.euphrasia.activities;
 
 import com.jbj.euphrasia.R;
+import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.R.id;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
@@ -9,10 +10,13 @@ import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.ReadRemoteTask;
 
 import android.os.Bundle;
+import android.os.Looper;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -22,6 +26,7 @@ import android.widget.Toast;
 public class RemoteSearchActivity extends Activity implements Constants{
 	
 	private int myParamIndex;
+	private AbstractRemoteTask myTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +36,24 @@ public class RemoteSearchActivity extends Activity implements Constants{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.remote_search, menu);
-		return true;
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.remote_search, menu);
+	    menu.findItem(R.id.sync).setIcon(R.drawable.sync);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.sync:
+	        	SyncManager manager = new SyncManager(this);
+	        	manager.sync();
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 	public void onRadioButtonClicked(View view){
@@ -42,12 +62,14 @@ public class RemoteSearchActivity extends Activity implements Constants{
 		    int id= radioGroup.getCheckedRadioButtonId();
 		    View radioButton = radioGroup.findViewById(id);
 		    int radioId = radioGroup.indexOfChild(radioButton);
+		    
 		    myParamIndex = radioId;
 		}
 	}
 	
 	public void doBrowse(View view){
 		AbstractRemoteTask readRemote = new ReadRemoteTask();
+		myTask = readRemote;
 		readRemote.setActivity(this);
 		EditText text = (EditText)findViewById(R.id.browse_filter_param);
 		String[] filterIndex = new String[]{"filter_index",String.valueOf(myParamIndex)};

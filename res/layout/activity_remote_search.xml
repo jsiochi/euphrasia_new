@@ -37,16 +37,14 @@
 	</RadioGroup>
     
     <EditText
-  	    android:id="@+id/browse_filter_param"
-   	    android:layout_width="wrap_content"
-       	android:layout_height="wrap_content"
-       	android:layout_weight=".5"
-       	android:hint="@string/browse_filter_hint" />
+        android:id="@+id/browse_filter_param"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/browse_filter_hint" />
     
     <Button 
        		android:layout_height="wrap_content"
        		android:layout_width="wrap_content"
-       		android:layout_weight=".5"
         	android:text="@string/browse_remote_button"
         	android:onClick="doBrowse"	/>
 

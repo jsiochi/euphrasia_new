@@ -14,6 +14,10 @@ import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.R.id;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
+import com.jbj.euphrasia.SyncManager;
+import com.jbj.euphrasia.dialog_fragments.ConfirmSaveDialog;
+import com.jbj.euphrasia.dialog_fragments.CreatePhrasebookDialog;
+import com.jbj.euphrasia.dialog_fragments.EntryDialogFragment;
 import com.jbj.euphrasia.fields.AudioField;
 import com.jbj.euphrasia.fields.DateField;
 import com.jbj.euphrasia.fields.Field;
@@ -29,9 +33,6 @@ import com.jbj.euphrasia.spinners.LanguageSpinner;
 import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 
 import android.net.Uri;
-import dialog_fragments.ConfirmSaveDialog;
-import dialog_fragments.CreatePhrasebookDialog;
-import dialog_fragments.EntryDialogFragment;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -85,6 +86,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		}
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
+		myController.setSourceActivity(this);
 		LanguageSpinner languageSpinner = (LanguageSpinner) findViewById(R.id.select_language);
 		languageSpinner.setActivitySource(this);
 		PhrasebookSpinner phrasebookSpinner = (PhrasebookSpinner) findViewById(R.id.entry_phrasebook_spinner);
@@ -97,6 +99,12 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 
 	public Controller getController(){
 		return myController;
+	}
+	
+	public void enablePlay(){
+		Button playButton = (Button)findViewById(R.id.entry_play_btn);
+		if(!playButton.isEnabled())
+			((Button)findViewById(R.id.entry_play_btn)).setEnabled(true);
 	}
 
 	private void loadInitialData() {
@@ -119,6 +127,9 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 					String.valueOf(myInitialData.getAsLong("URI_id"))));
 			
 		}
+		else{
+			((Button)findViewById(R.id.entry_play_btn)).setEnabled(false);
+		}
 	}
 
 	/**
@@ -131,7 +142,6 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 				@Override
 			    public void onFocusChange(View view, boolean isFocused) {
 			        if (!isFocused) {
-			        	Log.d("TAG","forein_focus_change");
 			            updateField(view);
 			        }
 			    }
@@ -168,17 +178,21 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.entry, menu);
+	    menu.findItem(R.id.sync).setIcon(R.drawable.sync);
 	    return super.onCreateOptionsMenu(menu);
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
-		Log.i("onOptionsItemSelected", "James is dumb");
 	    switch (item.getItemId()) {
 	        case R.id.save:
 	        	handleSave();
 	            return true;
+	        case R.id.sync:
+	        	SyncManager manager = new SyncManager(this);
+	        	manager.sync();
+	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
@@ -204,13 +218,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			myController.updateEntryField(field);
 			Log.i("new field",field.toString() + field.getClass().getName());
 	}
-	
-/**
- * @author Bradley
- * To record, user presses a record button. Toggles boolean value to indicate whether recording 
- * should begin.
- * When toggled off, presented option to save, playback, or record again. 
- */
+
 	public void handleRecording(View view){
 		myController.onRecord();
 	}

@@ -79,6 +79,7 @@ public class RecordingManager extends MediaManager{
         toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
         myController.updateEntryField(new AudioField(myCache.getAbsolutePath()));
+        myController.enablePlayButton();
         myRecorder = null;
 	}
 

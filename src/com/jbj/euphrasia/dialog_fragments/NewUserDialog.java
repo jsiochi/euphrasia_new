@@ -1,8 +1,9 @@
-package dialog_fragments;
+package com.jbj.euphrasia.dialog_fragments;
 
 import com.jbj.euphrasia.activities.LoginActivity;
 
 import com.jbj.euphrasia.R;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -12,7 +13,9 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+@SuppressLint("ResourceAsColor")
 public class NewUserDialog extends AbstractDialog {
 
 	protected EditText myNameField;
@@ -41,8 +44,21 @@ public class NewUserDialog extends AbstractDialog {
                 	   String accountName = myNameField.getText().toString();
                 	   String accountPassword = myPasswordField.getText().toString();
                 	   String accountEmail = myEmailField.getText().toString();
-                	   mySourceActivity.onUserCreation(accountName, accountPassword, accountEmail);
-                	   dialog.dismiss();
+                	   EditText[] fields = {myNameField,myPasswordField,myEmailField};
+                	   if(accountName.isEmpty()||accountPassword.isEmpty()||accountEmail.isEmpty()){
+                		   for(int i=0;i<fields.length;i++){
+                			   if(fields[i].getText().toString().length()==0){
+                				   fields[i].setHintTextColor(R.color.red);
+                			   }
+                		   }
+                		   Toast.makeText(mySourceActivity, "Please enter all required fields", Toast.LENGTH_LONG).show();
+                	   }
+                	   else{
+	                	   LoginActivity login = (LoginActivity)mySourceActivity;
+	                	   login.onUserCreation(accountName, accountPassword, accountEmail);
+	                	   dialog.dismiss();
+                	   }
+               
                    }
                })
                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

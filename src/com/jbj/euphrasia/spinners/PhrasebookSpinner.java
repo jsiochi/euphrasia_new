@@ -4,12 +4,12 @@ import com.jbj.euphrasia.Controller;
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.activities.EntryActivity;
+import com.jbj.euphrasia.dialog_fragments.CreatePhrasebookDialog;
+import com.jbj.euphrasia.dialog_fragments.EntryDialogFragment;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.PhrasebookField;
 import com.jbj.euphrasia.R;
 
-import dialog_fragments.CreatePhrasebookDialog;
-import dialog_fragments.EntryDialogFragment;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;

@@ -6,12 +6,12 @@ import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.activities.EntryActivity;
 import com.jbj.euphrasia.activities.IntermediateSearchActivity;
+import com.jbj.euphrasia.dialog_fragments.CreatePhrasebookDialog;
+import com.jbj.euphrasia.dialog_fragments.EntryDialogFragment;
 import com.jbj.euphrasia.fields.Field;
 import com.jbj.euphrasia.fields.PhrasebookField;
 import com.jbj.euphrasia.interfaces.Constants;
 
-import dialog_fragments.CreatePhrasebookDialog;
-import dialog_fragments.EntryDialogFragment;
 
 import android.app.Activity;
 

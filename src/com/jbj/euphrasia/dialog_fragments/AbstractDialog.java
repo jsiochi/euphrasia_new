@@ -1,4 +1,4 @@
-package dialog_fragments;
+package com.jbj.euphrasia.dialog_fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,14 +11,14 @@ import com.jbj.euphrasia.activities.LoginActivity;
 
 public abstract class AbstractDialog extends DialogFragment {
 	
-	protected LoginActivity mySourceActivity;
+	protected Activity mySourceActivity;
 	
 	public AbstractDialog(){
 		super();
 		//keep empty
 	}
 	
-	public void setSourceActivity(LoginActivity activity){
+	public void setSourceActivity(Activity activity){
 		mySourceActivity = activity;
 	}
 	

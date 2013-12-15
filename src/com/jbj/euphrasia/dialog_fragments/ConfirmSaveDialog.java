@@ -1,4 +1,4 @@
-package dialog_fragments;
+package com.jbj.euphrasia.dialog_fragments;
 
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.activities.EntryActivity;

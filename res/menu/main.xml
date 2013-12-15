@@ -1,12 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
-    <item android:id="@+id/action_search"
+  <!--  <item android:id="@+id/action_search"
           android:title="@string/action_search"
           android:onClick="onStartSearch"
           android:showAsAction="ifRoom|withText"/>
     	  
     <item android:id="@+id/action_compose"
           android:title="@string/action_compose" 
-          android:showAsAction="ifRoom|withText"/>
+          android:showAsAction="ifRoom|withText"/> !-->
+    
+     <item
+        android:id="@+id/sync"
+        android:title="@string/sync_button"
+        android:showAsAction="always" />
+     
+     <item
+        android:id="@+id/logout"
+        android:title="@string/logout"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
 
 </menu>

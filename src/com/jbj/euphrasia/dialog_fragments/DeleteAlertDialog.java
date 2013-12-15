@@ -1,34 +1,28 @@
-package dialog_fragments;
+package com.jbj.euphrasia.dialog_fragments;
 
 import com.jbj.euphrasia.R;
+import com.jbj.euphrasia.activities.SearchActivity;
 
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 
-public class NewLanguageDialog extends EntryDialogFragment {
+public class DeleteAlertDialog extends AbstractDialog {
 	
-	private EditText myTitleTextView;
-	
-	@Override
-	public int getFragmentID() {
-		return R.layout.new_language;
-	}
+	private long myDeleteID;
 
 	@Override
 	public Dialog makeButtons(Builder builder, LayoutInflater inflater) {
-		View view = inflater.inflate(this.getFragmentID(), null);
-		this.useView(view);
+		View view = inflater.inflate(R.layout.delete_alert,null);
         builder.setView(view)
         // Add action buttons
                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-                       // create a new phrasebook with user data
-                	   mySourceSpinner.onCreated(myTitleTextView.getText());
-                	   dialog.dismiss();
+                       SearchActivity search = (SearchActivity)mySourceActivity;
+                       search.deleteEntry(id);
+                       dialog.dismiss();
                    }
                })
                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -38,10 +32,9 @@ public class NewLanguageDialog extends EntryDialogFragment {
                });
         return builder.create();
 	}
-
-	@Override
-	protected void useView(View view) {
-		myTitleTextView = (EditText)view.findViewById(R.id.new_language_edit_text_id);
+	
+	public void setDeleteID(long id){
+		myDeleteID = id;
 	}
 
 }

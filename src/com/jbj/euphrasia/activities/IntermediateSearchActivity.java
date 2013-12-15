@@ -2,6 +2,7 @@ package com.jbj.euphrasia.activities;
 
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
+import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
@@ -20,6 +21,8 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -66,9 +69,24 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.browse, menu);
-		return true;
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.browse, menu);
+	    menu.findItem(R.id.sync).setIcon(R.drawable.sync);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.sync:
+	        	SyncManager manager = new SyncManager(this);
+	        	manager.sync();
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 	/**
