@@ -28,7 +28,7 @@ public class SyncManager implements Constants {
 	
 	public static void sync(){
 		Toast.makeText(myActivity, "Attempting to sync to remote", Toast.LENGTH_LONG).show();
-		myActivity.getMainLooper();
+		//myActivity.getMainLooper();
 		AbstractRemoteTask clear = new ClearRemoteTask();
 		clear.setActivity(myActivity);
 		clear.execute(new String[]{"user_id", myID});

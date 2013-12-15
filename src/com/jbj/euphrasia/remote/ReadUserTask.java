@@ -19,13 +19,13 @@ public class ReadUserTask extends AbstractRemoteTask {
 	
 	@Override
 	public Bundle doInBackground(String[]...params){
-		Looper.getMainLooper().prepare();
+		//Looper.getMainLooper().prepare();
 		super.doInBackground(params);
 		Bundle theArgs = new Bundle();
 		try {
 			int success = myJsonObject.getInt("success");
 			if(success==1){
-				Toast.makeText(mySourceActivity, "User read from database", Toast.LENGTH_LONG).show();
+				//Toast.makeText(mySourceActivity, "User read from database", Toast.LENGTH_LONG).show();
 				JSONArray array = myJsonObject.getJSONArray("product");
 				JSONObject user = array.getJSONObject(0);
 				String user_id = user.getString("user_id");
@@ -35,7 +35,6 @@ public class ReadUserTask extends AbstractRemoteTask {
 			}
 			else{
 				// no such user. Reject access. 
-				Toast.makeText(mySourceActivity, "Account not found! Please try again. Input is case-sensitive.", 10).show();
 				theArgs.putBoolean("CanLogin", false);
 			}
 		} catch (JSONException e) {
@@ -64,9 +63,12 @@ public class ReadUserTask extends AbstractRemoteTask {
 		//log the user in
 		LoginActivity login = (LoginActivity)mySourceActivity;
 		Boolean canLogin = args.getBoolean("CanLogin");
-		if(!canLogin)
-			return;
-		login.login(args.getString("UID"));
+		if(!canLogin){
+			Toast.makeText(mySourceActivity, "Account not found! Please try again. Input is case-sensitive.", Toast.LENGTH_LONG).show();
+		}
+		else{
+			login.login(args.getString("UID"));
+		}
 	}
 
 }

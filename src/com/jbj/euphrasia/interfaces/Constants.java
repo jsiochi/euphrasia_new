@@ -1,6 +1,7 @@
 package com.jbj.euphrasia.interfaces;
 
 import com.jbj.euphrasia.EntryContract;
+import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 
 public interface Constants {
@@ -28,4 +29,9 @@ public interface Constants {
 			EntryColumns.COLUMN_NAME_TAG,EntryColumns.COLUMN_NAME_DATE,
 			EntryColumns.COLUMN_NAME_FOREIGN_TEXT, EntryColumns.COLUMN_NAME_LANGUAGE, EntryColumns.COLUMN_NAME_NATIVE_TEXT,
 			EntryColumns.COLUMN_NAME_PHRASEBOOK, EntryColumns.COLUMN_NAME_AUDIO};
+	
+	final String PREFS_NAME = "My Preferences";
+	final String PREFS_USERNAME_KEY = "user_name";
+	final String PREFS_PASSWORD_KEY = "pass";
+	final String PREFS_USERID_KEY = "user_id";
 }

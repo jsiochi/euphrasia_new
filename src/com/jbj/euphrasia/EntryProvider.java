@@ -33,22 +33,20 @@ public class EntryProvider extends ContentProvider {
 	private static final String MY_AUTHORITY = "com.jbj.euphrasia.provider"; 
 	private static final String MY_CONTENT_URI = "content://" + MY_AUTHORITY;
 	private static final UriMatcher myUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-	public static final String VIEW_ALL_REMOTE = "remote_entries";
-	public static final String VIEW_LANGUAGE_REMOTE = "remote_lang";
-	public static final String VIEW_PHRASEBOOK_REMOTE = "remote_phrase";
+	public static final String VIEW_REMOTE = "remote_entries";
 	//TODO add all needed URI patterns here
 	static { 
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME, 1);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME + "/#", 2);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.COLUMN_NAME_PHRASEBOOK, 3);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.COLUMN_NAME_LANGUAGE, 4);
-		myUriMatcher.addURI(MY_AUTHORITY, VIEW_LANGUAGE_REMOTE, 7);
+		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME + "/" + VIEW_REMOTE, 5);
 		}
 	
 	public static final Uri CONTENT_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.TABLE_NAME);
 	public static final Uri CONTENT_PHRASEBOOKS_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_PHRASEBOOK);
 	public static final Uri CONTENT_LANGUAGES_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_LANGUAGE);
-	public static final Uri CONTENT_REMOTE_URI = Uri.parse(MY_CONTENT_URI + "/" + VIEW_ALL_REMOTE);
+	public static final Uri CONTENT_REMOTE_URI = Uri.parse(MY_CONTENT_URI + "/" + VIEW_REMOTE);
 	private static Bundle remoteBundle;
 	
 	//public static final String GET_PHRASEBOOKS = "get_phrasebooks";
@@ -93,7 +91,7 @@ public class EntryProvider extends ContentProvider {
 			cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, theProjection, uri.getLastPathSegment() + " IS NOT NULL", null, uri.getLastPathSegment(), null, null, null, null);
 			cursor.setNotificationUri(getContext().getContentResolver(), uri);
 			return cursor;
-		case 7:
+		case 5:
 			MatrixCursor matrixCursor = new MatrixCursor(Constants.SELECT_ALL_PROJECTION_WITH_ID);
 			for(int i = 0;i<remoteBundle.size();i++){
 				Bundle entryBundle = remoteBundle.getBundle(String.valueOf(i));
@@ -224,7 +222,7 @@ public class EntryProvider extends ContentProvider {
 	
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public Bundle call(String method, String arg, Bundle extras) {
-		if(method == VIEW_ALL_REMOTE) {
+		if(method == VIEW_REMOTE) {
 			remoteBundle = extras;
 		} else {
 			throw new IllegalArgumentException("Invalid Method Name");

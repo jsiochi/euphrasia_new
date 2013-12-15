@@ -1,6 +1,7 @@
 package com.jbj.euphrasia.listeners;
 
 import com.jbj.euphrasia.EntryProvider;
+import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.activities.SearchActivity;
 

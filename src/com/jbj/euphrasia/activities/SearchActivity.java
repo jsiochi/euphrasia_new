@@ -110,7 +110,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 //			}
 //			Log.i("Matrix Cursor rows",""+matrixCursor.getCount());
 //			myCursor = matrixCursor;
-			myCursorFilter = EntryProvider.VIEW_LANGUAGE_REMOTE;
+			myCursorFilter = EntryProvider.VIEW_REMOTE;
 			this.doEntrySearch("");
 		}
 //		View checkBoxView = View.inflate(this, R.layout.checkbox, null);
@@ -235,6 +235,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
         if (myCursorFilter != null) {
             baseUri = Uri.withAppendedPath(EntryProvider.CONTENT_URI,
                     Uri.encode(myCursorFilter));
+            Log.i("JazzingJ",baseUri.equals(EntryProvider.CONTENT_REMOTE_URI) + "");
+            
         } else {
             baseUri = EntryProvider.CONTENT_URI;
         }

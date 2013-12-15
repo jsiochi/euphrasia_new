@@ -78,12 +78,12 @@ public class RemoteSearchActivity extends Activity implements Constants{
 		readRemote.execute(params);
 	}
 
-	public void acceptResult(Bundle bundle) {
-		// send bundle to search activity
-		Intent displayResults = new Intent(this,SearchActivity.class);
-		displayResults.putExtra(EXTRA_REMOTE_BUNDLE, bundle);
-		displayResults.setAction(ACTION_REMOTE_QUERY);
-		startActivity(displayResults);
-	}
+//	public void acceptResult(Bundle bundle) {
+//		// send bundle to search activity
+//		Intent displayResults = new Intent(this,SearchActivity.class);
+//		displayResults.putExtra(EXTRA_REMOTE_BUNDLE, bundle);
+//		displayResults.setAction(ACTION_REMOTE_QUERY);
+//		startActivity(displayResults);
+//	}
 
 }
