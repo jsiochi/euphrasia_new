@@ -72,10 +72,16 @@ public class RemoteSearchActivity extends Activity implements Constants{
 		myTask = readRemote;
 		readRemote.setActivity(this);
 		EditText text = (EditText)findViewById(R.id.browse_filter_param);
-		String[] filterIndex = new String[]{"filter_index",String.valueOf(myParamIndex)};
-		String[] filterParam = new String[]{"field",text.getText().toString()};
-		String[][] params = new String[][]{filterIndex,filterParam};
-		readRemote.execute(params);
+		String filterText = text.getText().toString();
+		if(!filterText.isEmpty()){
+			String[] filterIndex = new String[]{"filter_index",String.valueOf(myParamIndex)};
+			String[] filterParam = new String[]{"field",filterText};
+			String[][] params = new String[][]{filterIndex,filterParam};
+			readRemote.execute(params);
+		}
+		else{
+			Toast.makeText(this, "Please specify search terms.", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	public void doBrowseAll(View view){
@@ -84,7 +90,6 @@ public class RemoteSearchActivity extends Activity implements Constants{
 		readRemote.setActivity(this);
 		EditText text = (EditText)findViewById(R.id.browse_filter_param);
 		String[] filterIndex = new String[]{"filter_index",""+3};
-		//String[] filterParam = new String[]{"field",text.getText().toString()};
 		String[][] params = new String[][]{filterIndex};
 		readRemote.execute(params);
 	}
