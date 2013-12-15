@@ -6,8 +6,12 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.activities.RemoteSearchActivity;
+import com.jbj.euphrasia.activities.SearchActivity;
+import com.jbj.euphrasia.interfaces.Constants;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -27,7 +31,6 @@ public class ReadRemoteTask extends AbstractRemoteTask {
 			Log.i("Truth test",""+(success==1));
 			if(success==1){
 				Log.i("baf;lak","Jehovah");
-				RemoteSearchActivity search = (RemoteSearchActivity)mySourceActivity;
 				JSONArray arrayResults = myJsonObject.getJSONArray("entries");
 				Log.i("array size"," "+String.valueOf(arrayResults.length()));
 				for(int i = 0;i<arrayResults.length();i++){
@@ -63,14 +66,15 @@ public class ReadRemoteTask extends AbstractRemoteTask {
 	protected void onPostExecute(Bundle bundle){
 		if(bundle!=null){
 			RemoteSearchActivity remoteSearch = (RemoteSearchActivity)mySourceActivity;
-			remoteSearch.acceptResult(bundle);
+			remoteSearch.getContentResolver().call(EntryProvider.CONTENT_REMOTE_URI, EntryProvider.VIEW_REMOTE, null, bundle);
+			Intent displayResults = new Intent(remoteSearch,SearchActivity.class);
+			displayResults.setAction(Constants.ACTION_REMOTE_QUERY);
+			remoteSearch.startActivity(displayResults);
 		}
 		else{
 			Toast.makeText(mySourceActivity,"Failed to query remote database!",Toast.LENGTH_LONG).show();
 		}
 	}
-	
-	
 
 	@Override
 	protected HttpUriRequest getUriRequest(String[]...params) {
