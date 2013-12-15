@@ -42,6 +42,8 @@ public class EntryProvider extends ContentProvider {
 	public static final Uri CONTENT_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.TABLE_NAME);
 	public static final Uri CONTENT_PHRASEBOOKS_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_PHRASEBOOK);
 	public static final Uri CONTENT_LANGUAGES_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_LANGUAGE);
+	public static final String VIEW_ALL_REMOTE = "remoteview";
+	private static Bundle remoteBundle;
 	
 	//public static final String GET_PHRASEBOOKS = "get_phrasebooks";
 
@@ -198,25 +200,18 @@ public class EntryProvider extends ContentProvider {
 		return numRows;
 	}
 	
-//	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-//	public Bundle call(String method, String arg, Bundle extras) {
-//		Bundle bundle = new Bundle();
-//		
-//		if(method == GET_PHRASEBOOKS) {
-//			myDatabase = myDatabaseHelper.getReadableDatabase();
-//			String[] projection = {EntryColumns.COLUMN_NAME_PHRASEBOOK};
-//			Cursor cursor = myDatabase.query(true, EntryColumns.TABLE_NAME, projection, null, null, null, null, null, null, null);
-//			ArrayList<String> results = new ArrayList<String>();
-//			while(cursor.moveToNext()) {
-//				results.add(cursor.getString(0));
-//			}
-//
-//			bundle.putStringArrayList(GET_PHRASEBOOKS, results);
-//		} else {
-//			throw new IllegalArgumentException("Invalid Method Name");
-//		}
-//		
-//		
-//		return bundle;
-//	}
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+	public Bundle call(String method, String arg, Bundle extras) {
+		Bundle bundle = new Bundle();
+		
+		if(method == VIEW_ALL_REMOTE) {
+
+			//bundle.putStringArrayList(VIEW_ALL_REMOTE, results);
+		} else {
+			throw new IllegalArgumentException("Invalid Method Name");
+		}
+		
+		
+		return bundle;
+	}
 }
