@@ -218,8 +218,8 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.sync:
-	        	SyncManager manager = new SyncManager(this);
-	        	manager.sync();
+	        	SyncManager.setActivity(this);
+	        	SyncManager.sync();
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

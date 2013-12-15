@@ -20,6 +20,7 @@ public class LogoutManager {
     	//clear stored user account
     	editor.remove("user_name");
     	editor.remove("pass");
+    	editor.remove("user_id");
     	editor.commit();
     	myActivity.startActivity(new Intent(myActivity,LoginActivity.class));
 	}

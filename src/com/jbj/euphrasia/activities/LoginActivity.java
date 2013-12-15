@@ -91,6 +91,7 @@ public class LoginActivity extends FragmentActivity implements Constants{
 			SharedPreferences.Editor editor = sharedPreferences.edit();
 			editor.putString("user_name", myUsername);
 			editor.putString("pass", myPassword);
+			editor.putString("user_id", id);
 			editor.commit();
 			Log.i("stored user name",sharedPreferences.getString("user_name" , "DNE"));
 			Log.i("stored password",sharedPreferences.getString("pass" , "DNE"));
