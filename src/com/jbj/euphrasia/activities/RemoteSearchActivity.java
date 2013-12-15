@@ -77,6 +77,17 @@ public class RemoteSearchActivity extends Activity implements Constants{
 		String[][] params = new String[][]{filterIndex,filterParam};
 		readRemote.execute(params);
 	}
+	
+	public void doBrowseAll(View view){
+		AbstractRemoteTask readRemote = new ReadRemoteTask();
+		myTask = readRemote;
+		readRemote.setActivity(this);
+		EditText text = (EditText)findViewById(R.id.browse_filter_param);
+		String[] filterIndex = new String[]{"filter_index",""+3};
+		//String[] filterParam = new String[]{"field",text.getText().toString()};
+		String[][] params = new String[][]{filterIndex};
+		readRemote.execute(params);
+	}
 
 	public void acceptResult(Bundle bundle) {
 		// send bundle to search activity

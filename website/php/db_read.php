@@ -6,25 +6,33 @@
 	//open a connection
 	$db = new DB_CONNECT();
 
-	if(isset($_GET['filter_index']) && isset($_GET['field'])){
+	if(isset($_GET['filter_index'])){
 		$index = $_GET['filter_index'];
-		$filter = $_GET['field'];
 		$result = array();
 		if($index==0){
 			//by user
+			$filter = $_GET['field'];
 			$query = sprintf("SELECT * FROM entries WHERE user_name = '%s'",mysql_real_escape_string($filter));
 			$result = mysql_query($query);
 
 		}
 		if($index==1){
 			//by language
+			$filter = $_GET['field'];
 			$query = sprintf("SELECT * FROM entries WHERE language = '%s'",mysql_real_escape_string($filter));
 			$result = mysql_query($query);
 
 		}
 		if($index==2){
 			//by title
-			$query = sprintf("SELECT * FROM entries WHERE title = '%s'",mysql_real_escape_string($filter));
+			$filter = $_GET['field'];
+			$query = sprintf("SELECT * FROM entries WHERE title = '%s' OR native_text='$s'",mysql_real_escape_string($filter),mysql_real_escape_string($filter));
+			$result = mysql_query($query);
+
+		}
+		if($index==3){
+			//by get everything
+			$query = sprintf("SELECT * FROM entries");
 			$result = mysql_query($query);
 
 		}
