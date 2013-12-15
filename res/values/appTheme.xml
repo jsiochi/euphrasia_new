@@ -11,7 +11,7 @@
 	</style>
 	
 	<style name="appTheme" parent="@style/Theme.AppCompat.Light">
-	    <item name="android:windowBackground">@color/app_themeColor</item>
+	    <item name="android:windowBackground">@drawable/splash_screen1</item>
 	    <item name="android:colorBackground">@color/app_themeColor</item>
 	    <item name="android:actionBarStyle">@style/app_actionBar</item>
 	    <item name="android:editTextStyle">@style/app_editTextStyle</item>

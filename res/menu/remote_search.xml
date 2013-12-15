@@ -4,5 +4,17 @@
         android:id="@+id/sync"
         android:title="@string/sync_button"
         android:showAsAction="always" />
+  
+  <item
+        android:id="@+id/logout"
+        android:title="@string/logout"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+  
+     <item
+        android:id="@+id/about"
+        android:title="@string/about"
+        android:orderInCategory="101"
+        android:showAsAction="never" />
 
 </menu>

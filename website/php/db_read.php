@@ -9,21 +9,21 @@
 	if(isset($_GET['filter_index'])){
 		$index = $_GET['filter_index'];
 		$result = array();
-		if($index==0){
-			//by user
-			$filter = $_GET['field'];
-			$query = sprintf("SELECT * FROM entries WHERE user_name = '%s'",mysql_real_escape_string($filter));
-			$result = mysql_query($query);
+		// if($index==0){
+		// 	//by user
+		// 	$filter = $_GET['field'];
+		// 	$query = sprintf("SELECT * FROM entries WHERE user_name = '%s'",mysql_real_escape_string($filter));
+		// 	$result = mysql_query($query);
 
-		}
-		if($index==1){
+		// }
+		if($index==0){
 			//by language
 			$filter = $_GET['field'];
 			$query = sprintf("SELECT * FROM entries WHERE language = '%s'",mysql_real_escape_string($filter));
 			$result = mysql_query($query);
 
 		}
-		if($index==2){
+		if($index==1){
 			//by title
 			$filter = $_GET['field'];
 			$query = sprintf("SELECT * FROM entries WHERE title = '%s' OR native_text='$s'",mysql_real_escape_string($filter),mysql_real_escape_string($filter));

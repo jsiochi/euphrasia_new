@@ -1,5 +1,6 @@
 package com.jbj.euphrasia.activities;
 
+import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.R.id;
@@ -9,6 +10,7 @@ import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.ReadRemoteTask;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.app.Activity;
@@ -50,6 +52,14 @@ public class RemoteSearchActivity extends Activity implements Constants{
 	        case R.id.sync:
 	        	SyncManager.setActivity(this);
 	        	SyncManager.sync();
+	        	return true;
+	        case R.id.logout:
+	        	LogoutManager.setActivity(this);
+	        	LogoutManager.logout();
+	        	return true;
+	        case R.id.about:
+	        	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://goeuphrasia.com"));
+	        	startActivity(browserIntent);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

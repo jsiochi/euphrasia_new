@@ -122,16 +122,18 @@ public class MainActivity extends Activity implements Constants {
 	        	SyncManager.sync();
 	        	return true;
 	        case R.id.logout:
-	        	this.logout();
+	        	LogoutManager.setActivity(this);
+	        	LogoutManager.logout();
+	        	return true;
+	        case R.id.about:
+	        	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://goeuphrasia.com"));
+	        	startActivity(browserIntent);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-	
-	private void logout() {
-		new LogoutManager(this).logout();
-	}
+
 
 	public void onBrowseRemote(View view){
 		startActivity(new Intent(this,RemoteSearchActivity.class));

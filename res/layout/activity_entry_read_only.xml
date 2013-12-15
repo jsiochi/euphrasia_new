@@ -12,7 +12,7 @@
 	    android:paddingLeft="@dimen/activity_horizontal_margin"
 	    android:paddingRight="@dimen/activity_horizontal_margin"
 	    android:paddingTop="@dimen/activity_vertical_margin"
-	    tools:context=".EntryActivity" >
+	    tools:context=".ReadEntryActivity" >
 	    
         <LinearLayout
 	    	android:layout_width="fill_parent"
@@ -34,13 +34,13 @@
 	    	    android:orientation="vertical" >
 	    	
 	    	    <TextView
-	   	    	android:id="@+id/entry_language"
+	   	    	android:id="@+id/entry_language_read"
 	    	    android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:layout_weight=".25" />
 	    	    
 	    	    <TextView
-	   	    	android:id="@+id/entry_phrasebook"
+	   	    	android:id="@+id/entry_phrasebook_read"
 	    	    android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:layout_weight=".25" />
@@ -63,7 +63,7 @@
 	        android:layout_width="fill_parent"
 	    	android:layout_height="wrap_content">
 	    	<TextView
-	        	android:id="@+id/entry_tags"
+	        	android:id="@+id/entry_tags_read"
 	        	android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:layout_weight=".45" />
@@ -138,6 +138,7 @@
 		   		
 		   	<TextView 
 		   	    android:layout_width="0dip"
+		   	    android:id="@+id/entry_foreign_read"
 		       	android:layout_height="wrap_content"
 		       	android:layout_weight='1'
 	        	android:gravity="center"

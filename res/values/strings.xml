@@ -11,6 +11,7 @@
     <string name="button_record_begin"></string>
     <string name="button_play"></string>
     <string name="edit_entry_language">Language</string>
+    <string name="about">About</string>
     <!--
     <string name="button_record_begin">Rec</string>
     <string name="button_play">Play</string>

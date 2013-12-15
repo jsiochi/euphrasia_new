@@ -1,6 +1,10 @@
 package com.jbj.euphrasia.spinners;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.jbj.euphrasia.EntryContract.EntryColumns;
+import com.jbj.euphrasia.activities.EntryActivity;
 import com.jbj.euphrasia.dialog_fragments.EntryDialogFragment;
 import com.jbj.euphrasia.dialog_fragments.NewLanguageDialog;
 import com.jbj.euphrasia.fields.Field;
@@ -18,6 +22,8 @@ import android.view.View;
 import android.widget.AdapterView;
 
 public class LanguageSpinner extends EuphrasiaSpinner {
+	
+	
 
 	public LanguageSpinner(Context context, AttributeSet attributes) {
 		super(context, attributes);
@@ -82,6 +88,9 @@ public class LanguageSpinner extends EuphrasiaSpinner {
 		public void onItemSelected(AdapterView<?> parent, View view, int position,
 				long id) {
 			doSelect(parent,view,position,id);
+			if(mySourceActivity instanceof EntryActivity){
+				((EntryActivity)mySourceActivity).setLanguage(parent.getSelectedItem().toString());
+			}
 		}
 
 		@Override

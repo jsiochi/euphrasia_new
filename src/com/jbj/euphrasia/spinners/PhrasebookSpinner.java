@@ -85,6 +85,9 @@ public class PhrasebookSpinner extends EuphrasiaSpinner {
 		public void onItemSelected(AdapterView<?> parent, View view, int position,
 				long id) {
 			doSelect(parent,view,position,id);
+			if(mySourceActivity instanceof EntryActivity){
+				((EntryActivity)mySourceActivity).setPhrasebook(parent.getSelectedItem().toString());
+			}
 		}
 
 		@Override

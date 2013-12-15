@@ -19,12 +19,6 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"/>
 	   	
-	   	<Button 
-	       	android:layout_height="wrap_content"
-	       	android:layout_width="wrap_content"
-	       	android:id="@+id/browse_phrasebooks"
-	        android:text="@string/browse_phrasebooks_button" 
-	        android:onClick="onPhrasebookBrowse"/>
 	   	
 	   	<Button
 	   	    android:layout_height="wrap_content"
