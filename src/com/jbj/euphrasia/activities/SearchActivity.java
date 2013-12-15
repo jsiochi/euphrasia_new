@@ -256,10 +256,10 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		myCursorAdapter.swapCursor(null);
 	}
 	
-	public void displayEverything(){
-		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
-		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, null,null,null);
-	}
+//	public void displayEverything(){
+//		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
+//		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, null,null,null);
+//	}
 	
 	public void doEntrySearch(String selection) {
 		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};

@@ -56,7 +56,7 @@ public class MainActivity extends Activity implements Constants {
 		getMainLooper();
 		AbstractRemoteTask clear = new ClearRemoteTask();
 		clear.setActivity(this);
-		clear.execute(new String[]{"user_id", "0"});
+		clear.execute(new String[]{"user_id", myUser});
 		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, SELECT_ALL_PROJECTION, null,null,null);
 		onSyncHelper();
 	}
@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements Constants {
 			}
 			String[] param = new String[2];
 			param[0] = "user_id";
-			param[1] = "2";
+			param[1] = myUser;
 			params.add(param);
 			AbstractRemoteTask write = new WriteRemoteTask();
 			write.setActivity(this);
