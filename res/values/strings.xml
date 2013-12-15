@@ -59,7 +59,7 @@
     <string name="browse_filter_hint">Browse by user, title, or language.</string>
     <string name="browse_user">By User</string>
     <string name="browse_language">By Language</string>
-    <string name="browse_title">By Title</string>
+    <string name="browse_title">By Title or Native Text</string>
     <string name="browse_remote_button">Go!</string>
     <string name="delete_alert_message">Are you sure you want to delete this entry?</string>
     <string name="delete_confirm_button">OK</string>
@@ -69,5 +69,7 @@
     <string name="sync_button">Sync</string>
     <string name="remember_text">Remember me.</string>
     <string name="logout">Logout</string>
+    
+    <string name="browse_remote_all_button">View All</string>
 
 </resources>

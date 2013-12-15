@@ -1244,6 +1244,7 @@ containing a value of this type.
         public static final int browse_filter_hint=0x7f0b003e;
         public static final int browse_language=0x7f0b0040;
         public static final int browse_phrasebooks_button=0x7f0b002e;
+        public static final int browse_remote_all_button=0x7f0b004a;
         public static final int browse_remote_button=0x7f0b0042;
         public static final int browse_remote_title=0x7f0b003d;
         public static final int browse_title=0x7f0b0041;
