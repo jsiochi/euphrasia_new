@@ -29,7 +29,6 @@ public class LoginActivity extends FragmentActivity implements Constants{
 	private String myEmail;
 	private String myPassword;
 	private boolean rememberMe = false;
-	private static final String PREFS_NAME = "My Preferences";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +88,10 @@ public class LoginActivity extends FragmentActivity implements Constants{
 		if(rememberMe){
 			SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_NAME, 0);
 			SharedPreferences.Editor editor = sharedPreferences.edit();
-			editor.putString("user_name", myUsername);
-			editor.putString("pass", myPassword);
-			editor.putString("user_id", id);
+			editor.putString(PREFS_USERNAME_KEY, myUsername);
+			editor.putString(PREFS_PASSWORD_KEY, myPassword);
+			editor.putString(PREFS_USERID_KEY, id);
 			editor.commit();
-			Log.i("stored user name",sharedPreferences.getString("user_name" , "DNE"));
-			Log.i("stored password",sharedPreferences.getString("pass" , "DNE"));
 		}
 		
 		Intent intent = new Intent(this,MainActivity.class);

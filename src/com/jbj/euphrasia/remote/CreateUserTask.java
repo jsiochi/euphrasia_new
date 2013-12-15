@@ -10,13 +10,11 @@ import org.json.JSONException;
 import com.jbj.euphrasia.activities.LoginActivity;
 
 import android.os.Bundle;
-import android.os.Looper;
 import android.widget.Toast;
 
 public class CreateUserTask extends AbstractRemoteTask {
 	
 	protected Bundle doInBackground(String[]... arg0) {
-		Looper.getMainLooper().prepare();
 		super.doInBackground(arg0);
 		Bundle theArgs = new Bundle();
 		int success;
@@ -27,11 +25,10 @@ public class CreateUserTask extends AbstractRemoteTask {
 			}
 			else{
 				//user does not exist. Reject access.
-				Toast.makeText(mySourceActivity,"User not found!", Toast.LENGTH_LONG).show();
+				
 				theArgs.putBoolean("CanLogin", false);
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -59,6 +56,9 @@ public class CreateUserTask extends AbstractRemoteTask {
 		if(args.getBoolean("CanLogin")) {
 			LoginActivity login = (LoginActivity) mySourceActivity;
 			login.login("holder");
+		}
+		else{
+			Toast.makeText(mySourceActivity,"User not found!", Toast.LENGTH_LONG).show();
 		}
 	}
 

@@ -6,6 +6,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
+import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.activities.MainActivity;
 
@@ -18,19 +19,13 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 
 	@Override
 	protected Bundle doInBackground(String[]... arg0) {
-		Looper.getMainLooper().prepare();
+		//Looper.getMainLooper().prepare();
 		super.doInBackground(arg0);
 		try{
 			int success = myJsonObject.getInt("success");
 			Log.i("YOMAMA", myJsonObject.getString("message"));
 			Log.i("JOMAMA", String.valueOf(success));
 			//Log.i("YOKO_ONO", myJsonObject.getString("errorjunk"));
-			if(success==1){
-				Toast.makeText(mySourceActivity, "Successfully synced to remote database.", Toast.LENGTH_LONG).show();
-			}
-			else{
-				Toast.makeText(mySourceActivity, "Failed to sync to remote database.", Toast.LENGTH_LONG).show();
-			}
 		}
 		catch(Exception e){
 			e.printStackTrace();

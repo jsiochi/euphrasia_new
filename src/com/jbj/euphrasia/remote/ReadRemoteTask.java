@@ -19,7 +19,6 @@ public class ReadRemoteTask extends AbstractRemoteTask {
 	@SuppressWarnings("finally")
 	@Override
 	protected Bundle doInBackground(String[]... args) { 
-		Looper.getMainLooper().prepare();
 		super.doInBackground(args);
 		Bundle queryBundle = new Bundle();
 		try{
@@ -48,7 +47,7 @@ public class ReadRemoteTask extends AbstractRemoteTask {
 				}
 			}
 			else{
-				Toast.makeText(mySourceActivity, "Fail!", Toast.LENGTH_LONG).show();
+				return null;
 			}
 		}
 		catch(Exception e){
@@ -67,7 +66,7 @@ public class ReadRemoteTask extends AbstractRemoteTask {
 			remoteSearch.acceptResult(bundle);
 		}
 		else{
-			Log.i("postExecute","Bundle is null");
+			Toast.makeText(mySourceActivity,"Failed to query remote database!",Toast.LENGTH_LONG).show();
 		}
 	}
 	
