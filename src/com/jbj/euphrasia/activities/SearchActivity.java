@@ -9,6 +9,7 @@ import com.jbj.euphrasia.dialog_fragments.DeleteAlertDialog;
 import com.jbj.euphrasia.dialog_fragments.NewUserDialog;
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.listeners.EntryListListener;
+import com.jbj.euphrasia.listeners.RemoteEntryListListener;
 import com.jbj.euphrasia.managers.DrawerManager;
 import com.jbj.euphrasia.managers.LogoutManager;
 import com.jbj.euphrasia.managers.SyncManager;
@@ -195,6 +196,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			Log.i("coumn pos", String.valueOf(i));
 			String columnValue = cursor.getString(i);
 			String columnName = cursor.getColumnName(i);
+			Log.i("columnname", columnName + " " + columnValue);
 			values.put(columnName, columnValue);
 			i++;
 		}

@@ -1,11 +1,13 @@
 package com.jbj.euphrasia.activities;
 
+
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.managers.DrawerManager;
 import com.jbj.euphrasia.managers.LogoutManager;
 import com.jbj.euphrasia.managers.SyncManager;
 import com.jbj.euphrasia.spinners.LanguageSpinner;
@@ -15,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
@@ -44,8 +47,32 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 		PhrasebookSpinner phrasebookChoices = (PhrasebookSpinner) findViewById(R.id.browse_phrasebooks);
 		phrasebookChoices.setActivitySource(this);
 		Log.i("EEEE","WHAT IS GOING ON");
+		
+		DrawerManager.initialize(savedInstanceState,this);
 	}
+	
+	@Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+            super.onPostCreate(savedInstanceState);
+            DrawerManager.syncDrawerToggle();
+    }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        DrawerManager.changeConfig(newConfig);
+        
+    }
+	
+    /** Called whenever we call invalidateOptionsMenu() */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+            // If the drawer is open, hide action items related to the content view
+            DrawerManager.isDrawerOpen();
 
+            //menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+            return super.onPrepareOptionsMenu(menu);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,6 +86,12 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
+		if (DrawerManager.isItemSelected(item)) {
+        	// Pass the event to ActionBarDrawerToggle, if it returns
+            // true, then it has handled the app icon touch event
+                return true;
+        }
+        // Handle your other action bar items...
 	    switch (item.getItemId()) {
 	        case R.id.sync:
 	        	SyncManager.setActivity(this);

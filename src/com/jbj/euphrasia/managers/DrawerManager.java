@@ -7,6 +7,7 @@ import com.jbj.euphrasia.R.id;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.string;
 import com.jbj.euphrasia.activities.EntryActivity;
+import com.jbj.euphrasia.activities.IntermediateSearchActivity;
 import com.jbj.euphrasia.activities.LoginActivity;
 import com.jbj.euphrasia.activities.MainActivity;
 import com.jbj.euphrasia.activities.RemoteSearchActivity;
@@ -86,10 +87,10 @@ public class DrawerManager {
 				    myActivity.getActionBar().setDisplayHomeAsUpEnabled(true);
 				    myActivity.getActionBar().setHomeButtonEnabled(true);
 		        
-		        if (savedInstanceState == null) {
+		        /*if (savedInstanceState == null) {
 					// on first time display view for first nav item
 		        	Navigate(2);
-		 		}
+		 		}*/
 		        
 		     // Creating an ArrayAdapter to add items to the listview mDrawerList
 				ArrayAdapter<String> adapter = new ArrayAdapter<String>(myActivity.getBaseContext(),
@@ -141,15 +142,18 @@ public class DrawerManager {
 	 		case 1:
 	 			myActivity.startActivity(new Intent(myActivity, EntryActivity.class));
 	 			break;
+	 		case 2:
+	 			Intent toIntermediateIntent = new Intent(myActivity,IntermediateSearchActivity.class);
+	 			myActivity.startActivity(toIntermediateIntent);
 	 		case 3:
 	 			myActivity.startActivity(new Intent(myActivity,RemoteSearchActivity.class));
 	 			break;
-	 		case 4:
+	 		/*case 4:
 	 			intent = new Intent(myActivity, LoginActivity.class);
 	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            myActivity.startActivity(intent);
 	 			break;
-	 		/*case 5:
+	 		case 5:
 	 			intent = new Intent(currentActivity, SettingsActivity.class);
 	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            currentActivity.startActivity(intent);

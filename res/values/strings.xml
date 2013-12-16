@@ -77,17 +77,17 @@
 	
     <!-- Nav Drawer Menu Items -->
     <string-array name="menu_title_array">
-        <item>Main</item>
+        <item>Home</item>
         <item>Create New Entry</item>
         <item>Local Entries</item>
         <item>Remote Entries</item>
-        <item>Account</item>
-        <item>Settings</item>
+        <!-- <item>Account</item>
+        <item>Settings</item> -->
     </string-array>
     
     <!-- Fragment Activity Titles -->
     <string-array name="fragment_title_array">
-        <item>Main</item>
+        <item>Euphrasia</item>
         <item>Entry</item>
         <item>Local Entries</item>
         <item>Remote Entries</item>

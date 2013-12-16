@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.jbj.euphrasia.Controller;
+
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
@@ -16,14 +17,19 @@ import com.jbj.euphrasia.fields.NativeTextField;
 import com.jbj.euphrasia.fields.TagField;
 import com.jbj.euphrasia.fields.TitleField;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.managers.DrawerManager;
 import com.jbj.euphrasia.spinners.LanguageSpinner;
 import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
@@ -45,7 +51,8 @@ public class ReadEntryActivity extends Activity implements Constants{
 		findTextViews();
 		setUpTextViews();
 		loadInitialData();
-		
+		DrawerManager.initialize(savedInstanceState,this);
+
 	}
 
 	private void findTextViews() {
@@ -97,5 +104,47 @@ public class ReadEntryActivity extends Activity implements Constants{
 		return (ContentValues)intent.getParcelableExtra(ENTRY_INTENT_PARCELABLE);
 	}
 
+	@Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+            super.onPostCreate(savedInstanceState);
+            DrawerManager.syncDrawerToggle();
+    }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        DrawerManager.changeConfig(newConfig);
+        
+    }
+	
+    /** Called whenever we call invalidateOptionsMenu() */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+            // If the drawer is open, hide action items related to the content view
+            DrawerManager.isDrawerOpen();
 
+            //menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+            return super.onPrepareOptionsMenu(menu);
+    }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    //inflater.inflate(R.menu.entry, menu);
+	    //menu.findItem(R.id.sync).setIcon(R.drawable.sync);
+	    return super.onCreateOptionsMenu(menu);
+	}
+    
+    public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+		if (DrawerManager.isItemSelected(item)) {
+        	// Pass the event to ActionBarDrawerToggle, if it returns
+            // true, then it has handled the app icon touch event
+                return true;
+        }
+        // Handle your other action bar items...
+		
+		return super.onOptionsItemSelected(item);
+    }
 }

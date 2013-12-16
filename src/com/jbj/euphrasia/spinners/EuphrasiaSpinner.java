@@ -52,9 +52,12 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	}
 	
 	public void load(String data){
-
+		Log.i("thedata",data);
+		Log.i("Map size", itemMap.size()+"");
 		try{
 			this.setSelection(itemMap.get(data));
+			Log.i("THESTOREDINDEX", itemMap.get(data)+"");
+			//Log.i("THESPINNERSIZE", this.g);
 		}
 		catch(NullPointerException e){
 			e.printStackTrace();
@@ -64,9 +67,13 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	
 	public void setActivitySource(Activity source){
 		mySourceActivity = source;
-		String[] array = mySourceActivity.getResources().getStringArray(this.getArrayData());
-		for(int i = 0;i<array.length;i++){
-			itemMap.put(array[i],i);
+		//String[] array = mySourceActivity.getResources().getStringArray(this.getArrayData());
+		//this causes a bug because the stored database languages/phrasebooks aren't being loaded into the map
+		Cursor cursor = this.getCursor(null);
+		int i = 0;
+		while(cursor.moveToNext()){
+			itemMap.put(cursor.getString(0),i);
+			i++;
 		}
 		if(source instanceof EntryActivity){
 			canCreateItems = true;
@@ -122,7 +129,7 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 		EntryActivity entryActivity = (EntryActivity)mySourceActivity;
 		Controller controller = entryActivity.getController();
 		controller.updateEntryField(this.createField(createdName.toString()));
-    	//Log.i("EntryActivity.java","New Phrasebook created with name ="+createdName.toString());
+    	//Log.i("EntryActivity.java","New Phrasebook created with name = "+createdName.toString());
     	Cursor cursor = getCursor(createdName.toString());
     	myAdapter.swapCursor(cursor);
     	mySpinnerParent.setSelection(mySpinnerParent.getCount() - 1);

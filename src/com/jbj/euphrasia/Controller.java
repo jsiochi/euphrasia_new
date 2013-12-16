@@ -13,6 +13,7 @@ import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Controller {
 
@@ -46,17 +47,19 @@ public class Controller {
 	}
 	
 	public void onSave() {
-		//TODO way to disable save button or store an entry without a recording?
-		//TODO need to save everything regardless of whether that EditText lost focus
-		if(myCurrentUri == null) {
-			Log.i("SAVING_STUFF", "new entry");
-			(new DateField()).updateEntryField(myEntry);
-			Field audioField = myRecordingManager.save();
-			audioField.updateEntryField(myEntry);
-			myCurrentUri = myEntry.saveEntry();
-		} else {
-			Log.i("SAVING_STUFF", "updating entry");
-			myEntry.updateEntry(myCurrentUri);
+		if(!myEntry.getForeignText().toString().isEmpty() && !myEntry.getNativeText().toString().isEmpty()){
+			if(myCurrentUri == null) {
+				(new DateField()).updateEntryField(myEntry);
+				Field audioField = myRecordingManager.save();
+				audioField.updateEntryField(myEntry);
+				myCurrentUri = myEntry.saveEntry();
+				Toast.makeText(mySourceActivity, "Entry saved.", Toast.LENGTH_SHORT).show();
+			} else {
+				myEntry.updateEntry(myCurrentUri);
+			}
+		}
+		else{
+			Toast.makeText(mySourceActivity, "You must enter both native and foreign text before saving.", Toast.LENGTH_SHORT).show();
 		}
 	}
 

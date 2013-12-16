@@ -23,6 +23,8 @@ public final class R {
         public static final int languages=0x7f0d0000;
         public static final int languages_no_edit=0x7f0d0001;
         /**  Nav Drawer Menu Items 
+ <item>Account</item>
+        <item>Settings</item> 
          */
         public static final int menu_title_array=0x7f0d0002;
         /**  Nav Drawer List Item Icons 

@@ -3,9 +3,14 @@ package com.jbj.euphrasia.remote;
 import java.io.File;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.ByteArrayEntity;
+//import org.apache.http.entity.mime.HttpMultipartMode;
+//import org.apache.http.entity.mime.MultipartEntity;
+//import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.message.BasicNameValuePair;
+/*import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.FileBody;*/
 import org.json.JSONException;
 
 import com.jbj.euphrasia.managers.SyncManager;
@@ -21,18 +26,33 @@ public class AudioUploadTask extends AbstractRemoteTask {
 		myAudioFile = new File(path);
 	}
 
-	@Override
+//	@Override
 	protected HttpUriRequest getUriRequest(String[]... params) {
-		HttpPost post = new HttpPost(getServiceUrl());
-	    MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+//		HttpPost post = new HttpPost(getServiceUrl());
+//		byte[] data = convertAudio("");
+//		String encodedData = Base64.encodeToString(data, Base64.DEFAULT);
+//		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//	    nameValuePairs.add(new BasicNameValuePair("audio", encodedData));
+//	    MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+//	    FileBody body = new FileBody(myAudioFile);
+//	    entity.addPart("file", body);
+//	    try {
+//			post.setEntity(entity);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return post;
+		return null;
+		//HttpPost post = new HttpPost(getServiceUrl());
+/*	    MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
 	    FileBody body = new FileBody(myAudioFile);
 	    entity.addPart("file", body);
 	    try {
 			post.setEntity(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		return post;
+		}*/
+		//return post;
 	}
 	
 	@Override

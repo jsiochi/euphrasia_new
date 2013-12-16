@@ -1,7 +1,8 @@
-package com.jbj.euphrasia.activities;
+package com.jbj.euphrasia.listeners;
 
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
+import com.jbj.euphrasia.activities.SearchActivity;
 
 import android.database.Cursor;
 import android.net.Uri;
