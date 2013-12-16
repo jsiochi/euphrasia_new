@@ -50,7 +50,7 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	}
 	
 	public void load(String data){
-		Log.i("Map size",data.to);
+		Log.i("Map size",data);
 		this.setSelection(itemMap.get(data));
 	}
 	
@@ -59,6 +59,7 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	public void setActivitySource(Activity source){
 		mySourceActivity = source;
 		String[] array = mySourceActivity.getResources().getStringArray(this.getArrayData());
+		//this causes a bug because the stored database languages/phrasebooks aren't being loaded into the map
 		for(int i = 0;i<array.length;i++){
 			itemMap.put(array[i],i);
 		}

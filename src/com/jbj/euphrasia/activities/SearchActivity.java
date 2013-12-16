@@ -191,6 +191,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			Log.i("coumn pos", String.valueOf(i));
 			String columnValue = cursor.getString(i);
 			String columnName = cursor.getColumnName(i);
+			Log.i("columnname", columnName + " " + columnValue);
 			values.put(columnName, columnValue);
 			i++;
 		}

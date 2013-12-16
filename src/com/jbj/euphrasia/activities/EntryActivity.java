@@ -103,8 +103,13 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			myLanguage = myInitialData.getAsString(EntryColumns.COLUMN_NAME_LANGUAGE);
 			myPhrasebook = myInitialData.getAsString(EntryColumns.COLUMN_NAME_PHRASEBOOK);
 			
-			languageSpinner.load(myLanguage);
-			phrasebookSpinner.load(myPhrasebook);
+			if(myLanguage != null) {
+				languageSpinner.load(myLanguage);
+			}
+			if(myPhrasebook != null) {
+				Log.i("THE THING",myPhrasebook.toString());
+				phrasebookSpinner.load(myPhrasebook);
+			}
 		}
 		
 		findTextViews();
