@@ -30,6 +30,7 @@ import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
+import com.jbj.euphrasia.remote.AudioUploadTask;
 import com.jbj.euphrasia.remote.ClearRemoteTask;
 import com.jbj.euphrasia.remote.WriteRemoteTask;
 
@@ -56,47 +57,6 @@ public class MainActivity extends Activity implements Constants {
 		SyncManager.sync();
 	}
 
-//	public void onSyncHelper() {
-//		if(myCursor.moveToNext()) {
-//			int j;
-//			j = 0;
-//			List<String[]> params = new ArrayList<String[]>(); 
-//			for(int i=0;i<myCursor.getColumnCount();i++){
-//				String[] param = new String[2];
-//				param[0] = myCursor.getColumnName(i);
-//				param[1] = myCursor.getString(i);
-//				params.add(param);
-//				j++;
-//			}
-//			String[] param = new String[2];
-//			param[0] = "user_id";
-//			param[1] = myUser;
-//			params.add(param);
-//			AbstractRemoteTask write = new WriteRemoteTask();
-//			write.setActivity(this);
-//			write.execute(params.toArray(new String[params.size()][2]));
-//		}
-//		else {
-//			myCursor.close();
-//		}
-//	}
-
-//		AbstractRemoteTask testTask = new WriteRemoteTask();
-//		testTask.setActivity(this);
-//		ArrayList<String[]> stuff = new ArrayList<String[]>();
-//		for(int i = 0; i<SELECT_ALL_PROJECTION.length-1;i++){
-//			if(i==2){
-//				String[] nestedStuff = {SELECT_ALL_PROJECTION[i],"2002-09-22 11:11:11"};
-//				stuff.add(i, nestedStuff);
-//			}
-//			else{
-//				String[] nestedStuff = {SELECT_ALL_PROJECTION[i],"blah"};
-//				stuff.add(i, nestedStuff);
-//			}
-//		}
-//		testTask.execute(stuff.toArray(new String[stuff.size()][2]));
-//	}
-	
 	public void onStartSearch(View view){
 		//retrieve all of the languages in the database and pass extra to Intermediate activity
 		Intent toIntermediateIntent = new Intent(this,IntermediateSearchActivity.class);

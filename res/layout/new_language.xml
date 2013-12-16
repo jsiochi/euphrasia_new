@@ -7,7 +7,7 @@
     android:layout_gravity="center" >
     
 	<EditText 
-        android:id="@+id/new_language_edit_text_id" android:text="@string/new_language_message"
+        android:id="@+id/new_language_edit_text_id" android:hint="@string/new_language_message"
         android:layout_width="wrap_content" android:layout_height="wrap_content"/>
      
      <Button 

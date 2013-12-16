@@ -40,6 +40,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class SearchActivity extends ListActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor>, Constants {
 
@@ -103,26 +104,14 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		}
 		if(ACTION_REMOTE_QUERY.equals(intent.getAction())){
 			Bundle remoteResults = intent.getBundleExtra(EXTRA_REMOTE_BUNDLE);
+			if(remoteResults.size()==0){
+				Toast.makeText(this,"No entries found. Try another search term.",Toast.LENGTH_LONG).show();
+			}
 			myCursorFilter = EntryProvider.VIEW_REMOTE;
 			this.doEntrySearch("");
 			myListView.setOnItemClickListener(new RemoteEntryListListener(this));
 			
 		}
-//		View checkBoxView = View.inflate(this, R.layout.checkbox, null);
-//		CheckBox noWarningOption = (CheckBox)checkBoxView.findViewById(R.id.checkbox);
-//		
-//		Log.i("Check",""+(noWarningOption==null));
-//		myWarningCheckbox = noWarningOption;
-//		noWarningOption.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-//
-//			@Override
-//			public void onCheckedChanged(CompoundButton buttonView,
-//					boolean isChecked) {
-//				if(isChecked)
-//					warnOnDelete = false;
-//			}
-//			
-//		});
 		
 		myListView.setLongClickable(true);
 		myListView.setOnItemLongClickListener(new OnItemLongClickListener(){
@@ -262,11 +251,6 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		myCursorAdapter.swapCursor(null);
 	}
 	
-//	public void displayEverything(){
-//		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG};
-//		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, projection, null,null,null);
-//	}
-	
 	public void doEntrySearch(String selection) {
 		String[] projection = {EntryContract.EntryColumns.COLUMN_NAME_TITLE, EntryContract.EntryColumns.COLUMN_NAME_TAG, EntryContract.EntryColumns.COLUMN_NAME_NATIVE_TEXT};
 		Bundle args = new Bundle();
@@ -277,7 +261,6 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 
 	public void sendToReadEntry(Cursor cursor, long id) {
 		int columnCount = cursor.getColumnCount();
-		Log.i("coumn count", String.valueOf(columnCount));
 		int i = 0;
 		ContentValues values = new ContentValues();
 		cursor.moveToFirst();
@@ -293,7 +276,6 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		Intent toEntryIntent = new Intent(this,ReadEntryActivity.class);
 		toEntryIntent.putExtra(ENTRY_INTENT_PARCELABLE, values);
 		toEntryIntent.setAction(ACTION_GET_ENTRY_DATA);
-		Log.i("SEARCHACTIVITY","Starting intent");
 		startActivity(toEntryIntent);
 	}
 }

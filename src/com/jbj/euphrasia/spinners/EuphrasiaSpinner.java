@@ -23,6 +23,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -32,6 +33,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	
@@ -50,11 +52,13 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	}
 	
 	public void load(String data){
-		Log.i("Map size",data.to);
-		this.setSelection(itemMap.get(data));
+		try{
+			this.setSelection(itemMap.get(data));
+		}
+		catch(NullPointerException e){
+			e.printStackTrace();
+		}
 	}
-	
-
 	
 	public void setActivitySource(Activity source){
 		mySourceActivity = source;
@@ -71,9 +75,9 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	protected void initialize(){
 		String[] froms = this.getFroms();
 		int[] tos = this.getTos();
-		myAdapter = new SimpleCursorAdapter(mySourceActivity, android.R.layout.simple_spinner_item, 
+		myAdapter = new SimpleCursorAdapter(mySourceActivity, android.R.layout.simple_list_item_1, 
 				this.getCursor(null), froms, tos, 0);
-		myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		myAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		this.setAdapter(myAdapter);
 	}
 	

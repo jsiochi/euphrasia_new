@@ -25,7 +25,6 @@ public abstract class MediaManager {
 		else{
 			this.stop();
 		}
-		myStatus = !myStatus;
 	}
 	
 	public boolean isGoing(){

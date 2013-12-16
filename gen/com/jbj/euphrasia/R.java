@@ -987,21 +987,33 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_btn_speak_now=0x7f020057;
-        public static final int ic_launcher=0x7f020058;
-        public static final int ic_media_play=0x7f020059;
-        public static final int ic_menu_compass=0x7f02005a;
-        public static final int ic_menu_play_clip=0x7f02005b;
-        public static final int record_button=0x7f02005c;
-        public static final int refresh=0x7f02005d;
-        public static final int search_even_row=0x7f02005e;
-        public static final int search_odd_row=0x7f02005f;
-        public static final int search_selector_even=0x7f020060;
-        public static final int search_selector_odd=0x7f020061;
-        public static final int splash_screen=0x7f020062;
-        public static final int splash_screen1=0x7f020063;
-        public static final int sync=0x7f020064;
-        public static final int text_back=0x7f020065;
+        public static final int create=0x7f020057;
+        public static final int globe=0x7f020058;
+        public static final int go=0x7f020059;
+        public static final int ic_btn_speak_now=0x7f02005a;
+        public static final int ic_euphrasia=0x7f02005b;
+        public static final int ic_launcher=0x7f02005c;
+        public static final int ic_media_play=0x7f02005d;
+        public static final int ic_menu_compass=0x7f02005e;
+        public static final int ic_menu_play_clip=0x7f02005f;
+        public static final int list=0x7f020060;
+        public static final int newuser=0x7f020061;
+        public static final int radio_bg=0x7f020062;
+        public static final int record_button=0x7f020063;
+        public static final int refresh=0x7f020064;
+        public static final int rounded_button=0x7f020065;
+        public static final int search=0x7f020066;
+        public static final int search2=0x7f020067;
+        public static final int search_even_row=0x7f020068;
+        public static final int search_odd_row=0x7f020069;
+        public static final int search_selector_even=0x7f02006a;
+        public static final int search_selector_odd=0x7f02006b;
+        public static final int share=0x7f02006c;
+        public static final int signin=0x7f02006d;
+        public static final int splash_screen=0x7f02006e;
+        public static final int splash_screen1=0x7f02006f;
+        public static final int sync=0x7f020070;
+        public static final int text_back=0x7f020071;
     }
     public static final class id {
         public static final int about=0x7f06006f;
@@ -1184,11 +1196,12 @@ containing a value of this type.
         public static final int confirm_save=0x7f030022;
         public static final int create_phrasebook=0x7f030023;
         public static final int delete_alert=0x7f030024;
-        public static final int existing_user=0x7f030025;
-        public static final int new_language=0x7f030026;
-        public static final int new_user=0x7f030027;
-        public static final int search_list_item=0x7f030028;
-        public static final int support_simple_spinner_dropdown_item=0x7f030029;
+        public static final int euph_spinner_class=0x7f030025;
+        public static final int existing_user=0x7f030026;
+        public static final int new_language=0x7f030027;
+        public static final int new_user=0x7f030028;
+        public static final int search_list_item=0x7f030029;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002a;
     }
     public static final class menu {
         public static final int browse=0x7f0e0000;
@@ -1247,23 +1260,23 @@ containing a value of this type.
         public static final int action_search=0x7f0b0023;
         public static final int action_settings=0x7f0b000e;
         public static final int app_name=0x7f0b000d;
-        public static final int browse_filter_hint=0x7f0b003f;
-        public static final int browse_language=0x7f0b0041;
+        public static final int browse_filter_hint=0x7f0b0040;
+        public static final int browse_language=0x7f0b0042;
         public static final int browse_phrasebooks_button=0x7f0b002f;
-        public static final int browse_remote_all_button=0x7f0b004b;
-        public static final int browse_remote_button=0x7f0b0043;
-        public static final int browse_remote_title=0x7f0b003e;
-        public static final int browse_title=0x7f0b0042;
-        public static final int browse_user=0x7f0b0040;
+        public static final int browse_remote_all_button=0x7f0b004c;
+        public static final int browse_remote_button=0x7f0b0044;
+        public static final int browse_remote_title=0x7f0b003f;
+        public static final int browse_title=0x7f0b0043;
+        public static final int browse_user=0x7f0b0041;
         public static final int button_play=0x7f0b0015;
         public static final int button_record_begin=0x7f0b0014;
         public static final int confirm_save_button=0x7f0b0028;
         public static final int confirm_save_message=0x7f0b0027;
         public static final int create_phrase_edit_text=0x7f0b002c;
         public static final int create_phrasebook_button=0x7f0b002b;
-        public static final int delete_alert_message=0x7f0b0044;
-        public static final int delete_cancel_button=0x7f0b0046;
-        public static final int delete_confirm_button=0x7f0b0045;
+        public static final int delete_alert_message=0x7f0b0045;
+        public static final int delete_cancel_button=0x7f0b0047;
+        public static final int delete_confirm_button=0x7f0b0046;
         public static final int edit_entry_language=0x7f0b0016;
         public static final int edit_entry_name=0x7f0b0012;
         public static final int edit_entry_tags=0x7f0b0013;
@@ -1278,9 +1291,9 @@ containing a value of this type.
         public static final int hint_user_email=0x7f0b003a;
         public static final int hint_user_password=0x7f0b0039;
         public static final int language_dialog_btnMessage=0x7f0b0031;
-        public static final int login_banner=0x7f0b0047;
+        public static final int login_banner=0x7f0b0048;
         public static final int login_message=0x7f0b0034;
-        public static final int logout=0x7f0b004a;
+        public static final int logout=0x7f0b004b;
         public static final int main_browse_remote=0x7f0b003c;
         public static final int main_button_search=0x7f0b0021;
         public static final int main_button_start=0x7f0b0011;
@@ -1288,10 +1301,10 @@ containing a value of this type.
         public static final int new_language_message=0x7f0b0032;
         public static final int new_user_btn=0x7f0b0035;
         public static final int new_user_message=0x7f0b0037;
-        public static final int remember_text=0x7f0b0049;
+        public static final int remember_text=0x7f0b004a;
         public static final int save_button=0x7f0b0026;
         public static final int sync_btnText=0x7f0b0022;
-        public static final int sync_button=0x7f0b0048;
+        public static final int sync_button=0x7f0b0049;
         public static final int tag_field=0x7f0b0025;
         public static final int text_entry_foreign=0x7f0b001a;
         /** 
@@ -1314,6 +1327,7 @@ containing a value of this type.
         public static final int title_main_activity=0x7f0b0020;
         public static final int viewAll_btnText=0x7f0b0030;
         public static final int welcome_greeting=0x7f0b000f;
+        public static final int welcome_subtext=0x7f0b003e;
     }
     public static final class style {
         /** 

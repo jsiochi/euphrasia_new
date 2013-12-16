@@ -29,7 +29,6 @@ public class EntryListListener implements OnItemClickListener{
 				EntryColumns.COLUMN_NAME_AUDIO,EntryColumns.COLUMN_NAME_DATE,EntryColumns.COLUMN_NAME_TAG};
 		Cursor cursor = mySourceActivity.getContentResolver().query(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
 				String.valueOf(id)), projection, null,null,null);
-		Log.i("ENTRYCLICK",""+String.valueOf(id));
 		mySourceActivity.sendToEntry(cursor, id);
 	}
 	

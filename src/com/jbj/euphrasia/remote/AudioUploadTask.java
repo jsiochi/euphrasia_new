@@ -12,25 +12,39 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
+
+import com.jbj.euphrasia.SyncManager;
 
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 
 public class AudioUploadTask extends AbstractRemoteTask {
+	
+	private File myAudioFile;
+	
+	public void setAudioFile(String path){
+		myAudioFile = new File(path);
+	}
 
 	@Override
 	protected HttpUriRequest getUriRequest(String[]... params) {
 		HttpPost post = new HttpPost(getServiceUrl());
-		byte[] data = convertAudio("");
-		String encodedData = Base64.encodeToString(data, Base64.DEFAULT);
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-	    nameValuePairs.add(new BasicNameValuePair("audio", encodedData));
+//		byte[] data = convertAudio("");
+//		String encodedData = Base64.encodeToString(data, Base64.DEFAULT);
+//		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//	    nameValuePairs.add(new BasicNameValuePair("audio", encodedData));
+	    MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+	    FileBody body = new FileBody(myAudioFile);
+	    entity.addPart("file", body);
 	    try {
-			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-		} catch (UnsupportedEncodingException e) {
+			post.setEntity(entity);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return post;
@@ -53,23 +67,29 @@ public class AudioUploadTask extends AbstractRemoteTask {
 		return null;
 	}
 	
-	private byte[] convertAudio(String filePath){
-		File f = new File(filePath);
-		byte[] soundFileByteArray = new byte[(int) f.length()];
-		try {
-			FileInputStream fis = new FileInputStream(f);
-			fis.read(soundFileByteArray);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		finally{
-			return soundFileByteArray;
-		}
-	}
+//	private byte[] convertAudio(String filePath){
+//		File f = new File(filePath);
+//		byte[] soundFileByteArray = new byte[(int) f.length()];
+//		try {
+//			FileInputStream fis = new FileInputStream(f);
+//			fis.read(soundFileByteArray);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		finally{
+//			return soundFileByteArray;
+//		}
+//	}
 
 	@Override
 	protected String getServiceUrl() {
 		return "http://goeuphrasia.com/php/db_audio_upload.php";
+	}
+	
+	@Override
+	protected void onPostExecute(Bundle args) {
+		SyncManager.setActivity(mySourceActivity);
+		SyncManager.completeSync();
 	}
 
 }

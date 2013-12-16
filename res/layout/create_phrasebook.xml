@@ -6,7 +6,7 @@
     android:orientation="vertical" >
     
     <EditText 
-        android:id="@+id/new_phrasebook_name" android:text="@string/create_phrase_edit_text"
+        android:id="@+id/new_phrasebook_name" android:hint="@string/create_phrase_edit_text"
         android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     
     <Button 

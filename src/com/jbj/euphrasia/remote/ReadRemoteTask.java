@@ -65,9 +65,11 @@ public class ReadRemoteTask extends AbstractRemoteTask {
 	@Override
 	protected void onPostExecute(Bundle bundle){
 		if(bundle!=null){
+			
 			RemoteSearchActivity remoteSearch = (RemoteSearchActivity)mySourceActivity;
 			remoteSearch.getContentResolver().call(EntryProvider.CONTENT_REMOTE_URI, EntryProvider.VIEW_REMOTE, null, bundle);
 			Intent displayResults = new Intent(remoteSearch,SearchActivity.class);
+			displayResults.putExtra(Constants.EXTRA_REMOTE_BUNDLE, bundle);
 			displayResults.setAction(Constants.ACTION_REMOTE_QUERY);
 			remoteSearch.startActivity(displayResults);
 		}

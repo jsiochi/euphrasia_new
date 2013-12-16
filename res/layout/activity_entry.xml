@@ -37,12 +37,14 @@
 	    	    
 	    	    <com.jbj.euphrasia.spinners.LanguageSpinner
 	   	    	android:id="@+id/select_language"
+	   	    	android:textColor="#FCFCFC" 
 	    	    android:layout_width="fill_parent"
 	        	android:layout_height="wrap_content"/>
 	    	
 		    	<com.jbj.euphrasia.spinners.PhrasebookSpinner
 				    android:id="@+id/entry_phrasebook_spinner"
 				    android:layout_width="fill_parent"
+				    android:textColor="#FCFCFC" 
 				    android:layout_height="wrap_content" />
 	    	</LinearLayout>
 	    
@@ -79,8 +81,8 @@
 			    android:id="@+id/entry_record_btn"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:drawableLeft="@android:drawable/ic_btn_speak_now"
-			    android:text="@string/button_record_begin"    	
+			    android:drawableTop="@android:drawable/ic_btn_speak_now"
+			    android:text="@string/button_record_begin"   	
 	        	android:onClick="handleRecording" />
 	     	
 	     	<View
@@ -199,13 +201,6 @@
 				</View>		
 	    </LinearLayout>
 	    
-	        
-<!--    	<Button
-	            android:id="@+id/save"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="handleSave"
-	            android:text="@string/save_button" />
--->
+	      
 	</LinearLayout>
 </ScrollView>	

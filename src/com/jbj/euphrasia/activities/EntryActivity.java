@@ -75,6 +75,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	private Map<String,EditText> myTextViews = new HashMap<String,EditText>();
 	private ContentValues myInitialData;
 	private String myLanguage;
+	private Activity myActivity;
 	private String myPhrasebook;
 	
 	//TODO make an instance variable for adapter; look into making a cursor adapter from the content provider
@@ -83,6 +84,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		myActivity = this;
 		setContentView(R.layout.activity_entry);
 		if(Constants.ACTION_GET_ENTRY_DATA.equals(getIntent().getAction())) {
 			myInitialData = processIntent();
@@ -102,7 +104,6 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			myInitialData = processIntent();
 			myLanguage = myInitialData.getAsString(EntryColumns.COLUMN_NAME_LANGUAGE);
 			myPhrasebook = myInitialData.getAsString(EntryColumns.COLUMN_NAME_PHRASEBOOK);
-			
 			languageSpinner.load(myLanguage);
 			phrasebookSpinner.load(myPhrasebook);
 		}
@@ -168,6 +169,9 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			        if (!isFocused) {
 			            updateField(view);
 			        }
+			        if(view.getId()==R.id.edit_tags){
+			        	checkTagFormat(view);
+			        }
 			    }
 			});
 			if (myInitialData != null && myInitialData.containsKey(key)) {
@@ -175,6 +179,22 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 				textView.setText(initialValue);
 			}
 		}
+	}
+	
+	protected void checkTagFormat(View view){
+		EditText edit = (EditText) view;
+    	String tags = edit.getText().toString();
+    	if(tags.length()>0){
+    	int numCommas = 0;
+        	for(int i = 0;i<tags.length();i++){
+        		if(tags.charAt(i)==','){
+        			numCommas++;
+        		}
+        	}
+        	if(numCommas==0){
+        		Toast.makeText(myActivity, "Please separate tags with commas.", Toast.LENGTH_LONG).show();
+        	}
+    	}
 	}
 
 	/**
