@@ -52,12 +52,14 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	}
 	
 	public void load(String data){
+
 		try{
 			this.setSelection(itemMap.get(data));
 		}
 		catch(NullPointerException e){
 			e.printStackTrace();
 		}
+
 	}
 	
 	public void setActivitySource(Activity source){

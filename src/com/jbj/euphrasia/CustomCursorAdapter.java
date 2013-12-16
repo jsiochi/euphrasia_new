@@ -9,6 +9,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SimpleAdapter;
+import com.jbj.euphrasia.R;
  
 public class CustomCursorAdapter extends SimpleCursorAdapter {
  

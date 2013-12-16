@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color name="app_themeColor">#00CC00</color>
-    <color name="app_darkColor">#000000</color>
+ 	<color name="app_darkColor">#767676</color>
+    <color name="list_background">#e5e5e5</color>
+    <color name="list_background_pressed">#84d4ff</color>
+    <color name="list_item_title">#000000</color>
+    <color name="counter_text_bg">#111</color>
+    <color name="counter_text_color">#fff</color>
     <color name="button_recordColor">#ff0000</color>
-    <color name="button_highlightColor">#0066ff</color>
+    <color name="button_highlightColor">#84d4ff</color>
 	<style name="Main" parent="@style/appTheme">
 	    <item name="android:windowBackground">@drawable/splash_screen1</item>
-	    <item name="android:textViewStyle">@style/main_textViewStyle</item>
 <!-- 	    <item name="android:windowNoTitle">true</item> -->
 	</style>
 	
@@ -24,13 +28,12 @@
 
     <!-- ActionBar styles -->
 	    <style name="app_actionBar"
-	           parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+	           parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
 	        <!-- <item name="android:background">@drawable/actionbar_background</item>
 			-->
 	        <!-- Support library compatibility -->
 	        <!-- <item name="background">@drawable/actionbar_background</item>
-	        -->
-	        <item name="android:background">@color/app_darkColor</item>
+	        <item name="android:background">@color/app_darkColor</item> -->
 
         <!-- Support library compatibility -->
 	        <item name="background">@color/app_darkColor</item>
