@@ -41,12 +41,13 @@ public class EntryProvider extends ContentProvider {
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.COLUMN_NAME_PHRASEBOOK, 3);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.COLUMN_NAME_LANGUAGE, 4);
 		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME + "/" + VIEW_REMOTE, 5);
+		myUriMatcher.addURI(MY_AUTHORITY, EntryColumns.TABLE_NAME + "/" + VIEW_REMOTE + "/#", 6);
 		}
 	
 	public static final Uri CONTENT_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.TABLE_NAME);
 	public static final Uri CONTENT_PHRASEBOOKS_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_PHRASEBOOK);
 	public static final Uri CONTENT_LANGUAGES_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.COLUMN_NAME_LANGUAGE);
-	public static final Uri CONTENT_REMOTE_URI = Uri.parse(MY_CONTENT_URI + "/" + VIEW_REMOTE);
+	public static final Uri CONTENT_REMOTE_URI = Uri.parse(MY_CONTENT_URI + "/" + EntryColumns.TABLE_NAME + "/" + VIEW_REMOTE);
 	private static Bundle remoteBundle;
 	
 	//public static final String GET_PHRASEBOOKS = "get_phrasebooks";
@@ -106,7 +107,19 @@ public class EntryProvider extends ContentProvider {
 				matrixCursor.addRow(values);
 			}
 			return matrixCursor;
-			
+		case 6:
+			MatrixCursor matrixCursor2 = new MatrixCursor(Constants.SELECT_ALL_PROJECTION_WITH_ID);
+			Bundle theEntryBundle = remoteBundle.getBundle(uri.getLastPathSegment());
+			String[] values = new String[]{uri.getLastPathSegment(), theEntryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[1]),
+					theEntryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[2]),
+					theEntryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[3]),
+					theEntryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[4]),
+					theEntryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[5]),
+					theEntryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[6]),
+					theEntryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[7]),
+					theEntryBundle.getString(Constants.SELECT_ALL_PROJECTION_WITH_ID[8])};
+			matrixCursor2.addRow(values);
+			return matrixCursor2;
 		default:
 			throw new IllegalArgumentException("Invalid URI");
 		}
