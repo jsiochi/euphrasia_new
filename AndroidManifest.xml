@@ -12,7 +12,7 @@
     </uses-permission>
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="16" />
 
     <instrumentation
@@ -27,11 +27,10 @@
         android:theme="@style/appTheme" >
         <uses-library android:name="android.test.runner" />
 
-        <!-- android:theme="@style/Theme.AppCompat.Light" -->
         <activity
             android:name="com.jbj.euphrasia.activities.MainActivity"
-            android:label="@string/title_main_activity" >
-            android:theme="@style/Main" >
+            android:label="@string/title_main_activity"
+            android:theme="@style/Main" >
         </activity>
         <activity
             android:name="com.jbj.euphrasia.activities.EntryActivity"
@@ -70,6 +69,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.jbj.euphrasia.activities.DisplayActivity"
+            android:label="@string/title_activity_display" >
         </activity>
         <activity
             android:name="com.jbj.euphrasia.activities.RemoteSearchActivity"
