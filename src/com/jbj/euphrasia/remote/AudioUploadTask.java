@@ -3,9 +3,9 @@ package com.jbj.euphrasia.remote;
 import java.io.File;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.entity.mime.HttpMultipartMode;
+/*import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.FileBody;*/
 import org.json.JSONException;
 import com.jbj.euphrasia.SyncManager;
 import android.os.Bundle;
@@ -22,14 +22,14 @@ public class AudioUploadTask extends AbstractRemoteTask {
 	@Override
 	protected HttpUriRequest getUriRequest(String[]... params) {
 		HttpPost post = new HttpPost(getServiceUrl());
-	    MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+/*	    MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
 	    FileBody body = new FileBody(myAudioFile);
 	    entity.addPart("file", body);
 	    try {
 			post.setEntity(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		return post;
 	}
 	
