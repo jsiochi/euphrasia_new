@@ -1,14 +1,6 @@
 package com.jbj.euphrasia.remote;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ByteArrayEntity;
@@ -16,12 +8,12 @@ import org.apache.http.entity.ByteArrayEntity;
 //import org.apache.http.entity.mime.MultipartEntity;
 //import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.message.BasicNameValuePair;
+/*import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;*/
 import org.json.JSONException;
-
 import com.jbj.euphrasia.SyncManager;
-
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 
 public class AudioUploadTask extends AbstractRemoteTask {
@@ -49,6 +41,16 @@ public class AudioUploadTask extends AbstractRemoteTask {
 //		}
 //		return post;
 		return null;
+		//HttpPost post = new HttpPost(getServiceUrl());
+/*	    MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+	    FileBody body = new FileBody(myAudioFile);
+	    entity.addPart("file", body);
+	    try {
+			post.setEntity(entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		//return post;
 	}
 	
 	@Override
