@@ -14,40 +14,51 @@ import android.widget.Toast;
 
 public class SyncManager implements Constants {
 	
-	private Activity myActivity;
+	private static Activity myActivity;
+	private static Cursor myCursor;
+	private static String myID;
 	
-	public SyncManager(Activity activity){
-		myActivity = activity;
+	public static void setActivity(Activity source){
+		myActivity = source;
+		String id = myActivity.getSharedPreferences("My Preferences", 0).getString("user_id","DNE");
+		if(!id.equals("DNE")){
+			myID = id;
+		}
 	}
 	
-	public void sync(){
+	public static void sync(){
 		Toast.makeText(myActivity, "Attempting to sync to remote", Toast.LENGTH_LONG).show();
-		myActivity.getMainLooper();
+		//myActivity.getMainLooper();
 		AbstractRemoteTask clear = new ClearRemoteTask();
 		clear.setActivity(myActivity);
-		clear.execute(new String[]{"user_id", "0"});
+		clear.execute(new String[]{"user_id", myID});
 		Cursor cursor = myActivity.getContentResolver().query(EntryProvider.CONTENT_URI, SELECT_ALL_PROJECTION, null,null,null);
-		if(cursor.moveToNext()) {
+		myCursor = cursor;
+		completeSync();
+	}
+	
+	public static void completeSync(){
+		if(myCursor.moveToNext()) {
 			int j;
 			j = 0;
 			List<String[]> params = new ArrayList<String[]>(); 
-			for(int i=0;i<cursor.getColumnCount();i++){
+			for(int i=0;i<myCursor.getColumnCount();i++){
 				String[] param = new String[2];
-				param[0] = cursor.getColumnName(i);
-				param[1] = cursor.getString(i);
+				param[0] = myCursor.getColumnName(i);
+				param[1] = myCursor.getString(i);
 				params.add(param);
 				j++;
 			}
 			String[] param = new String[2];
 			param[0] = "user_id";
-			param[1] = "2";
+			param[1] = myID;
 			params.add(param);
 			AbstractRemoteTask write = new WriteRemoteTask();
 			write.setActivity(myActivity);
 			write.execute(params.toArray(new String[params.size()][2]));
 		}
 		else {
-			cursor.close();
+			myCursor.close();
 		}
 	}
 

@@ -1,5 +1,8 @@
 package com.jbj.euphrasia.spinners;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.jbj.euphrasia.Controller;
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.R;
@@ -36,7 +39,9 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	protected SimpleCursorAdapter myAdapter;
 	private AdapterView mySpinnerParent;
 	protected int mySize;
-	protected boolean canCreateItems = false;
+	protected boolean canCreateItems = true;
+	protected Map<String,Integer> itemMap = new HashMap<String,Integer>();
+	protected String myLoadData;
 
 	public EuphrasiaSpinner(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -44,8 +49,19 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 		mySize = this.getCount();
 	}
 	
+	public void load(String data){
+/*		Log.i("Map size",data.to);
+*/		this.setSelection(itemMap.get(data));
+	}
+	
+
+	
 	public void setActivitySource(Activity source){
 		mySourceActivity = source;
+		String[] array = mySourceActivity.getResources().getStringArray(this.getArrayData());
+		for(int i = 0;i<array.length;i++){
+			itemMap.put(array[i],i);
+		}
 		if(source instanceof EntryActivity){
 			canCreateItems = true;
 		}
@@ -64,20 +80,21 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	public void doSelect(AdapterView<?> parent, View view, int position,
 			long id){
 		String selected = ((MergeCursor) parent.getSelectedItem()).getString(0);
+		Log.i("onItemSelected", selected);
 		//String selected2 = parent.get
 		if(mySourceActivity instanceof EntryActivity){
 			EntryActivity entryActivity = (EntryActivity)mySourceActivity;
 			Controller controller = entryActivity.getController();
 			if(id == -2 && canCreateItems){
-				Log.i("onItemSelected", "found create method");
+				Log.i("onItemSelected", selected);
 				EntryDialogFragment dlg = getDialogFragment();
 				dlg.setSourceSpinner(this);
 			    dlg.show(entryActivity.getSupportFragmentManager(), this.getDialogLayout());
 			    Log.i("onItemSelected",""+dlg.isVisible());
 			}
-			else if(!controller.hasValid(this)){
+			//else if(!controller.hasValid(this)){
 				controller.updateEntryField(this.createField(selected));
-			}
+			//}
 			mySize = parent.getCount();
 			mySpinnerParent = parent;
 		}

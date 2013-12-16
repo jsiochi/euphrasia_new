@@ -1,5 +1,6 @@
 package com.jbj.euphrasia.activities;
 
+import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.R.id;
@@ -9,6 +10,7 @@ import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.ReadRemoteTask;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.app.Activity;
@@ -48,8 +50,16 @@ public class RemoteSearchActivity extends Activity implements Constants{
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.sync:
-	        	SyncManager manager = new SyncManager(this);
-	        	manager.sync();
+	        	SyncManager.setActivity(this);
+	        	SyncManager.sync();
+	        	return true;
+	        case R.id.logout:
+	        	LogoutManager.setActivity(this);
+	        	LogoutManager.logout();
+	        	return true;
+	        case R.id.about:
+	        	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://goeuphrasia.com"));
+	        	startActivity(browserIntent);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -72,18 +82,34 @@ public class RemoteSearchActivity extends Activity implements Constants{
 		myTask = readRemote;
 		readRemote.setActivity(this);
 		EditText text = (EditText)findViewById(R.id.browse_filter_param);
-		String[] filterIndex = new String[]{"filter_index",String.valueOf(myParamIndex)};
-		String[] filterParam = new String[]{"field",text.getText().toString()};
-		String[][] params = new String[][]{filterIndex,filterParam};
+		String filterText = text.getText().toString();
+		if(!filterText.isEmpty()){
+			String[] filterIndex = new String[]{"filter_index",String.valueOf(myParamIndex)};
+			String[] filterParam = new String[]{"field",filterText};
+			String[][] params = new String[][]{filterIndex,filterParam};
+			readRemote.execute(params);
+		}
+		else{
+			Toast.makeText(this, "Please specify search terms.", Toast.LENGTH_LONG).show();
+		}
+	}
+	
+	public void doBrowseAll(View view){
+		AbstractRemoteTask readRemote = new ReadRemoteTask();
+		myTask = readRemote;
+		readRemote.setActivity(this);
+		EditText text = (EditText)findViewById(R.id.browse_filter_param);
+		String[] filterIndex = new String[]{"filter_index",""+3};
+		String[][] params = new String[][]{filterIndex};
 		readRemote.execute(params);
 	}
 
-	public void acceptResult(Bundle bundle) {
-		// send bundle to search activity
-		Intent displayResults = new Intent(this,SearchActivity.class);
-		displayResults.putExtra(EXTRA_REMOTE_BUNDLE, bundle);
-		displayResults.setAction(ACTION_REMOTE_QUERY);
-		startActivity(displayResults);
-	}
+//	public void acceptResult(Bundle bundle) {
+//		// send bundle to search activity
+//		Intent displayResults = new Intent(this,SearchActivity.class);
+//		displayResults.putExtra(EXTRA_REMOTE_BUNDLE, bundle);
+//		displayResults.setAction(ACTION_REMOTE_QUERY);
+//		startActivity(displayResults);
+//	}
 
 }

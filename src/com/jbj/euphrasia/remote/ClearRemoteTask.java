@@ -12,7 +12,6 @@ import android.os.Looper;
 public class ClearRemoteTask extends AbstractRemoteTask {
 	
 	protected Bundle doInBackground(String[]... arg0) {
-		Looper.getMainLooper().prepare();
 		super.doInBackground(arg0);
 		return null;
 	}

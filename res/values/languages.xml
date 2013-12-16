@@ -3,5 +3,184 @@
     <string-array name="languages">
         <item>Choose Language</item>
         <item>Create new</item>
+        <item>Acholi</item>
+<item>Afghani</item>
+<item>Afrikaan</item>
+<item>Akan</item>
+<item>Akateco</item>
+<item>Albanian</item>
+<item>Amharic</item>
+<item>Anuak</item>
+<item>Arabic</item>
+<item>Armenian</item>
+<item>Ashanti</item>
+<item>Assyrian</item>
+<item>Azeri</item>
+<item>Bahasa (Malaysia)</item>
+<item>Bambara</item>
+<item>Basque</item>
+<item>Bassa</item>
+<item>Belarusian</item>
+<item>Bengali</item>
+<item>Bosnian</item>
+<item>Bulgarian</item>
+<item>Burmese</item>
+<item>Cambodian</item>
+<item>Cape Verde Creole</item>
+<item>Catalan</item>
+<item>Cebuano</item>
+<item>Chaldean</item>
+<item>Chamorro</item>
+<item>Chin</item>
+<item>Chinese Cantonese</item>
+<item>Chinese Mandarin</item>
+<item>Chuukese</item>
+<item>Croatian</item>
+<item>Czech</item>
+<item>Danish</item>
+<item>Dari</item>
+<item>Dinka</item>
+<item>Dioula</item>
+<item>Dutch</item>
+<item>Estonian</item>
+<item>Ewe</item>
+<item>Farsi</item>
+<item>Fijian</item>
+<item>Finnish</item>
+<item>Foochow (Fuzhou)</item>
+<item>French</item>
+<item>French Canadian</item>
+<item>French Creole</item>
+<item>Fulani</item>
+<item>Fulde</item>
+<item>Fur</item>
+<item>Fuzhou</item>
+<item>Ga</item>
+<item>Garre</item>
+<item>Georgian</item>
+<item>German</item>
+<item>Grebo</item>
+<item>Greek</item>
+<item>Guak</item>
+<item>Guarani</item>
+<item>Gujarati</item>
+<item>Haitian Creole</item>
+<item>Hakka</item>
+<item>Hausa</item>
+<item>Hebrew</item>
+<item>Hindi</item>
+<item>Hmong</item>
+<item>Hungarian</item>
+<item>Icelandic</item>
+<item>Igbo</item>
+<item>Ilocano</item>
+<item>Indonesian</item>
+<item>Italian</item>
+<item>Japanese</item>
+<item>Jarai</item>
+<item>Kannada</item>
+<item>Karen</item>
+<item>Karenni</item>
+<item>Kazakh</item>
+<item>Khmer (Cambodian)</item>
+<item>K’iche’ (Quiché)</item>
+<item>Kinyarwanda</item>
+<item>Kirundi</item>
+<item>Kizigua</item>
+<item>Korean</item>
+<item>Krahn</item>
+<item>Krio</item>
+<item>Kunama</item>
+<item>Kurdish</item>
+<item>Lao</item>
+<item>Latvian</item>
+<item>Lingala</item>
+<item>Lithuanian</item>
+<item>Luganda</item>
+<item>Luo</item>
+<item>Macedonian</item>
+<item>Malay</item>
+<item>Malayalam</item>
+<item>Maltese</item>
+<item>Mam</item>
+<item>Mandinka</item>
+<item>Marathi</item>
+<item>Marshallese</item>
+<item>May-May</item>
+<item>Mende</item>
+<item>Mien</item>
+<item>Mixteco (Alto)</item>
+<item>Mixteco (Bajo)</item>
+<item>Mizteco</item>
+<item>Mongolian</item>
+<item>More</item>
+<item>Myanmar (Burmese)</item>
+<item>Navajo</item>
+<item>Nepali</item>
+<item>Norwegian</item>
+<item>Nuer</item>
+<item>Oromifa</item>
+<item>Pampangan</item>
+<item>Pangasinan</item>
+<item>Pashtu</item>
+<item>Polish</item>
+<item>Ponapean/Pohnpeian</item>
+<item>Portuguese (Brazil)</item>
+<item>Portuguese (European)</item>
+<item>Pulaar</item>
+<item>Punjabi</item>
+<item>Q’anjob’al</item>
+<item>Romanian</item>
+<item>Russian</item>
+<item>Samoan</item>
+<item>Sara</item>
+<item>Serbian</item>
+<item>Shanghainese</item>
+<item>Shona</item>
+<item>Sichuan</item>
+<item>Sicilian</item>
+<item>Sign</item>
+<item>Sindhi</item>
+<item>Sinhalese</item>
+<item>Slovak</item>
+<item>Slovene</item>
+<item>Somali</item>
+<item>Somali Bantu</item>
+<item>Soninke</item>
+<item>Soranî (Kurdish)</item>
+<item>Spanish</item>
+<item>Sudanese (Arabic)</item>
+<item>Swahili</item>
+<item>Swedish</item>
+<item>Tagalog (Filipino)</item>
+<item>Taiwanese</item>
+<item>Tamil</item>
+<item>Telugu</item>
+<item>Teochew</item>
+<item>Thai</item>
+<item>Tibetan</item>
+<item>Tigrinya</item>
+<item>Toisanese</item>
+<item>Tongan</item>
+<item>Trukese</item>
+<item>Turkish</item>
+<item>Twi</item>
+<item>Ukrainian</item>
+<item>Urdu</item>
+<item>Uzbek</item>
+<item>Vietnamese</item>
+<item>Visayan</item>
+<item>Welsh</item>
+<item>Wenzhounese</item>
+<item>Wolof</item>
+<item>Xhosa</item>
+<item>Xiemen</item>
+<item>Yiddish</item>
+<item>Yoruba</item>
+<item>Zande</item>
+<item>Zhangye</item>
+<item>Zulu</item>
+<item>Zuni</item>
+        
     </string-array>
 </resources>

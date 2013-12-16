@@ -3,6 +3,7 @@ package com.jbj.euphrasia.activities;
 
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
+import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
@@ -101,9 +102,10 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
               return view;}
         };
         setListAdapter(myCursorAdapter);
-		
+        myListView = (ListView) findViewById(android.R.id.list);
 		Intent intent = getIntent();
 		String query = intent.getStringExtra(SearchManager.QUERY);
+		myListView.setOnItemClickListener(new EntryListListener(this));
 		if (ACTION_VIEW_ALL.equals(intent.getAction())) {
 			String selection = EntryColumns.COLUMN_NAME_TITLE + " LIKE '%" + query + "%' OR " + EntryColumns.COLUMN_NAME_TAG + " LIKE '%" + query + "%' OR " 
 					+ EntryColumns.COLUMN_NAME_NATIVE_TEXT + " LIKE '%" + query + "%'";
@@ -126,15 +128,10 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		}
 		if(ACTION_REMOTE_QUERY.equals(intent.getAction())){
 			Bundle remoteResults = intent.getBundleExtra(EXTRA_REMOTE_BUNDLE);
-			MatrixCursor matrixCursor = new MatrixCursor(DISPLAY_FROM_COLUMNS);
-			for(int i = 0;i<remoteResults.size();i++){
-				Bundle entryBundle = remoteResults.getBundle(String.valueOf(i));
-				String[] values = new String[]{String.valueOf(i), entryBundle.getString("title"),entryBundle.getString("tag"),
-						entryBundle.getString("native_text")};
-				matrixCursor.addRow(values);
-			}
-			Log.i("Matrix Cursor rows",""+matrixCursor.getCount());
-			myCursor = matrixCursor;
+			myCursorFilter = EntryProvider.VIEW_REMOTE;
+			this.doEntrySearch("");
+			myListView.setOnItemClickListener(new RemoteEntryListListener(this));
+			
 		}
 //		View checkBoxView = View.inflate(this, R.layout.checkbox, null);
 //		CheckBox noWarningOption = (CheckBox)checkBoxView.findViewById(R.id.checkbox);
@@ -151,7 +148,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 //			}
 //			
 //		});
-		myListView = (ListView) findViewById(android.R.id.list);
+		
 		myListView.setLongClickable(true);
 		myListView.setOnItemLongClickListener(new OnItemLongClickListener(){
 		
@@ -408,8 +405,16 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
         // Handle your other action bar items...
 	    switch (item.getItemId()) {
 	        case R.id.sync:
-	        	SyncManager manager = new SyncManager(this);
-	        	manager.sync();
+	        	SyncManager.setActivity(this);
+	        	SyncManager.sync();
+	        	return true;
+	        case R.id.logout:
+	        	LogoutManager.setActivity(this);
+	        	LogoutManager.logout();
+	        	return true;
+	        case R.id.about:
+	        	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://goeuphrasia.com"));
+	        	startActivity(browserIntent);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -423,6 +428,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
         if (myCursorFilter != null) {
             baseUri = Uri.withAppendedPath(EntryProvider.CONTENT_URI,
                     Uri.encode(myCursorFilter));
+            
         } else {
             baseUri = EntryProvider.CONTENT_URI;
         }
@@ -458,7 +464,26 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		this.getLoaderManager().restartLoader(0, args, this);
 	}
 	
-	public void doPhrasebookSearch(String query){
-		// do something cool
+
+	public void sendToReadEntry(Cursor cursor, long id) {
+		int columnCount = cursor.getColumnCount();
+		Log.i("coumn count", String.valueOf(columnCount));
+		int i = 0;
+		ContentValues values = new ContentValues();
+		cursor.moveToFirst();
+		while(i<columnCount){
+			Log.i("coumn pos", String.valueOf(i));
+			Log.i("rows",""+cursor.getCount());
+			String columnValue = cursor.getString(i);
+			String columnName = cursor.getColumnName(i);
+			values.put(columnName, columnValue);
+			i++;
+		}
+		values.put("URI_id", id);
+		Intent toEntryIntent = new Intent(this,/*Read*/EntryActivity.class);
+		toEntryIntent.putExtra(ENTRY_INTENT_PARCELABLE, values);
+		toEntryIntent.setAction(ACTION_GET_ENTRY_DATA);
+		Log.i("SEARCHACTIVITY","Starting intent");
+		startActivity(toEntryIntent);
 	}
 }

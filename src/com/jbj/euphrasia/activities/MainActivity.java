@@ -220,39 +220,34 @@ public class MainActivity extends Activity implements Constants {
 	}
 	
 	public void onSyncDatabase(View view){
-		Toast.makeText(this, "Attempting to sync to remote", Toast.LENGTH_LONG).show();
-		getMainLooper();
-		AbstractRemoteTask clear = new ClearRemoteTask();
-		clear.setActivity(this);
-		clear.execute(new String[]{"user_id", myUser});
-		myCursor = getContentResolver().query(EntryProvider.CONTENT_URI, SELECT_ALL_PROJECTION, null,null,null);
-		onSyncHelper();
+		SyncManager.setActivity(this);
+		SyncManager.sync();
 	}
 
-	public void onSyncHelper() {
-		if(myCursor.moveToNext()) {
-			int j;
-			j = 0;
-			List<String[]> params = new ArrayList<String[]>(); 
-			for(int i=0;i<myCursor.getColumnCount();i++){
-				String[] param = new String[2];
-				param[0] = myCursor.getColumnName(i);
-				param[1] = myCursor.getString(i);
-				params.add(param);
-				j++;
-			}
-			String[] param = new String[2];
-			param[0] = "user_id";
-			param[1] = myUser;
-			params.add(param);
-			AbstractRemoteTask write = new WriteRemoteTask();
-			write.setActivity(this);
-			write.execute(params.toArray(new String[params.size()][2]));
-		}
-		else {
-			myCursor.close();
-		}
-	}
+//	public void onSyncHelper() {
+//		if(myCursor.moveToNext()) {
+//			int j;
+//			j = 0;
+//			List<String[]> params = new ArrayList<String[]>(); 
+//			for(int i=0;i<myCursor.getColumnCount();i++){
+//				String[] param = new String[2];
+//				param[0] = myCursor.getColumnName(i);
+//				param[1] = myCursor.getString(i);
+//				params.add(param);
+//				j++;
+//			}
+//			String[] param = new String[2];
+//			param[0] = "user_id";
+//			param[1] = myUser;
+//			params.add(param);
+//			AbstractRemoteTask write = new WriteRemoteTask();
+//			write.setActivity(this);
+//			write.execute(params.toArray(new String[params.size()][2]));
+//		}
+//		else {
+//			myCursor.close();
+//		}
+//	}
 
 //		AbstractRemoteTask testTask = new WriteRemoteTask();
 //		testTask.setActivity(this);
@@ -320,20 +315,22 @@ public class MainActivity extends Activity implements Constants {
         // Handle your other action bar items...
 	    switch (item.getItemId()) {
 	        case R.id.sync:
-	        	SyncManager manager = new SyncManager(this);
-	        	manager.sync();
+	        	SyncManager.setActivity(this);
+	        	SyncManager.sync();
 	        	return true;
 	        case R.id.logout:
-	        	this.logout();
+	        	LogoutManager.setActivity(this);
+	        	LogoutManager.logout();
+	        	return true;
+	        case R.id.about:
+	        	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://goeuphrasia.com"));
+	        	startActivity(browserIntent);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-	
-	private void logout() {
-		new LogoutManager(this).logout();
-	}
+
 
 	public void onBrowseRemote(View view){
 		startActivity(new Intent(this,RemoteSearchActivity.class));

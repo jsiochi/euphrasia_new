@@ -10,6 +10,7 @@ import java.util.Map;
 import com.jbj.euphrasia.Controller;
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
+import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.R.id;
 import com.jbj.euphrasia.R.layout;
@@ -79,6 +80,8 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	private Controller myController;
 	private Map<String,EditText> myTextViews = new HashMap<String,EditText>();
 	private ContentValues myInitialData;
+	private String myLanguage;
+	private String myPhrasebook;
 	
 	// Within which the entire activity is enclosed
 			private DrawerLayout mDrawerLayout;
@@ -108,14 +111,27 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		setContentView(R.layout.activity_entry);
 		if(Constants.ACTION_GET_ENTRY_DATA.equals(getIntent().getAction())) {
 			myInitialData = processIntent();
+			myLanguage = myInitialData.getAsString(EntryColumns.COLUMN_NAME_LANGUAGE);
+			myPhrasebook = myInitialData.getAsString(EntryColumns.COLUMN_NAME_PHRASEBOOK);
 		}
 		myFieldFactory = new FieldFactory();
 		myController = new Controller(this);
 		myController.setSourceActivity(this);
+		
 		LanguageSpinner languageSpinner = (LanguageSpinner) findViewById(R.id.select_language);
 		languageSpinner.setActivitySource(this);
+		
 		PhrasebookSpinner phrasebookSpinner = (PhrasebookSpinner) findViewById(R.id.entry_phrasebook_spinner);
 		phrasebookSpinner.setActivitySource(this);
+		if(Constants.ACTION_GET_ENTRY_DATA.equals(getIntent().getAction())) {
+			myInitialData = processIntent();
+			myLanguage = myInitialData.getAsString(EntryColumns.COLUMN_NAME_LANGUAGE);
+			myPhrasebook = myInitialData.getAsString(EntryColumns.COLUMN_NAME_PHRASEBOOK);
+			
+			languageSpinner.load(myLanguage);
+			phrasebookSpinner.load(myPhrasebook);
+		}
+		
 		findTextViews();
 		setUpTextViews();
 		loadInitialData();
@@ -238,7 +254,6 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	 			break;
 	 		}
  		
-
 	 		if (intent == null) {
 	 		// error in creating intent
 				Log.e("DisplayActivity", "Error in creating intent");
@@ -257,6 +272,14 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
  			
  		};
  }
+ 	
+	public void setLanguage(String language){
+		myLanguage = language;
+	}
+	
+	public void setPhrasebook(String phrasebook){
+		myPhrasebook = phrasebook;
+	}
 	
 	public Controller getController(){
 		return myController;
@@ -379,8 +402,16 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	        	handleSave();
 	            return true;
 	        case R.id.sync:
-	        	SyncManager manager = new SyncManager(this);
-	        	manager.sync();
+	        	SyncManager.setActivity(this);
+	        	SyncManager.sync();
+	        	return true;
+	        case R.id.logout:
+	        	LogoutManager.setActivity(this);
+	        	LogoutManager.logout();
+	        	return true;
+	        case R.id.about:
+	        	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://goeuphrasia.com"));
+	        	startActivity(browserIntent);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -405,6 +436,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			//TODO is it too inefficient to create a new field object every time?
 			Field field = myFieldFactory.createField(editText.getId(), editText.getText().toString());
 			myController.updateEntryField(field);
+			
 			Log.i("new field",field.toString() + field.getClass().getName());
 	}
 
@@ -430,6 +462,8 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
     	for(String s : myTextViews.keySet()) {
 			updateFieldFromText(myTextViews.get(s));
 		}
+    	myController.updateEntryField(new LanguageField(myLanguage));
+    	myController.updateEntryField(new PhrasebookField(myPhrasebook));
     	myController.onSave();
     }
 

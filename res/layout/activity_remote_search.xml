@@ -22,11 +22,11 @@
 		    android:layout_height="wrap_content"
 		    android:id="@+id/browse_radio_group"
 		    android:orientation="vertical">
-		    <RadioButton android:id="@+id/browse_user_id"
+		    <!-- <RadioButton android:id="@+id/browse_user_id"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:text="@string/browse_user"
-		        android:onClick="onRadioButtonClicked"/>
+		        android:onClick="onRadioButtonClicked"/> -->
 		    <RadioButton android:id="@+id/browse_language_id"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
@@ -44,14 +44,19 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:hint="@string/browse_filter_hint" />
-	    
+    
 	    <Button 
 	       		android:layout_height="wrap_content"
 	       		android:layout_width="wrap_content"
 	        	android:text="@string/browse_remote_button"
 	        	android:onClick="doBrowse"	/>
-	
-	</LinearLayout>
+	    
+	    <Button 
+	       		android:layout_height="wrap_content"
+	       		android:layout_width="wrap_content"
+	        	android:text="@string/browse_remote_all_button"
+	        	android:onClick="doBrowseAll"	/>
+	    </LinearLayout>
 
 	<ListView
         android:id="@+id/drawer_list"

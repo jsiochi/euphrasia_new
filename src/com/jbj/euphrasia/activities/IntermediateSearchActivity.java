@@ -1,6 +1,7 @@
 package com.jbj.euphrasia.activities;
 
 import com.jbj.euphrasia.EntryProvider;
+import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
@@ -10,6 +11,7 @@ import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.spinners.LanguageSpinner;
 import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -34,38 +36,16 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_browse);
+		setContentView(R.layout.activity_intermediate_search);
+		Log.i("BBBB","Making language Spinner");
 		LanguageSpinner languageChoices = (LanguageSpinner) findViewById(R.id.browse_languages);
 		languageChoices.setActivitySource(this);
+		Log.i("CCCC","MAKING PHRASEBOOK CHOICES");
 		PhrasebookSpinner phrasebookChoices = (PhrasebookSpinner) findViewById(R.id.browse_phrasebooks);
 		phrasebookChoices.setActivitySource(this);
+		Log.i("EEEE","WHAT IS GOING ON");
 	}
 
-//	private SimpleCursorAdapter getLanguageAdapter() {
-//		Cursor langCursor = getLanguages();
-//		String[] froms = {EntryColumns.COLUMN_NAME_LANGUAGE, EntryColumns._ID};
-//		int[] tos = {android.R.id.text1};
-//		SimpleCursorAdapter languageAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, langCursor,
-//                froms, tos, 0);
-//		
-//		return languageAdapter;
-//	}
-//	
-//	private Cursor getLanguages() {
-//		Cursor cursor = getContentResolver().query(EntryProvider.CONTENT_LANGUAGES_URI, null, null, null, null);
-//		
-//		String[] froms = {EntryColumns.COLUMN_NAME_LANGUAGE, EntryColumns._ID};
-//		MatrixCursor extras = new MatrixCursor(froms);
-////		String[] extraPhrasebooks = getResources().getStringArray(R.array.test_phrasebooks);
-////		for(int i = 1; i <= extraPhrasebooks.length; i++) {
-////			extras.addRow(new String[] {extraPhrasebooks[i - 1], String.valueOf(-1*i)});
-////		}
-//		extras.addRow(new String[] {"Choose language","-1"});
-//		
-//		Cursor[] cursors = {extras, cursor};
-//		
-//		return new MergeCursor(cursors);
-//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,8 +61,16 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.sync:
-	        	SyncManager manager = new SyncManager(this);
-	        	manager.sync();
+	        	SyncManager.setActivity(this);
+	        	SyncManager.sync();
+	        	return true;
+	        case R.id.logout:
+	        	LogoutManager.setActivity(this);
+	        	LogoutManager.logout();
+	        	return true;
+	        case R.id.about:
+	        	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://goeuphrasia.com"));
+	        	startActivity(browserIntent);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
