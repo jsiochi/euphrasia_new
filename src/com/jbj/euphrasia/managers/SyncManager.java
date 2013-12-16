@@ -1,8 +1,9 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.managers;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.AudioUploadTask;

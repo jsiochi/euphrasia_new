@@ -61,7 +61,12 @@ public class Controller {
 	}
 
 	public void onPlay() {
-		myPlayManager.execute();
+		try{
+			myPlayManager.execute();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void setUri(Uri uri) {

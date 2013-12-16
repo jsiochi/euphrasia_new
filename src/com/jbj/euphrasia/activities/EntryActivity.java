@@ -10,12 +10,10 @@ import java.util.Map;
 import com.jbj.euphrasia.Controller;
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
-import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
 import com.jbj.euphrasia.R.id;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
-import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.dialog_fragments.ConfirmSaveDialog;
 import com.jbj.euphrasia.dialog_fragments.CreatePhrasebookDialog;
 import com.jbj.euphrasia.dialog_fragments.EntryDialogFragment;
@@ -30,6 +28,8 @@ import com.jbj.euphrasia.fields.PhrasebookField;
 import com.jbj.euphrasia.fields.TagField;
 import com.jbj.euphrasia.fields.TitleField;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.managers.LogoutManager;
+import com.jbj.euphrasia.managers.SyncManager;
 import com.jbj.euphrasia.spinners.LanguageSpinner;
 import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 
@@ -145,8 +145,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		
 		
 		// nav drawer icons from resources
-		navMenuIcons = getResources()
-				.obtainTypedArray(R.array.nav_drawer_icons);
+		navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 		 
 		mDrawerList = (ListView) findViewById(R.id.drawer_list);
 		 

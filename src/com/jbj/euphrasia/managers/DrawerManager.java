@@ -1,5 +1,11 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.managers;
 
+import com.jbj.euphrasia.R;
+import com.jbj.euphrasia.R.array;
+import com.jbj.euphrasia.R.drawable;
+import com.jbj.euphrasia.R.id;
+import com.jbj.euphrasia.R.layout;
+import com.jbj.euphrasia.R.string;
 import com.jbj.euphrasia.activities.EntryActivity;
 import com.jbj.euphrasia.activities.LoginActivity;
 import com.jbj.euphrasia.activities.MainActivity;

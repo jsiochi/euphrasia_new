@@ -1,4 +1,4 @@
-package com.jbj.euphrasia;
+package com.jbj.euphrasia.managers;
 
 import com.jbj.euphrasia.activities.LoginActivity;
 import com.jbj.euphrasia.interfaces.Constants;
@@ -22,6 +22,7 @@ public class LogoutManager implements Constants{
     	editor.remove(PREFS_USERNAME_KEY);
     	editor.remove(PREFS_PASSWORD_KEY);
     	editor.remove(PREFS_USERID_KEY);
+    	editor.remove("remember");
     	editor.commit();
     	myActivity.startActivity(new Intent(myActivity,LoginActivity.class));
 	}

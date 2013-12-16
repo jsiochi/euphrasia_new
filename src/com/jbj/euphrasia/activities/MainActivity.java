@@ -35,12 +35,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
-import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
-import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.R.layout;
 
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.managers.LogoutManager;
+import com.jbj.euphrasia.managers.SyncManager;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.AudioUploadTask;
 import com.jbj.euphrasia.remote.ClearRemoteTask;

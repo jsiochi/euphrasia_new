@@ -31,7 +31,7 @@ public class CreateUserTask extends AbstractRemoteTask {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return theArgs;
 	}
 	
 	@Override

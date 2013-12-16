@@ -7,7 +7,9 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.json.JSONException;
-import com.jbj.euphrasia.SyncManager;
+
+import com.jbj.euphrasia.managers.SyncManager;
+
 import android.os.Bundle;
 import android.util.Log;
 

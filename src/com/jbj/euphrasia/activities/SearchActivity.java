@@ -1,17 +1,17 @@
 package com.jbj.euphrasia.activities;
 
 
-import com.jbj.euphrasia.DrawerManager;
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
-import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
-import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.dialog_fragments.DeleteAlertDialog;
 import com.jbj.euphrasia.dialog_fragments.NewUserDialog;
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.listeners.EntryListListener;
+import com.jbj.euphrasia.managers.DrawerManager;
+import com.jbj.euphrasia.managers.LogoutManager;
+import com.jbj.euphrasia.managers.SyncManager;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -241,9 +241,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 		if (DrawerManager.isItemSelected(item)) {
-        	// Pass the event to ActionBarDrawerToggle, if it returns
-            // true, then it has handled the app icon touch event
-                return true;
+            return true;
         }
         // Handle your other action bar items...
 	    switch (item.getItemId()) {

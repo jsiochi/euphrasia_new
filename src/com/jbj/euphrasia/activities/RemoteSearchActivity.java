@@ -1,12 +1,12 @@
 package com.jbj.euphrasia.activities;
 
-import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
-import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.R.id;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.managers.LogoutManager;
+import com.jbj.euphrasia.managers.SyncManager;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.ReadRemoteTask;
 

@@ -1,13 +1,13 @@
 package com.jbj.euphrasia.activities;
 
 import com.jbj.euphrasia.EntryProvider;
-import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
-import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.EntryContract.EntryColumns;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.managers.LogoutManager;
+import com.jbj.euphrasia.managers.SyncManager;
 import com.jbj.euphrasia.spinners.LanguageSpinner;
 import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 

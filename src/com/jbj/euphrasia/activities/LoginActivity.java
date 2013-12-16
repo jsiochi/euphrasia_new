@@ -1,13 +1,13 @@
 package com.jbj.euphrasia.activities;
 
-import com.jbj.euphrasia.LogoutManager;
 import com.jbj.euphrasia.R;
-import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.R.layout;
 import com.jbj.euphrasia.R.menu;
 import com.jbj.euphrasia.dialog_fragments.ExistingUserDialog;
 import com.jbj.euphrasia.dialog_fragments.NewUserDialog;
 import com.jbj.euphrasia.interfaces.Constants;
+import com.jbj.euphrasia.managers.LogoutManager;
+import com.jbj.euphrasia.managers.SyncManager;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
 import com.jbj.euphrasia.remote.CreateUserTask;
 import com.jbj.euphrasia.remote.ReadUserTask;
@@ -40,11 +40,8 @@ public class LoginActivity extends FragmentActivity implements Constants{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_NAME, 0);
-		String storedUsername = sharedPreferences.getString("user_name", "DNE");
-		String storedPassword = sharedPreferences.getString("pass", "DNE");
-		if(!storedUsername.equals("DNE")&&!storedPassword.equals("DNE")){
-			//user remembered
-			Log.i("User check","Stored user = "+storedUsername);
+		boolean rememberStatus = sharedPreferences.getBoolean("remember", false);
+		if(rememberStatus){
 			this.startActivity(new Intent(this,MainActivity.class));
 		}
 	}
@@ -104,15 +101,15 @@ public class LoginActivity extends FragmentActivity implements Constants{
 	}
 	
 	public void login(String id){
+		SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_NAME, 0);
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+		editor.putString(PREFS_USERNAME_KEY, myUsername);
+		editor.putString(PREFS_PASSWORD_KEY, myPassword);
+		editor.putString(PREFS_USERID_KEY, id);
 		if(rememberMe){
-			SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_NAME, 0);
-			SharedPreferences.Editor editor = sharedPreferences.edit();
-			editor.putString(PREFS_USERNAME_KEY, myUsername);
-			editor.putString(PREFS_PASSWORD_KEY, myPassword);
-			editor.putString(PREFS_USERID_KEY, id);
-			editor.commit();
+			editor.putBoolean("remember", true);
 		}
-		
+		editor.commit();
 		Intent intent = new Intent(this,MainActivity.class);
 		intent.setAction(ACTION_EXISTING_LOGIN);
 		intent.putExtra(EXTRA_EXISTING_USER, id);

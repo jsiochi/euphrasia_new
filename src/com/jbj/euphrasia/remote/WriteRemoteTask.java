@@ -7,8 +7,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
 import com.jbj.euphrasia.R;
-import com.jbj.euphrasia.SyncManager;
 import com.jbj.euphrasia.activities.MainActivity;
+import com.jbj.euphrasia.managers.SyncManager;
 
 import android.os.Bundle;
 import android.os.Looper;
