@@ -51,6 +51,7 @@ public class RecordingManager extends MediaManager{
 		myRecorder = new MediaRecorder();
         myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         myRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        Log.i("MEDIA","Starting to record");
         try {
 			myCache = File.createTempFile("recording", "tmp", myContext.getCacheDir());
 		} catch (IOException e1) {
@@ -62,11 +63,12 @@ public class RecordingManager extends MediaManager{
 
         try {
             myRecorder.prepare();
+            myRecorder.start();
+            myStatus = !myStatus;
         } catch (IOException e) {
             Log.e("AUDIO_RECORD_TEST","prepare() failed");
         }
         Log.d("MEDIA_RECORD_START", "recording");
-        myRecorder.start();
         Toast toast = Toast.makeText(myContext, "Now recording", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();

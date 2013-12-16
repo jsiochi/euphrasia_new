@@ -14,6 +14,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.database.MergeCursor;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -86,7 +87,7 @@ public class PhrasebookSpinner extends EuphrasiaSpinner {
 				long id) {
 			doSelect(parent,view,position,id);
 			if(mySourceActivity instanceof EntryActivity){
-				((EntryActivity)mySourceActivity).setPhrasebook(parent.getSelectedItem().toString());
+				((EntryActivity)mySourceActivity).setPhrasebook(((MergeCursor)  parent.getSelectedItem()).getString(0));
 			}
 		}
 

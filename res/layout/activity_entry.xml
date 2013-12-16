@@ -1,211 +1,218 @@
- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-    
-    <LinearLayout 
+    android:layout_height="match_parent" >	
+     
+	 <ScrollView
 	    android:layout_width="match_parent"
-   		android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:paddingBottom="@dimen/activity_vertical_margin"
-	    android:paddingLeft="@dimen/activity_horizontal_margin"
-	    android:paddingRight="@dimen/activity_horizontal_margin"
-	    android:paddingTop="@dimen/activity_vertical_margin"
-	    tools:context=".EntryActivity" >
+	    android:layout_height="match_parent">
 
-
-	    <LinearLayout
-	    	android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content" >
-	    	<EditText
-	   	    	android:id="@+id/edit_title"
-	    	    android:layout_width="0dip"
-	        	android:layout_height="wrap_content"
-	        	android:layout_weight=".25"
-	        	android:hint="@string/edit_entry_name" />
-	    	<View
-	  				android:layout_width="0dip"
-	  				android:layout_height="10dp"
-	  				android:layout_weight=".15">
-				</View>
-	    	
-	    	<LinearLayout
-	    	    android:layout_width="wrap_content"
-	    	    android:layout_height="wrap_content"
-	    	    android:orientation="vertical" >
-	    	    
-	    	    <com.jbj.euphrasia.spinners.LanguageSpinner
-	   	    	android:id="@+id/select_language"
-	    	    android:layout_width="fill_parent"
-	        	android:layout_height="wrap_content"/>
-	    	
-		    	<com.jbj.euphrasia.spinners.PhrasebookSpinner
-				    android:id="@+id/entry_phrasebook_spinner"
-				    android:layout_width="fill_parent"
-				    android:layout_height="wrap_content" />
-	    	</LinearLayout>
-	    
-	    </LinearLayout>
 	    
 	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content">
+		    android:layout_width="match_parent"
+	   		android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:paddingBottom="@dimen/activity_vertical_margin"
+		    android:paddingLeft="@dimen/activity_horizontal_margin"
+		    android:paddingRight="@dimen/activity_horizontal_margin"
+		    android:paddingTop="@dimen/activity_vertical_margin"
+		    tools:context=".EntryActivity" >
+	
+		    <LinearLayout
+		    	android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content" >
+		    	<EditText
+		   	    	android:id="@+id/edit_title"
+		    	    android:layout_width="0dip"
+		        	android:layout_height="wrap_content"
+		        	android:layout_weight=".25"
+		        	android:hint="@string/edit_entry_name" />
+		    	<View
+		  				android:layout_width="0dip"
+		  				android:layout_height="10dp"
+		  				android:layout_weight=".15">
+					</View>
+		    	
+		    	<LinearLayout
+		    	    android:layout_width="wrap_content"
+		    	    android:layout_height="wrap_content"
+		    	    android:orientation="vertical" >
+		    	    
+		    	    <com.jbj.euphrasia.spinners.LanguageSpinner
+		   	    	android:id="@+id/select_language"
+		    	    android:layout_width="fill_parent"
+		        	android:layout_height="wrap_content"/>
+		    	
+			    	<com.jbj.euphrasia.spinners.PhrasebookSpinner
+					    android:id="@+id/entry_phrasebook_spinner"
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content" />
+		    	</LinearLayout>
+		    </LinearLayout>
+		    
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content">
+		  	    	<View
+		  				android:layout_width="0dip"
+		  				android:layout_height="15dp"
+		  				android:layout_weight="1">
+					</View>
+		    </LinearLayout>
+		    
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content">
+		    	<EditText
+		        	android:id="@+id/edit_tags"
+		        	android:layout_width="0dip"
+		        	android:layout_height="wrap_content"
+		        	android:layout_weight=".45"
+		        	android:hint="@string/edit_entry_tags" />
+		    	
+		    	<View
+		  				android:layout_width="0dip"
+		  				android:layout_height="10dp"
+		  				android:layout_weight=".03">
+					</View>
+	
+		    	
+		     	<Button
+				    android:id="@+id/entry_record_btn"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:drawableLeft="@drawable/ic_action_mic"
+				    android:text="@string/button_record_begin"    	
+		        	android:onClick="handleRecording" />
+		     	
+		     	<View
+		  				android:layout_width="0dip"
+		  				android:layout_height="10dp"
+		  				android:layout_weight=".02">
+					</View>
+		     	
+		     	<Button 
+		        	android:layout_width="wrap_content"
+		       		android:layout_height="wrap_content"
+		       		android:id="@+id/entry_play_btn"
+		        	android:drawableLeft="@drawable/ic_menu_play_clip"
+		        	android:text="@string/button_play"  	
+		        	android:onClick="handlePlay" />
+			</LinearLayout>
+			
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content">
+		  	    	<View
+		  				android:layout_width="0dip"
+		  				android:layout_height="30dp"
+		  				android:layout_weight="1">
+					</View>
+		    </LinearLayout>
+			
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content">
+		  	    	
+			   	<TextView
+			   	    android:layout_width="0dip"
+			       	android:layout_height="wrap_content"
+			       	android:layout_weight='1'
+		        	android:gravity="center"
+			       	android:text="@string/text_entry_native" />
+			</LinearLayout>
+			
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content">
+	  	    	
 	  	    	<View
 	  				android:layout_width="0dip"
 	  				android:layout_height="15dp"
 	  				android:layout_weight="1">
-				</View>
-	    </LinearLayout>
-	    
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content">
-	    	<EditText
-	        	android:id="@+id/edit_tags"
-	        	android:layout_width="0dip"
-	        	android:layout_height="wrap_content"
-	        	android:layout_weight=".45"
-	        	android:hint="@string/edit_entry_tags" />
-	    	
-	    	<View
-	  				android:layout_width="0dip"
-	  				android:layout_height="10dp"
-	  				android:layout_weight=".03">
-				</View>
-
-	    	
-	     	<Button
-			    android:id="@+id/entry_record_btn"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:drawableLeft="@android:drawable/ic_btn_speak_now"
-			    android:text="@string/button_record_begin"    	
-	        	android:onClick="handleRecording" />
-	     	
-	     	<View
-	  				android:layout_width="0dip"
-	  				android:layout_height="10dp"
-	  				android:layout_weight=".02">
-				</View>
-	     	
-	     	<Button 
-	        	android:layout_width="wrap_content"
-	       		android:layout_height="wrap_content"
-	       		android:id="@+id/entry_play_btn"
-	        	android:drawableLeft="@drawable/ic_menu_play_clip"
-	        	android:text="@string/button_play"  	
-	        	android:onClick="handlePlay" />
-		</LinearLayout>
-		
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content">
-	  	    	<View
-	  				android:layout_width="0dip"
-	  				android:layout_height="30dp"
-	  				android:layout_weight="1">
-				</View>
-	    </LinearLayout>
-		
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content">
+				</View>		
+	    	</LinearLayout>
+		    
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"> 
+		    	 	
+			   	<EditText 
+			        android:id="@+id/native_text"
+			        android:layout_width="0dip"
+			        android:layout_height="wrap_content"
+			        android:layout_weight=".75"
+			        android:hint="@string/hint_entry_native" />
+			</LinearLayout>
+			
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content">
 	  	    	
-		   	<TextView
-		   	    android:layout_width="0dip"
-		       	android:layout_height="wrap_content"
-		       	android:layout_weight='1'
-	        	android:gravity="center"
-		       	android:text="@string/text_entry_native" />
-		</LinearLayout>
-		
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content">
-  	    	
-  	    	<View
-  				android:layout_width="0dip"
-  				android:layout_height="15dp"
-  				android:layout_weight="1">
-			</View>		
-    	</LinearLayout>
-	    
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"> 
-	    	 	
-		   	<EditText 
-		        android:id="@+id/native_text"
-		        android:layout_width="0dip"
-		        android:layout_height="wrap_content"
-		        android:layout_weight=".75"
-		        android:hint="@string/hint_entry_native" />
-		</LinearLayout>
-		
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content">
-  	    	
-  	    	<View
-  				android:layout_width="0dip"
-  				android:layout_height="20dp"
-  				android:layout_weight="1">
-			</View>		
-    	</LinearLayout>
-	    
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content">
-		   		
-		   	<TextView 
-		   	    android:layout_width="0dip"
-		       	android:layout_height="wrap_content"
-		       	android:layout_weight='1'
-	        	android:gravity="center"
-		       	android:text="@string/text_entry_foreign" />
-		</LinearLayout>
-		
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content">
-  	    	
-  	    	<View
-  				android:layout_width="0dip"
-  				android:layout_height="15dp"
-  				android:layout_weight="1">
-			</View>		
-    	</LinearLayout>
-	    
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"> 
-	    	 	  	    
-		   	<EditText 
-		        android:id="@+id/foreign_text"
-		        android:layout_width="0dip"
-		        android:layout_height="wrap_content"
-		        android:layout_weight=".7"
-		        android:hint="@string/hint_entry_foreign"/>
-	   </LinearLayout>
-	    
-	   <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content">
 	  	    	<View
 	  				android:layout_width="0dip"
-	  				android:layout_height="30dp"
+	  				android:layout_height="20dp"
 	  				android:layout_weight="1">
 				</View>		
-	    </LinearLayout>
-	    
-	        
-<!--    	<Button
-	            android:id="@+id/save"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="handleSave"
-	            android:text="@string/save_button" />
--->
-	</LinearLayout>
-</ScrollView>	
+	    	</LinearLayout>
+		    
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content">
+			   		
+			   	<TextView 
+			   	    android:layout_width="0dip"
+			       	android:layout_height="wrap_content"
+			       	android:layout_weight='1'
+		        	android:gravity="center"
+			       	android:text="@string/text_entry_foreign" />
+			</LinearLayout>
+			
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content">
+	  	    	
+	  	    	<View
+	  				android:layout_width="0dip"
+	  				android:layout_height="15dp"
+	  				android:layout_weight="1">
+				</View>		
+
+	    	</LinearLayout>
+		    
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"> 
+		    	 	  	    
+			   	<EditText 
+			        android:id="@+id/foreign_text"
+			        android:layout_width="0dip"
+			        android:layout_height="wrap_content"
+			        android:layout_weight=".7"
+			        android:hint="@string/hint_entry_foreign"/>
+		   </LinearLayout>
+		    
+		   <LinearLayout 
+		        android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content">
+		  	    	<View
+		  				android:layout_width="0dip"
+		  				android:layout_height="30dp"
+		  				android:layout_weight="1">
+					</View>		
+		    </LinearLayout>
+	
+		</LinearLayout>
+	</ScrollView>
+
+ <ListView
+        android:id="@+id/drawer_list"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/list_background"
+        android:choiceMode="singleChoice"
+        android:divider="@color/app_darkColor"
+        android:dividerHeight="0dp" />	
+</android.support.v4.widget.DrawerLayout>

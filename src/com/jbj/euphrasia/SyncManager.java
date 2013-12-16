@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.jbj.euphrasia.interfaces.Constants;
 import com.jbj.euphrasia.remote.AbstractRemoteTask;
+import com.jbj.euphrasia.remote.AudioUploadTask;
 import com.jbj.euphrasia.remote.ClearRemoteTask;
 import com.jbj.euphrasia.remote.WriteRemoteTask;
 
@@ -59,6 +60,7 @@ public class SyncManager implements Constants {
 		}
 		else {
 			myCursor.close();
+			Toast.makeText(myActivity,"Success!",Toast.LENGTH_LONG).show();
 		}
 	}
 

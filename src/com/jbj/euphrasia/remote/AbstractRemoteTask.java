@@ -18,6 +18,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.json.JSONObject;
 
+import com.jbj.euphrasia.EntryContract.EntryColumns;
+
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Bundle>
 	protected JSONObject myJsonObject;
 	protected Activity mySourceActivity;
 	protected List<NameValuePair> myPairs;
+	protected String myAudioPath = "";
 //	protected Handler mHandler = new Handler(Looper.getMainLooper());
 //	
 //	public void run() {
@@ -51,6 +54,11 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Bundle>
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		for(int i = 0;i<params.length;i++){
 			String[] param = params[i];
+			if(param[0].equals(EntryColumns.COLUMN_NAME_AUDIO) && param[1]!=null){
+				Log.i("AUDIO PATH",param[1]);
+				myAudioPath = param[1];
+			}
+			Log.i("VALUE",param[0]+"gg");
 			myParams.setParameter(param[0], param[1]);
 			Log.i("AbstractTask","Added parameter "+ myParams.getParameter(param[0]));
 			NameValuePair pair = new BasicNameValuePair(param[0],param[1]);
@@ -93,6 +101,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Bundle>
 		    }
 		    result = sb.toString();
 		    Log.i("AbstractTaskResult",result);
+		   
 		    myJsonObject = new JSONObject(result);
 		} catch (Exception e) { 
 		    e.printStackTrace();

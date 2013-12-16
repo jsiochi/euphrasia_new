@@ -52,8 +52,18 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 	}
 	
 	protected void onPostExecute(Bundle args) {
-		SyncManager.setActivity(mySourceActivity);
-		SyncManager.completeSync();
+		//if(myAudioPath!=null){
+		if(1==2){
+			AudioUploadTask upload = new AudioUploadTask();
+			upload.setActivity(mySourceActivity);
+			upload.setAudioFile(myAudioPath);
+			String[][] params = new String[0][0];
+			upload.execute(params);
+		}
+		else{
+			SyncManager.setActivity(mySourceActivity);
+			SyncManager.completeSync();
+		}
 	}
 
 }

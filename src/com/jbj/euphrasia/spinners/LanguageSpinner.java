@@ -16,6 +16,7 @@ import com.jbj.euphrasia.R;
 
 
 import android.content.Context;
+import android.database.MergeCursor;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
@@ -89,7 +90,7 @@ public class LanguageSpinner extends EuphrasiaSpinner {
 				long id) {
 			doSelect(parent,view,position,id);
 			if(mySourceActivity instanceof EntryActivity){
-				((EntryActivity)mySourceActivity).setLanguage(parent.getSelectedItem().toString());
+				((EntryActivity)mySourceActivity).setLanguage(((MergeCursor)  parent.getSelectedItem()).getString(0));
 			}
 		}
 
