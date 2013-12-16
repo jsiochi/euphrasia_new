@@ -16,7 +16,7 @@ public interface Constants {
 	final String EXTRA_PHRASEBOOK_KEY = "phrasebook key";
 	final String ACTION_EXISTING_LOGIN ="existing user login";
 	final String EXTRA_EXISTING_USER = "existing user";
-	
+	final String ACTION_REMOTE_ENTRY = "REMOTE_ENTRY";
 	final String EXTRA_REMOTE_BUNDLE = "Remote query results";
 	final String ACTION_REMOTE_QUERY = "display remote query results";
 	final String[] DISPLAY_FROM_COLUMNS = {EntryColumns._ID, EntryColumns.COLUMN_NAME_TITLE, EntryColumns.COLUMN_NAME_TAG, 

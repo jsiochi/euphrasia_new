@@ -112,6 +112,7 @@ public class RemoteSearchActivity extends Activity implements Constants{
 	}
 	
 	public void doBrowse(View view){
+		Toast.makeText(this,"Reading remote entries...",Toast.LENGTH_LONG).show();
 		AbstractRemoteTask readRemote = new ReadRemoteTask();
 		myTask = readRemote;
 		readRemote.setActivity(this);
@@ -129,6 +130,7 @@ public class RemoteSearchActivity extends Activity implements Constants{
 	}
 	
 	public void doBrowseAll(View view){
+		Toast.makeText(this,"Reading remote entries...",Toast.LENGTH_SHORT).show();
 		AbstractRemoteTask readRemote = new ReadRemoteTask();
 		myTask = readRemote;
 		readRemote.setActivity(this);

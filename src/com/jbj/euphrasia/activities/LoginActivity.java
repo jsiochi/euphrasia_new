@@ -42,6 +42,8 @@ public class LoginActivity extends FragmentActivity implements Constants{
 		SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_NAME, 0);
 		boolean rememberStatus = sharedPreferences.getBoolean("remember", false);
 		if(rememberStatus){
+			Intent intent = new Intent(this,MainActivity.class);
+			intent.putExtra("FROM LOGIN", true);
 			this.startActivity(new Intent(this,MainActivity.class));
 		}
 	}
@@ -113,6 +115,7 @@ public class LoginActivity extends FragmentActivity implements Constants{
 		Intent intent = new Intent(this,MainActivity.class);
 		intent.setAction(ACTION_EXISTING_LOGIN);
 		intent.putExtra(EXTRA_EXISTING_USER, id);
+		intent.putExtra("FROM LOGIN", true);
 		startActivity(intent);
 	}
 	

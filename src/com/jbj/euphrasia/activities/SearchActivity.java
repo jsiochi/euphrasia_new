@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -202,6 +203,13 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		}
 		values.put("URI_id", id);
 		Intent toEntryIntent = new Intent(this,EntryActivity.class);
+		String action = this.getIntent().getAction();
+		if(action != null && action.equals(ACTION_REMOTE_QUERY)){
+			toEntryIntent.putExtra(ACTION_REMOTE_ENTRY, true);
+		}
+		else{
+			toEntryIntent.putExtra(ACTION_REMOTE_ENTRY, false);
+		}
 		toEntryIntent.putExtra(ENTRY_INTENT_PARCELABLE, values);
 		toEntryIntent.setAction(ACTION_GET_ENTRY_DATA);
 		startActivity(toEntryIntent);

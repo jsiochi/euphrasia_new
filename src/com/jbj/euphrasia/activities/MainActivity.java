@@ -75,6 +75,10 @@ public class MainActivity extends Activity implements Constants {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		if(this.getIntent().getBooleanExtra("FROM LOGIN",false)){
+//			String userName = this.getSharedPreferences(PREFS_NAME, 0).getString(PREFS_USERNAME_KEY, "user");
+//			Toast.makeText(this, "Welcome, "+userName+"!", Toast.LENGTH_LONG).show();
+//		}
 		setContentView(R.layout.activity_main);
 		myUser = this.getIntent().getStringExtra(EXTRA_EXISTING_USER);
 		//ActionBar actionBar = getSupportActionBar();

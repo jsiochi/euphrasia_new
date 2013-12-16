@@ -43,6 +43,7 @@ import com.jbj.euphrasia.spinners.PhrasebookSpinner;
 import android.net.Uri;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -133,6 +134,11 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 		
 		PhrasebookSpinner phrasebookSpinner = (PhrasebookSpinner) findViewById(R.id.entry_phrasebook_spinner);
 		phrasebookSpinner.setActivitySource(this);
+		if(this.getIntent().getBooleanExtra(ACTION_REMOTE_ENTRY, false)){
+	    	phrasebookSpinner.setEnabled(false);
+	    	languageSpinner.setEnabled(false);
+	    	this.findViewById(R.id.entry_record_btn).setEnabled(false);
+	    }
 		if(Constants.ACTION_GET_ENTRY_DATA.equals(getIntent().getAction())) {
 			myInitialData = processIntent();
 			myLanguage = myInitialData.getAsString(EntryColumns.COLUMN_NAME_LANGUAGE);
@@ -236,14 +242,27 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	/**
 	 * stores all view items in a map to reference by database column names
 	 */
+	@SuppressLint("ResourceAsColor")
 	private void findTextViews() {
 		EditText nativeText = (EditText) findViewById(R.id.native_text);
 		EditText foreignText = (EditText) findViewById(R.id.foreign_text);
 		EditText tagText = (EditText) findViewById(R.id.edit_tags);
 		EditText titleText = (EditText) findViewById(R.id.edit_title);
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		titleText.setText(dateFormat.format(date));
+		if(this.getIntent().getBooleanExtra(ACTION_REMOTE_ENTRY, false)){
+	    	nativeText.setEnabled(false);
+	    	foreignText.setEnabled(false);
+	    	tagText.setEnabled(false);
+	    	titleText.setEnabled(false);
+	    	foreignText.setTextColor(R.color.button_highlightColor);
+	    	tagText.setTextColor(R.color.button_highlightColor);
+	    	nativeText.setTextColor(R.color.button_highlightColor);
+	    	titleText.setTextColor(R.color.button_highlightColor);
+	    }
+		else{
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			titleText.setText(dateFormat.format(date));
+		}
 		myTextViews.put(EntryColumns.COLUMN_NAME_NATIVE_TEXT,nativeText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_FOREIGN_TEXT,foreignText);
 		myTextViews.put(EntryColumns.COLUMN_NAME_TAG,tagText);
@@ -283,7 +302,12 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.entry, menu);
-	    menu.findItem(R.id.sync).setIcon(R.drawable.sync);
+	    MenuItem syncItem = menu.findItem(R.id.sync);
+	    syncItem.setIcon(R.drawable.sync);
+	    MenuItem saveItem = menu.findItem(R.id.save);
+	    if(this.getIntent().getBooleanExtra(ACTION_REMOTE_ENTRY, false)){
+	    	saveItem.setVisible(false);
+	    }
 	    return super.onCreateOptionsMenu(menu);
 	}
 	
