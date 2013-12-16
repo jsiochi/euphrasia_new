@@ -1,6 +1,7 @@
 package com.jbj.euphrasia.activities;
 
 
+import com.jbj.euphrasia.DrawerManager;
 import com.jbj.euphrasia.EntryContract;
 import com.jbj.euphrasia.EntryProvider;
 import com.jbj.euphrasia.LogoutManager;
@@ -61,27 +62,10 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	private static final String SELECTION_QUERY = "SelectionQuery";
 	private static final String SELECTION_ARGS = "SelectionArgs";
 	
-	// Within which the entire activity is enclosed
-				private DrawerLayout mDrawerLayout;
-				 
-				// ListView represents Navigation Drawer
-				private ListView mDrawerList;
-				 
-			    // ActionBarDrawerToggle indicates the presence of Navigation Drawer in the action bar
-			    private ActionBarDrawerToggle mDrawerToggle;
-			    
-			    // Title of the action bar
-			    private String mTitle = "";
-			    
-			    // slide menu items
-			 	private String[] navMenuTitles;
-			 	private TypedArray navMenuIcons;
-			 	
-			 // Name the Activity
-			 	private Activity currentActivity;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		try{
 		super.onCreate(savedInstanceState);
 		myActivity = this;
 		setContentView(R.layout.activity_search);
@@ -184,138 +168,13 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 			}
 			
 		});
+		DrawerManager.initialize(savedInstanceState,this);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
-		// Getting reference to the DrawerLayout
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		
-		// load slide menu items
-		navMenuTitles = getResources().getStringArray(R.array.fragment_title_array);
-		
-		
-		// nav drawer icons from resources
-		navMenuIcons = getResources()
-				.obtainTypedArray(R.array.nav_drawer_icons);
-		 
-		mDrawerList = (ListView) findViewById(R.id.drawer_list);
-		 
-		// Getting reference to the ActionBarDrawerToggle
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-		        R.drawable.ic_drawer, R.string.drawer_open,
-		        R.string.drawer_close) {
-		 
-		        /** Called when drawer is closed */
-		        public void onDrawerClosed(View view) {
-		            getActionBar().setTitle(mTitle);
-		            invalidateOptionsMenu();
-		        }
-		 
-		        /** Called when a drawer is opened */
-		        public void onDrawerOpened(View drawerView) {
-		            getActionBar().setTitle("Euphrasia");
-		           invalidateOptionsMenu();
-		        }
-		 
-		    };
-		 
-		// Setting DrawerToggle on DrawerLayout
-		mDrawerLayout.setDrawerListener(mDrawerToggle);
-		
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-        
-        if (savedInstanceState == null) {
-			// on first time display view for first nav item
- 			Navigate(2);
- 		}
-        
-     // Creating an ArrayAdapter to add items to the listview mDrawerList
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(),
-		        R.layout.drawer_list_item, getResources().getStringArray(R.array.menu_title_array));
-		 
-		// Setting the adapter on mDrawerList
-		mDrawerList.setAdapter(adapter);
-		
-		// Setting item click listener for the listview mDrawerList
-	    mDrawerList.setOnItemClickListener(new OnItemClickListener() {
-	 
-	         @Override
-	         public void onItemClick(AdapterView<?> parent, View view,
-	                 int position, long id) {
-	 
-        		 // Getting an array of menu titles
-        	     String[] menuItems = getResources().getStringArray(R.array.menu_title_array);
-
-        	     // Currently selected river
-        	     mTitle = menuItems[position];
-	        	 
-	        	 // Creating a fragment object
-	             Navigate(position);
-	             
-	             // Passing selected item information to fragment
-	             /*Bundle data = new Bundle();
-	             data.putInt("position", position);
-	             fragment.setArguments(data);*/	 
-	         }
-	    });
 	}
-	
-	@Override
-	public void setTitle(CharSequence title) {
-		mTitle = (String) title;
-		getActionBar().setTitle(mTitle);
-	}
-	
-	/**
- 	 * Diplaying fragment view for selected nav drawer list item
- 	 * */
- 	private void Navigate(int position) {
- 		// update the main content by replacing fragments
- 		Intent intent = null;
- 		if (position != 2) {
-	 		switch (position) {
-	 		case 0:
-	 			startActivity(new Intent(this, MainActivity.class));
-	 			break;
-	 		case 1:
-	 			startActivity(new Intent(this, EntryActivity.class));
-	 			break;
-	 		case 3:
-	 			startActivity(new Intent(this,RemoteSearchActivity.class));
-	 			break;
-	 		case 4:
-	 			intent = new Intent(currentActivity, LoginActivity.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            currentActivity.startActivity(intent);
-	 			break;
-	 		/*case 5:
-	 			intent = new Intent(currentActivity, SettingsActivity.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            currentActivity.startActivity(intent);
-	 			break;*/
-	 		
-	 		default:
-	 			break;
-	 		}
- 		
-
-	 		if (intent == null) {
-	 		// error in creating intent
-				Log.e("DisplayActivity", "Error in creating intent");
-			}
-	 		
-	        // update selected item and title
-	        mDrawerList.setItemChecked(position, true);
-	        mDrawerList.setSelection(position);
-	        setTitle(navMenuTitles[position]);
-	
-	        // Closing the drawer
-	        mDrawerLayout.closeDrawer(mDrawerList);
-	        
- 		}
- 		else {
- 			
- 		};
- }
 	
 	public boolean deleteEntry(long id){
 		myActivity.getContentResolver().delete(Uri.withAppendedPath(EntryProvider.CONTENT_URI, 
@@ -349,21 +208,21 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	@Override
     protected void onPostCreate(Bundle savedInstanceState) {
             super.onPostCreate(savedInstanceState);
-         // Sync the toggle state after onRestoreInstanceState has occurred.
-            mDrawerToggle.syncState();
+            DrawerManager.syncDrawerToggle();
     }
     
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        DrawerManager.changeConfig(newConfig);
+        
     }
 	
     /** Called whenever we call invalidateOptionsMenu() */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
             // If the drawer is open, hide action items related to the content view
-            boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+            DrawerManager.isDrawerOpen();
 
             //menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
             return super.onPrepareOptionsMenu(menu);
@@ -381,7 +240,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
+		if (DrawerManager.isItemSelected(item)) {
         	// Pass the event to ActionBarDrawerToggle, if it returns
             // true, then it has handled the app icon touch event
                 return true;
