@@ -134,7 +134,6 @@ public class DrawerManager {
  	private static void Navigate(int position) {
  		// update the main content by replacing fragments
  		Intent intent = null;
- 		if (position != 2) {
 	 		switch (position) {
 	 		case 0:
 	 			myActivity.startActivity(new Intent(myActivity, MainActivity.class));
@@ -143,8 +142,8 @@ public class DrawerManager {
 	 			myActivity.startActivity(new Intent(myActivity, EntryActivity.class));
 	 			break;
 	 		case 2:
-	 			Intent toIntermediateIntent = new Intent(myActivity,IntermediateSearchActivity.class);
-	 			myActivity.startActivity(toIntermediateIntent);
+	 			myActivity.startActivity(new Intent(myActivity,IntermediateSearchActivity.class));
+	 			break;
 	 		case 3:
 	 			myActivity.startActivity(new Intent(myActivity,RemoteSearchActivity.class));
 	 			break;
@@ -162,7 +161,6 @@ public class DrawerManager {
 	 		default:
 	 			break;
 	 		}
- 		
 
 	 		if (intent == null) {
 	 		// error in creating intent
@@ -177,10 +175,6 @@ public class DrawerManager {
 	        // Closing the drawer
 	        mDrawerLayout.closeDrawer(mDrawerList);
 	        
- 		}
- 		else {
- 			
- 		};
  }
  	
  	public static void changeConfig(Configuration newConfig){
