@@ -163,11 +163,6 @@ public class EntryProvider extends ContentProvider {
 		ub.authority(MY_AUTHORITY);
 		ub.appendPath(EntryColumns.TABLE_NAME);
 		
-		//uri = Uri.parse(uri.toString().substring(8));
-		Log.i("URIstuff", uri.toString());
-		
-		Log.i("URIstuffMatcher", ub.toString());
-		
 		if(myUriMatcher.match(uri) == 1) {
 			newRowID = myDatabase.insert(EntryColumns.TABLE_NAME, EntryColumns.COLUMN_NAME_NULLABLE, values);
 			if(newRowID == -1) throw new IllegalArgumentException("Invalid format of values");

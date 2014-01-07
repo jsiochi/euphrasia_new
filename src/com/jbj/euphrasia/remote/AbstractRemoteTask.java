@@ -58,7 +58,7 @@ public abstract class AbstractRemoteTask extends AsyncTask<String[],Void,Bundle>
 				Log.i("AUDIO PATH",param[1]);
 				myAudioPath = param[1];
 			}
-			Log.i("VALUE",param[0]+"gg");
+			Log.i("VALUE",param[0]+" ");
 			myParams.setParameter(param[0], param[1]);
 			Log.i("AbstractTask","Added parameter "+ myParams.getParameter(param[0]));
 			NameValuePair pair = new BasicNameValuePair(param[0],param[1]);

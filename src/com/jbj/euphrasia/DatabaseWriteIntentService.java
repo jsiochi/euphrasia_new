@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 /**
- * OBSOLOTE CLASS!!
+ * OBSOLETE CLASS!
  * @author jeremiahsiochi
  */
 

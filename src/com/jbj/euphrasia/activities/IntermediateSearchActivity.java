@@ -40,13 +40,10 @@ public class IntermediateSearchActivity extends Activity implements Constants{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intermediate_search);
-		Log.i("BBBB","Making language Spinner");
 		LanguageSpinner languageChoices = (LanguageSpinner) findViewById(R.id.browse_languages);
 		languageChoices.setActivitySource(this);
-		Log.i("CCCC","MAKING PHRASEBOOK CHOICES");
 		PhrasebookSpinner phrasebookChoices = (PhrasebookSpinner) findViewById(R.id.browse_phrasebooks);
 		phrasebookChoices.setActivitySource(this);
-		Log.i("EEEE","WHAT IS GOING ON");
 		
 		DrawerManager.initialize(savedInstanceState,this);
 	}

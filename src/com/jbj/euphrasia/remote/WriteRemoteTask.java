@@ -19,13 +19,11 @@ public class WriteRemoteTask extends AbstractRemoteTask {
 
 	@Override
 	protected Bundle doInBackground(String[]... arg0) {
-		//Looper.getMainLooper().prepare();
 		super.doInBackground(arg0);
 		try{
 			int success = myJsonObject.getInt("success");
-			Log.i("YOMAMA", myJsonObject.getString("message"));
-			Log.i("JOMAMA", String.valueOf(success));
-			//Log.i("YOKO_ONO", myJsonObject.getString("errorjunk"));
+			Log.i("JsonMessage", myJsonObject.getString("message"));
+			Log.i("JsonSuccess", String.valueOf(success));
 		}
 		catch(Exception e){
 			e.printStackTrace();

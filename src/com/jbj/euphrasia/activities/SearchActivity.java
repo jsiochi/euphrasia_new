@@ -189,12 +189,12 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 	
 	public void sendToEntry(Cursor cursor, long id) {
 		int columnCount = cursor.getColumnCount();
-		Log.i("coumn count", String.valueOf(columnCount));
+		Log.i("column count", String.valueOf(columnCount));
 		int i = 0;
 		ContentValues values = new ContentValues();
 		cursor.moveToFirst();
 		while(i<columnCount){
-			Log.i("coumn pos", String.valueOf(i));
+			Log.i("column pos", String.valueOf(i));
 			String columnValue = cursor.getString(i);
 			String columnName = cursor.getColumnName(i);
 			Log.i("columnname", columnName + " " + columnValue);
@@ -312,7 +312,7 @@ public class SearchActivity extends ListActivity implements android.app.LoaderMa
 		ContentValues values = new ContentValues();
 		cursor.moveToFirst();
 		while(i<columnCount){
-			Log.i("coumn pos", String.valueOf(i));
+			Log.i("column pos", String.valueOf(i));
 			Log.i("rows",""+cursor.getCount());
 			String columnValue = cursor.getString(i);
 			String columnName = cursor.getColumnName(i);

@@ -28,9 +28,7 @@ public class ReadRemoteTask extends AbstractRemoteTask {
 		try{
 			int success = myJsonObject.getInt("success");
 			Log.i("SUCCESS",String.valueOf(success));
-			Log.i("Truth test",""+(success==1));
 			if(success==1){
-				Log.i("baf;lak","Jehovah");
 				JSONArray arrayResults = myJsonObject.getJSONArray("entries");
 				Log.i("array size"," "+String.valueOf(arrayResults.length()));
 				for(int i = 0;i<arrayResults.length();i++){

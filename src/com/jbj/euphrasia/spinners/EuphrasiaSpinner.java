@@ -52,12 +52,9 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 	}
 	
 	public void load(String data){
-		Log.i("thedata",data);
-		Log.i("Map size", itemMap.size()+"");
+		Log.i("map_size", itemMap.size()+"");
 		try{
 			this.setSelection(itemMap.get(data));
-			Log.i("THESTOREDINDEX", itemMap.get(data)+"");
-			//Log.i("THESPINNERSIZE", this.g);
 		}
 		catch(NullPointerException e){
 			e.printStackTrace();
@@ -94,7 +91,6 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 			long id){
 		String selected = ((MergeCursor) parent.getSelectedItem()).getString(0);
 		Log.i("onItemSelected", selected);
-		//String selected2 = parent.get
 		if(mySourceActivity instanceof EntryActivity){
 			EntryActivity entryActivity = (EntryActivity)mySourceActivity;
 			Controller controller = entryActivity.getController();
@@ -103,7 +99,7 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 				EntryDialogFragment dlg = getDialogFragment();
 				dlg.setSourceSpinner(this);
 			    dlg.show(entryActivity.getSupportFragmentManager(), this.getDialogLayout());
-			    Log.i("onItemSelected",""+dlg.isVisible());
+			    Log.i("onItemSelected_DialogShown",""+dlg.isVisible());
 			}
 			//else if(!controller.hasValid(this)){
 				controller.updateEntryField(this.createField(selected));
@@ -114,7 +110,6 @@ public abstract class EuphrasiaSpinner extends Spinner implements Constants {
 		if(mySourceActivity instanceof IntermediateSearchActivity && id != -1){
 			IntermediateSearchActivity searchActivity = (IntermediateSearchActivity)mySourceActivity;
 			String selectedItem = ((MergeCursor) parent.getSelectedItem()).getString(0);
-			//String selectedItem = parent.getSelectedItem().toString();
 			searchActivity.onFilter(selectedItem, this.getAction(), this.getColumnKey());
 		}
 		mySize = parent.getCount();

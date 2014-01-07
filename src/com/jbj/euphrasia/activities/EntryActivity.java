@@ -144,7 +144,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			myLanguage = myInitialData.getAsString(EntryColumns.COLUMN_NAME_LANGUAGE);
 			myPhrasebook = myInitialData.getAsString(EntryColumns.COLUMN_NAME_PHRASEBOOK);
 			languageSpinner.load(myLanguage);
-			Log.i("THE THING",myPhrasebook.toString());
+			Log.i("CurrentPhrasebook" ,myPhrasebook.toString());
 			phrasebookSpinner.load(myPhrasebook);
 		}
 		
@@ -351,7 +351,7 @@ public class EntryActivity extends FragmentActivity implements Constants, EntryC
 			EditText editText = (EditText) view;
 			Field field = myFieldFactory.createField(view.getId(), editText.getText().toString());
 			myController.updateEntryField(field);
-			Log.i("new field",field.toString() + field.getClass().getName());
+			Log.i("new field", field.toString() + field.getClass().getName());
 		}
 	}
 	
